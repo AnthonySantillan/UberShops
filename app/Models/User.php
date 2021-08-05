@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'direction',
+        'genred',
     ];
 
     /**
@@ -44,8 +45,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime: Y-m-d',
     ];
 
-    function user()
+    function clients()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Client::class);
+    }
+    function drivers()
+    {
+        return $this->belongsTo(Driver::class);
+    }
+    function sellers()
+    {
+        return $this->belongsTo(Seller::class);
     }
 }

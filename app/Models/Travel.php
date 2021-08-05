@@ -9,14 +9,18 @@ class Travel extends Model
 {
     use HasFactory;
     protected $table = 'app.travels';
-    protected $fillable = [
-        'starting',
-        'arrival',
-        'value'
-    ];
+    protected $fillable = [];
 
-    function role()
+    function drivers()
     {
-        return $this->hasMany(Role::class);
+        return $this->hasMany(Driver::class);
+    }
+    function shops()
+    {
+        return $this->hasMany(Shop::class);
+    }
+    function payment()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

@@ -5,25 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Shop extends Model
 {
     use HasFactory;
-    protected $table = 'app.roles';
+    protected $table = 'app.shops';
     protected $fillable = [
         'name',
+        'code',
+        'direction',
     ];
-
     function sellers()
     {
         return $this->belongsTo(Seller::class);
     }
-
-    function user()
+    function products()
     {
-        return $this->belongsTo(Travel::class);
+        return $this->belongsTo(Product::class);
     }
-
-    function driver()
+    function travels()
     {
         return $this->belongsTo(Travel::class);
     }

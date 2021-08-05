@@ -10,12 +10,15 @@ class Payment extends Model
     use HasFactory;
     protected $table = 'app.payments';
     protected $fillable = [
-        'cash',
-        'card'
+        'name',
+        'value',
     ];
-
     function user()
     {
         return $this->hasMany(User::class);
+    }
+    function travels()
+    {
+        return $this->belongsTo(Travel::class);
     }
 }
