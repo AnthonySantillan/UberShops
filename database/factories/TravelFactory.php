@@ -21,11 +21,6 @@ class TravelFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'starting' => $this->faker->streetAddress(),
-            'arrival' => $this->faker->streetAddress(),
-            'value' => $this->faker->buildingNumber(),
-
-        ];
+        return [];
     }
 }

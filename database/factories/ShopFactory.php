@@ -22,7 +22,12 @@ class ShopFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'code' => $this->faker->bothify('?????-#####'),
+            'amount' => $this->faker->buildingNumber(),
+            'price' => $this->faker->buildingNumber(),
+
+
         ];
     }
 }

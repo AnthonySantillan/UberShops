@@ -22,7 +22,13 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'code' => $this->faker->bothify('?????-#####'),
+            'direction' => $this->faker->streetAddress(),
+            'amount' => $this->faker->buildingNumber(),
+            'price' => $this->faker->buildingNumber(),
+
+
         ];
     }
 }

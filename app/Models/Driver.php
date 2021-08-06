@@ -21,4 +21,8 @@ class Driver extends Model
     {
         return $this->hasMany(User::class);
     }
+    function roles()
+    {
+        return $this->hasMany(Role::class);
+    }
 }
