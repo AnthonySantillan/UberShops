@@ -13,14 +13,12 @@ class CreateAppPaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::connection(env('DB_CONNECTION_APP'))->create('payments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('app.users');
-            $table->integer('cash');
-            $table->string('card');
-
-            $table->timestamps();
-        });
+        Schema::connection(env('DB_CONNECTION_APP'))
+            ->create('payments', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->timestamps();
+            });
     }
 
     /**
@@ -30,6 +28,6 @@ class CreateAppPaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::connection(env('DB_CONNECTION_APP'))->dropIfExists('payments');
+        Schema::dropIfExists('payments');
     }
 }

@@ -11,7 +11,6 @@ class Payment extends Model
     protected $table = 'app.payments';
     protected $fillable = [
         'name',
-        'value',
     ];
     function user()
     {
@@ -20,5 +19,9 @@ class Payment extends Model
     function travels()
     {
         return $this->belongsTo(Travel::class);
+    }
+    function details()
+    {
+        return $this->hasMany(Detail::class);
     }
 }

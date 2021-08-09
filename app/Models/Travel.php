@@ -19,8 +19,8 @@ class Travel extends Model
     {
         return $this->hasMany(Shop::class);
     }
-    function payment()
+    function details()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Detail::class);
     }
 }

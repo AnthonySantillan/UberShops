@@ -18,8 +18,9 @@ class CreateAppTravelsTable extends Migration
                 $table->id();
                 //poner las foreing key una de drivers otra de shops y otra de payment
                 $table->foreignId('driver_id')->constrained('app.drivers');
+                $table->foreignId('client_id')->constrained('app.clients');
                 $table->foreignId('shop_id')->constrained('app.shops');
-                $table->foreignId('payment_id')->constrained('app.payments');
+                $table->foreignId('detail_id')->constrained('app.details');
                 $table->timestamps();
             });
     }

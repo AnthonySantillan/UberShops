@@ -12,7 +12,14 @@ class Product extends Model
     protected $fillable = [
         'name',
         'code',
-        'amount',
         'price',
     ];
+    function shops()
+    {
+        return $this->hasMany(Shop::class);
+    }
+    function purchaseDetails()
+    {
+        return $this->hasMany(Purchase_Detail::class);
+    }
 }
