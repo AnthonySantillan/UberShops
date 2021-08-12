@@ -21,6 +21,10 @@ class ClientFactory extends Factory
      */
     public function definition()
     {
-        return [];
+        return [
+            'user_id' => $this->faker->numberBetween(1, 10),
+            'role_id' => $this->faker->numberBetween(1, 10),
+            'card' => $this->faker->creditCardNumber(),
+        ];
     }
 }

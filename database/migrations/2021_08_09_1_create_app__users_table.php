@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppProductsTable extends Migration
+class CreateAppUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,15 @@ class CreateAppProductsTable extends Migration
     public function up()
     {
         Schema::connection(env('DB_CONNECTION_APP'))
-            ->create('products', function (Blueprint $table) {
+            ->create('users', function (Blueprint $table) {
                 $table->id();
                 $table->string('name');
-                $table->string('code');
-                $table->integer('amount');
-                $table->decimal('price');
+                $table->string('phone');
+                $table->string('email')->unique();
+                $table->string('password');
+                $table->string('direction');
+                $table->text('genred');
+                $table->softDeletes();
                 $table->timestamps();
             });
     }
@@ -31,6 +34,6 @@ class CreateAppProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::connection(env('DB_CONNECTION_APP'))->dropIfExists('users');
     }
 }

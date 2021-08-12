@@ -11,6 +11,7 @@ class Payment extends Model
     protected $table = 'app.payments';
     protected $fillable = [
         'name',
+        'value',
     ];
     function user()
     {

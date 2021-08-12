@@ -21,6 +21,7 @@ class CreateAppTravelsTable extends Migration
                 $table->foreignId('client_id')->constrained('app.clients');
                 $table->foreignId('shop_id')->constrained('app.shops');
                 $table->foreignId('detail_id')->constrained('app.details');
+                $table->softDeletes();
                 $table->timestamps();
             });
     }
@@ -32,6 +33,6 @@ class CreateAppTravelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('travels');
+        Schema::connection(env('DB_CONNECTION_APP'))->dropIfExists('travels');
     }
 }

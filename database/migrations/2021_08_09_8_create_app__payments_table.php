@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppSellersTable extends Migration
+class CreateAppPaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,11 @@ class CreateAppSellersTable extends Migration
     public function up()
     {
         Schema::connection(env('DB_CONNECTION_APP'))
-            ->create('sellers', function (Blueprint $table) {
+            ->create('payments', function (Blueprint $table) {
                 $table->id();
-                //foreing key de shops y users
-                $table->foreignId('user_id')->constrained('app.users');
-                $table->foreignId('role_id')->constrained('app.roles');
+                $table->string('name');
+                $table->integer('value');
+                $table->softDeletes();
                 $table->timestamps();
             });
     }
@@ -30,6 +30,6 @@ class CreateAppSellersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sellers');
+        Schema::connection(env('DB_CONNECTION_APP'))->dropIfExists('payments');
     }
 }

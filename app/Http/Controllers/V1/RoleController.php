@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
-use App\Models\Driver;
+
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
-class DriversController extends Controller
+
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +18,11 @@ class DriversController extends Controller
      */
     public function index()
     {
-        $drivers =Driver::get();
+        $roles = Role::get();
+
         return response()->json(
             [
-                'data' => $drivers,
+                'data' => $roles,
                 'msg' => [
                     'sumary' => 'consulta correcta',
                     'detail' => 'la consulta esta correcta',
@@ -36,22 +40,18 @@ class DriversController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $driver = new Driver();
-        $driver->name= $request->name;
-        $driver->phone= $request->phone;
-        $driver->email= $request->email;
-        $driver->password= $request->password;
-        $driver->direction= $request->direction;
-        $driver->license= $request->license;
-        $driver->save();
+    {
+        $role = new Role();
+        $role->user = $request->user;
+        $role->driver = $request->driver;
+        $role->save();
 
         return response()->json(
             [
-                'data' => $driver,
+                'data' => null,
                 'msg' => [
                     'summary' => 'Creado correctamente',
-                    'detail' => 'El conductor se creo correctamente',
+                    'detail' => 'El empleado se creo correctamente',
                     'code' => '201'
                 ]
             ],
@@ -65,16 +65,12 @@ class DriversController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($driver)
+    public function show($role)
     {
-        //$driver = DB::table('app.drivers')->find($driver);
-
-        // ELOQUENT
-        //$driver = Driver::find($driver);
-         $driver = DB::select('select * from app.drivers where id = ?',[$driver]);
+        $role = DB::select('select * from app.roles where id = ?', [$role]);
         return response()->json(
             [
-                'data' => $driver[0],
+                'data' => $role,
                 'msg' => [
                     'sumary' => 'consulta correcta',
                     'detail' => 'la consulta esta correcta',
@@ -92,23 +88,19 @@ class DriversController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $driver)
+    public function update(Request $request, $role)
     {
-        $driver = Driver::find($driver);
-        $driver->name= $request->name;
-        $driver->phone= $request->phone;
-        $driver->email= $request->email;
-        $driver->password= $request->password;
-        $driver->direction= $request->direction;
-        $driver->license= $request->license;
-        $driver->save();
+        $role = Role::find($role);
+        $role->user = $request->user;
+        $role->driver = $request->driver;
+        $role->save();
 
         return response()->json(
             [
-                'data' => $driver,
+                'data' => null,
                 'msg' => [
                     'summary' => 'Actualizado correctamente',
-                    'detail' => 'EL conductor se actualizó correctamente',
+                    'detail' => 'EL empleado se actualizó correctamente',
                     'code' => '201'
                 ]
             ],
@@ -122,16 +114,31 @@ class DriversController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($driver)
+    public function destroy($role)
     {
-        $driver = Driver::find($driver);
-        $driver->delete();
+        $role = Role::find($role);
+        $role->delete();
         return response()->json(
             [
-                'data' => $driver,
+                'data' => null,
                 'msg' => [
                     'summary' => 'Eliminado correctamente',
-                    'detail' => 'EL conductor se eliminó correctamente',
+                    'detail' => 'EL empleado se eliminó correctamente',
+                    'code' => '201'
+                ]
+            ],
+            201
+        );
+    }
+
+    public function updateState()
+    {
+        return response()->json(
+            [
+                'data' => null,
+                'msg' => [
+                    'summary' => 'actualizado Correctamente',
+                    'detail' => 'EL empleado se actualizo correctamente',
                     'code' => '201'
                 ]
             ],

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\V1;
 
-use App\Models\Payment;
+use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-
-class PaymentsController extends Controller
+class DriverController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +16,10 @@ class PaymentsController extends Controller
      */
     public function index()
     {
-        $payments = Payment::get();
+        $drivers = Driver::get();
         return response()->json(
             [
-                'data' => $payments,
+                'data' => $drivers,
                 'msg' => [
                     'sumary' => 'consulta correcta',
                     'detail' => 'la consulta esta correcta',
@@ -39,14 +38,13 @@ class PaymentsController extends Controller
      */
     public function store(Request $request)
     {
-        $payment = new Payment();
-        $payment->name = $request->name;
-        $payment->value = $request->value;
-        $payment->save();
+        $driver = new Driver();
+        $driver->license = $request->license;
+        $driver->save();
 
         return response()->json(
             [
-                'data' => $payment,
+                'data' => $driver,
                 'msg' => [
                     'summary' => 'Creado correctamente',
                     'detail' => 'El conductor se creo correctamente',
@@ -63,13 +61,13 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($payment)
+    public function show($driver)
     {
 
-        $payment = DB::select('select * from app.payments where id = ?', [$payment]);
+        $driver = DB::select('select * from app.drivers where id = ?', [$driver]);
         return response()->json(
             [
-                'data' => $payment,
+                'data' => $driver,
                 'msg' => [
                     'sumary' => 'consulta correcta',
                     'detail' => 'la consulta esta correcta',
@@ -87,16 +85,15 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $payment)
+    public function update(Request $request, $driver)
     {
-        $payment = Payment::find($payment);
-        $payment->name = $request->name;
-        $payment->value = $request->value;
-        $payment->save();
+        $driver = Driver::find($driver);
+        $driver->license = $request->license;
+        $driver->save();
 
         return response()->json(
             [
-                'data' => $payment,
+                'data' => $driver,
                 'msg' => [
                     'summary' => 'Actualizado correctamente',
                     'detail' => 'EL conductor se actualizó correctamente',
@@ -113,13 +110,13 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($payment)
+    public function destroy($driver)
     {
-        $payment = Payment::find($payment);
-        $payment->delete();
+        $driver = Driver::find($driver);
+        $driver->delete();
         return response()->json(
             [
-                'data' => $payment,
+                'data' => $driver,
                 'msg' => [
                     'summary' => 'Eliminado correctamente',
                     'detail' => 'EL conductor se eliminó correctamente',

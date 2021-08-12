@@ -22,6 +22,8 @@ class DetailFactory extends Factory
     public function definition()
     {
         return [
+            'product_id' => $this->faker->numberBetween(1, 10),
+            'payment_id' => $this->faker->numberBetween(1, 10),
             'amount' => $this->faker->buildingNumber(),
             'delivery_date' => $this->faker->dateTime(),
             'delivery_time' => $this->faker->time(),

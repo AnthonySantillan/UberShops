@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\V1;
 
-use App\Models\Payment;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-
-class PaymentsController extends Controller
+class VehicleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +16,10 @@ class PaymentsController extends Controller
      */
     public function index()
     {
-        $payments = Payment::get();
+        $driver = Vehicle::get();
         return response()->json(
             [
-                'data' => $payments,
+                'data' => $driver,
                 'msg' => [
                     'sumary' => 'consulta correcta',
                     'detail' => 'la consulta esta correcta',
@@ -39,17 +38,19 @@ class PaymentsController extends Controller
      */
     public function store(Request $request)
     {
-        $payment = new Payment();
-        $payment->name = $request->name;
-        $payment->value = $request->value;
-        $payment->save();
+        $vehicle = new Vehicle();
+        $vehicle->plate = $request->plate;
+        $vehicle->color = $request->color;
+        $vehicle->enrollment = $request->enrollment;
+        $vehicle->year = $request->year;
+        $vehicle->save();
 
         return response()->json(
             [
-                'data' => $payment,
+                'data' => null,
                 'msg' => [
                     'summary' => 'Creado correctamente',
-                    'detail' => 'El conductor se creo correctamente',
+                    'detail' => 'El empleado se creo correctamente',
                     'code' => '201'
                 ]
             ],
@@ -63,13 +64,14 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($payment)
+    public function show($vehicle)
     {
 
-        $payment = DB::select('select * from app.payments where id = ?', [$payment]);
+        $vehicle = DB::select('select * from app.vehicles where id = ?', [$vehicle]);
+
         return response()->json(
             [
-                'data' => $payment,
+                'data' => $vehicle[0],
                 'msg' => [
                     'sumary' => 'consulta correcta',
                     'detail' => 'la consulta esta correcta',
@@ -87,19 +89,22 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $payment)
+    public function update(Request $request, $vehicle)
     {
-        $payment = Payment::find($payment);
-        $payment->name = $request->name;
-        $payment->value = $request->value;
-        $payment->save();
+        $vehicle = Vehicle::find($vehicle);
+        $vehicle->age = $request->age;
+        $vehicle->name = $request->name;
+        $vehicle->email = $request->email;
+        $vehicle->ponhe = $request->aproved;
+        $vehicle->identification = $request->identification;
+        $vehicle->save();
 
         return response()->json(
             [
-                'data' => $payment,
+                'data' => null,
                 'msg' => [
                     'summary' => 'Actualizado correctamente',
-                    'detail' => 'EL conductor se actualizó correctamente',
+                    'detail' => 'EL empleado se actualizó correctamente',
                     'code' => '201'
                 ]
             ],
@@ -113,16 +118,15 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($payment)
+    public function destroy($vehicle)
     {
-        $payment = Payment::find($payment);
-        $payment->delete();
+        $vehicle = Vehicle::find($vehicle);
+        $vehicle->delete();
         return response()->json(
             [
-                'data' => $payment,
                 'msg' => [
                     'summary' => 'Eliminado correctamente',
-                    'detail' => 'EL conductor se eliminó correctamente',
+                    'detail' => 'EL empleado se eliminó correctamente',
                     'code' => '201'
                 ]
             ],

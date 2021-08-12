@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppShopsTable extends Migration
+class CreateAppDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,15 @@ class CreateAppShopsTable extends Migration
     public function up()
     {
         Schema::connection(env('DB_CONNECTION_APP'))
-            ->create('shops', function (Blueprint $table) {
+            ->create('details', function (Blueprint $table) {
                 $table->id();
-                //foreing key de sellers y products 
-                $table->foreignId('seller_id')->constrained('app.sellers');
                 $table->foreignId('product_id')->constrained('app.products');
-                $table->string('name');
-                $table->string('code');
-                $table->string('direction');
+                $table->foreignId('payment_id')->constrained('app.payments');
+                $table->integer('amount');
+                $table->date('delivery_date');
+                $table->time('delivery_time');
+                $table->decimal('value');
+                $table->softDeletes();
                 $table->timestamps();
             });
     }
@@ -33,6 +34,6 @@ class CreateAppShopsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shops');
+        Schema::connection(env('DB_CONNECTION_APP'))->dropIfExists('details');
     }
 }

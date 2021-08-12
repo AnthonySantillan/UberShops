@@ -24,7 +24,7 @@ class VehicleFactory extends Factory
         return [
             'plate' => $this->faker->bothify('?????-#####'),
             'color' => $this->faker->colorName(),
-            'enrollmment' => $this->faker->date(),
+            'enrollment' => $this->faker->date(),
             'year' => $this->faker->year('+10 years'),
 
 

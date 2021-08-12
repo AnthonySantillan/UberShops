@@ -16,7 +16,8 @@ class CreateAppRolesTable extends Migration
         Schema::connection(env('DB_CONNECTION_APP'))
             ->create('roles', function (Blueprint $table) {
                 $table->id();
-                $table->string('name');
+                $table->text('name');
+                $table->softDeletes();
                 $table->timestamps();
             });
     }
@@ -28,6 +29,6 @@ class CreateAppRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::connection(env('DB_CONNECTION_APP'))->dropIfExists('roles');
     }
 }

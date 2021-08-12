@@ -24,6 +24,7 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'code' => $this->faker->bothify('?????-#####'),
+            'amount' => $this->faker->buildingNumber(),
             'price' => $this->faker->buildingNumber(),
 
 

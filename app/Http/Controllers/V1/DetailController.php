@@ -1,24 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
-use App\Models\Vehicle;
+use App\Http\Controllers\Controller;
+use App\Models\Detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class VehiclesController extends Controller
+class DetailController extends Controller
 {
-      /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $driver =Vehicle::get();
+        $details = Detail::get();
         return response()->json(
             [
-                'data' => $driver,
+                'data' => $details,
                 'msg' => [
                     'sumary' => 'consulta correcta',
                     'detail' => 'la consulta esta correcta',
@@ -36,20 +37,21 @@ class VehiclesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $vehicle = new Vehicle();
-        $vehicle->plate= $request->plate;
-        $vehicle->color= $request->color;
-        $vehicle->enrollment= $request->enrollment;
-        $vehicle->year= $request->year;
-        $vehicle->save();
+    {
+        $detail = new Detail();
+        $detail->amount = $request->amount;
+        $detail->delivery_date = $request->delivery_date;
+        $detail->delivery_time = $request->delivery_time;
+        $detail->value = $request->value;
+
+        $detail->save();
 
         return response()->json(
             [
-                'data' => null,
+                'data' => $detail,
                 'msg' => [
                     'summary' => 'Creado correctamente',
-                    'detail' => 'El empleado se creo correctamente',
+                    'detail' => 'El conductor se creo correctamente',
                     'code' => '201'
                 ]
             ],
@@ -63,16 +65,13 @@ class VehiclesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($vehicle)
+    public function show($detail)
     {
-        $vehicle = DB::table('app.vehicles')->find($vehicle);
 
-        // ELOQUENT
-        //$vehicle = Vehicle::find($vehicle);
-        // $vehicle = DB::('select * from app.vehicle where id = ?',[$vehicle]);
+        $detail = DB::select('select * from app.details where id = ?', [$detail]);
         return response()->json(
             [
-                'data' => $vehicle[0],
+                'data' => $detail,
                 'msg' => [
                     'sumary' => 'consulta correcta',
                     'detail' => 'la consulta esta correcta',
@@ -90,22 +89,21 @@ class VehiclesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $vehicle)
+    public function update(Request $request, $detail)
     {
-        $vehicle = Vehicle::find($vehicle);
-        $vehicle->age = $request->age;
-        $vehicle->name = $request->name;
-        $vehicle->email = $request->email;
-        $vehicle->ponhe = $request->aproved;
-        $vehicle->identification = $request->identification;
-        $vehicle->save();
+        $detail = Detail::find($detail);
+        $detail->amount = $request->amount;
+        $detail->delivery_date = $request->delivery_date;
+        $detail->delivery_time = $request->delivery_time;
+        $detail->value = $request->value;
+        $detail->save();
 
         return response()->json(
             [
-                'data' => null,
+                'data' => $detail,
                 'msg' => [
                     'summary' => 'Actualizado correctamente',
-                    'detail' => 'EL empleado se actualizó correctamente',
+                    'detail' => 'EL conductor se actualizó correctamente',
                     'code' => '201'
                 ]
             ],
@@ -119,15 +117,16 @@ class VehiclesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($vehicle)
+    public function destroy($detail)
     {
-        $vehicle = Vehicle::find($vehicle);
-        $vehicle->delete();
+        $detail = Detail::find($detail);
+        $detail->delete();
         return response()->json(
             [
+                'data' => $detail,
                 'msg' => [
                     'summary' => 'Eliminado correctamente',
-                    'detail' => 'EL empleado se eliminó correctamente',
+                    'detail' => 'EL conductor se eliminó correctamente',
                     'code' => '201'
                 ]
             ],

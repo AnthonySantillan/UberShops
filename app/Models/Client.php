@@ -9,7 +9,9 @@ class Client extends Model
 {
     use HasFactory;
     protected $table = 'app.clients';
-    protected $fillable = [];
+    protected $fillable = [
+        'card',
+    ];
 
 
     function users()

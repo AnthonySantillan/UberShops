@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Seller extends Model
 {
     use HasFactory;
-    protected $table = 'app.seller';
-    protected $fillable = [];
+    protected $table = 'app.sellers';
+    protected $fillable = [
+        'ruc',
+    ];
 
     function shops()
     {

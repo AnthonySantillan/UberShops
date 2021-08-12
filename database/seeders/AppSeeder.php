@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Client;
+use App\Models\Detail;
 use App\Models\Driver;
 use App\Models\Payment;
 use App\Models\Product;
@@ -23,27 +24,17 @@ class AppSeeder extends Seeder
      */
     public function run()
     {
-        Seller::factory(10)
-            ->has(User::factory()->count(3), 'users')
-            ->has(Role::factory()->count(3), 'roles')
-            ->create();
-        Driver::factory(10)
-            ->has(User::factory()->count(3), 'users')
-            ->has(Role::factory()->count(3), 'roles')
-            ->has(Vehicle::factory()->count(3), 'vehicle')
-            ->create();
-        Client::factory(10)
-            ->has(User::factory()->count(3), 'users')
-            ->has(Role::factory()->count(3), 'roles')
-            ->create();
-        Shop::factory(10)
-            ->has(Seller::factory()->count(3), 'sellers')
-            ->has(Product::factory()->count(3), 'products')
-            ->create();
-        Travel::factory(10)
-            ->has(Driver::factory()->count(3), 'drivers')
-            ->has(Shop::factory()->count(3), 'shops')
-            ->has(Payment::factory()->count(3), 'payment')
-            ->create();
+        //primero las que dependen luego las que no 
+        Role::factory(10)->create();
+        User::factory(10)->create();
+        Vehicle::factory(10)->create();
+        Product::factory(10)->create();
+        Payment::factory(10)->create();
+        Client::factory(10)->create();
+        Seller::factory(10)->create();
+        Driver::factory(10)->create();
+        Shop::factory(10)->create();
+        Detail::factory(10)->create();
+        Travel::factory(10)->create();
     }
 }

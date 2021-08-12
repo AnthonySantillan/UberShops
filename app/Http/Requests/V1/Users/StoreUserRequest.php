@@ -24,20 +24,23 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required', 'unique:pgsql-authentication.users,username', 'max:50'],
-            'name' => ['required', 'min:2', 'max:100'],
-            'lastname' => ['required', 'min:2', 'max:50'],
+            'name' => ['required', 'unique:pgsql-authentication.users,name', 'max:50'],
+            'phone' => ['required', 'min:2', 'max:10'],
             'email' => ['required', 'max:50'],
+            'direction' => ['required', 'max:50'],
+
         ];
     }
 
     public function attributes()
     {
         return [
-            'username' => 'nombre de usuario',
-            'name' => 'nombre',
-            'lastname' => 'apellido',
-            'email' => 'correo electrónico'
+            'name' => 'nombre de usuario',
+            'phone' => 'telefono',
+            'email' => 'correo electrónico',
+            'direction' => 'direccion'
+
+
         ];
     }
 }

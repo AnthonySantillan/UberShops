@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\V1;
 
-use App\Models\Payment;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Shop;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
-
-class PaymentsController extends Controller
+class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +16,10 @@ class PaymentsController extends Controller
      */
     public function index()
     {
-        $payments = Payment::get();
+        $shops = Shop::get();
         return response()->json(
             [
-                'data' => $payments,
+                'data' => $shops,
                 'msg' => [
                     'sumary' => 'consulta correcta',
                     'detail' => 'la consulta esta correcta',
@@ -39,14 +38,15 @@ class PaymentsController extends Controller
      */
     public function store(Request $request)
     {
-        $payment = new Payment();
-        $payment->name = $request->name;
-        $payment->value = $request->value;
-        $payment->save();
+        $shop = new Shop();
+        $shop->name = $request->name;
+        $shop->code = $request->code;
+        $shop->direction = $request->direction;
+        $shop->save();
 
         return response()->json(
             [
-                'data' => $payment,
+                'data' => $shop,
                 'msg' => [
                     'summary' => 'Creado correctamente',
                     'detail' => 'El conductor se creo correctamente',
@@ -63,13 +63,13 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($payment)
+    public function show($shop)
     {
 
-        $payment = DB::select('select * from app.payments where id = ?', [$payment]);
+        $shop = DB::select('select * from app.shops where id = ?', [$shop]);
         return response()->json(
             [
-                'data' => $payment,
+                'data' => $shop,
                 'msg' => [
                     'sumary' => 'consulta correcta',
                     'detail' => 'la consulta esta correcta',
@@ -87,16 +87,15 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $payment)
+    public function update(Request $request, $shop)
     {
-        $payment = Payment::find($payment);
-        $payment->name = $request->name;
-        $payment->value = $request->value;
-        $payment->save();
+        $shop = Shop::find($shop);
+        $shop->license = $request->license;
+        $shop->save();
 
         return response()->json(
             [
-                'data' => $payment,
+                'data' => $shop,
                 'msg' => [
                     'summary' => 'Actualizado correctamente',
                     'detail' => 'EL conductor se actualizó correctamente',
@@ -113,13 +112,13 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($payment)
+    public function destroy($shop)
     {
-        $payment = Payment::find($payment);
-        $payment->delete();
+        $shop = Shop::find($shop);
+        $shop->delete();
         return response()->json(
             [
-                'data' => $payment,
+                'data' => $shop,
                 'msg' => [
                     'summary' => 'Eliminado correctamente',
                     'detail' => 'EL conductor se eliminó correctamente',

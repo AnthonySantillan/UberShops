@@ -32,15 +32,12 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = new User();
-        $user->username = $request->input('username');
         $user->name = $request->input('name');
-        $user->lastname = $request->input('lastname');
-        $user->avatar = $request->input('avatar');
-        $user->username = $request->input('username');
-        $user->birthdate = $request->input('birthdate');
+        $user->phone = $request->input('phone');;
         $user->email = $request->input('email');
-        $user->email_verified_at = $request->input('email_verified_at');
-        $user->password_changed = $request->input('password_changed');
+        $user->password = $request->input('password');
+        $user->direction = $request->input('direction');
+        $user->genred = $request->input('genred');
         $user->save();
 
         return response()->json(
@@ -77,15 +74,12 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->username = $request->input('username');
         $user->name = $request->input('name');
-        $user->lastname = $request->input('lastname');
-        $user->avatar = $request->input('avatar');
-        $user->username = $request->input('username');
-        $user->birthdate = $request->input('birthdate');
+        $user->phone = $request->input('phone');;
         $user->email = $request->input('email');
-        $user->email_verified_at = $request->input('email_verified_at');
-        $user->password_changed = $request->input('password_changed');
+        $user->password = $request->input('password');
+        $user->direction = $request->input('direction');
+        $user->genred = $request->input('genred');
         $user->save();
         return response()->json(
             [

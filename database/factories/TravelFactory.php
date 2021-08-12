@@ -21,6 +21,12 @@ class TravelFactory extends Factory
      */
     public function definition()
     {
-        return [];
+        return [
+            'driver_id' => $this->faker->numberBetween(1, 10),
+            'client_id' => $this->faker->numberBetween(1, 10),
+            'shop_id' => $this->faker->numberBetween(1, 10),
+            'detail_id' => $this->faker->numberBetween(1, 10),
+
+        ];
     }
 }

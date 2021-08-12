@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppVehiclesTable extends Migration
+class CreateAppClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,13 @@ class CreateAppVehiclesTable extends Migration
     public function up()
     {
         Schema::connection(env('DB_CONNECTION_APP'))
-            ->create('vehicles', function (Blueprint $table) {
+            ->create('clients', function (Blueprint $table) {
                 $table->id();
-                $table->string('plate');
-                $table->string('color');
-                $table->string('enrollment');
-                $table->integer('year');
+                //foreing key de users y rol
+                $table->foreignId('user_id')->constrained('app.users');
+                $table->foreignId('role_id')->constrained('app.roles');
+                $table->string('card');
+                $table->softDeletes();
                 $table->timestamps();
             });
     }
@@ -31,6 +32,6 @@ class CreateAppVehiclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicles');
+        Schema::connection(env('DB_CONNECTION_APP'))->dropIfExists('clients');
     }
 }

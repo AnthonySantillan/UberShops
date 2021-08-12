@@ -22,10 +22,10 @@ class ShopFactory extends Factory
     public function definition()
     {
         return [
+            'seller_id' => $this->faker->numberBetween(1, 10),
+            'product_id' => $this->faker->numberBetween(1, 10),
             'name' => $this->faker->name(),
             'code' => $this->faker->bothify('?????-#####'),
-            'amount' => $this->faker->buildingNumber(),
-            'price' => $this->faker->buildingNumber(),
 
 
         ];
