@@ -9,8 +9,6 @@ use App\Http\Requests\V1\Shops\UpdateShopRequest;
 use App\Http\Resources\V1\Shops\ShopCollection;
 use App\Http\Resources\V1\Shops\ShopResource;
 use App\Models\Shop;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
@@ -37,7 +35,6 @@ class ShopController extends Controller
         $shop = new Shop();
         $shop->name = $request->name;
         $shop->code = $request->code;
-        $shop->direction = $request->direction;
         $shop->save();
 
         return response()->json(
@@ -59,7 +56,7 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($shop)
+    public function show(Shop $shop)
     {
         return new ShopResource($shop);
     }
@@ -75,7 +72,6 @@ class ShopController extends Controller
     {
         $shop->name = $request->name;
         $shop->code = $request->code;
-        $shop->direction = $request->direction;
         $shop->save();
 
         return response()->json(

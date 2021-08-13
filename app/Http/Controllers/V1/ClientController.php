@@ -22,6 +22,7 @@ class ClientController extends Controller
      */
     public function index()
     {
+        //return Client::paginate();
         return new ClientCollection(Client::paginate());
     }
     ///
@@ -55,14 +56,14 @@ class ClientController extends Controller
 
     /**
      * Display the specified resource.
-     * @param \App\Models\Client $clients
+     * @param \App\Models\Client $client
      * 
      * @return ClientResource
      * 
      */
-    public function show(Client $clients)
+    public function show(Client $client)
     {
-        return new ClientResource($clients);
+        return new ClientResource($client);
     }
     /**
      * Update the specified resource in storage.

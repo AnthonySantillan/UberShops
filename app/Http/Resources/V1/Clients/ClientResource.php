@@ -4,6 +4,7 @@ namespace App\Http\Resources\V1\Clients;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+
 class ClientResource extends JsonResource
 {
     /**
@@ -14,7 +15,7 @@ class ClientResource extends JsonResource
      */
     public function toArray($request)
     {
-        [
+        return [
             'data' => [
                 'id' => $this->id,
                 'card' => $this->card,

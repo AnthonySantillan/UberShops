@@ -62,9 +62,9 @@ class SellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Seller $sellers)
+    public function show(Seller $seller)
     {
-        return new SellerResource($sellers);
+        return new SellerResource($seller);
     }
 
     /**

@@ -1,16 +1,14 @@
 <?php
 
-use App\Http\Controllers\V1\PaymentsController;
+use App\Http\Controllers\V1\PaymentController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\V1\ProjectsController;
-use App\Http\Controllers\V1\AuthorsController;
 use App\Http\Controllers\V1\ClientController;
 use App\Http\Controllers\V1\DetailController;
-use App\Http\Controllers\V1\DriversController;
-use App\Http\Controllers\V1\RolesController;
+use App\Http\Controllers\V1\DriverController;
+use App\Http\Controllers\V1\RoleController;
 use App\Http\Controllers\V1\SellerController;
 use App\Http\Controllers\V1\ShopController;
-use App\Http\Controllers\V1\VehiclesController;
+use App\Http\Controllers\V1\VehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,14 +42,14 @@ Route::prefix('seller')->group(function () {
     Route::get('{seller}', [SellerController::class, 'show']);
 });
 
-//tienda
+//tienda 
 Route::apiResource('shops', ShopController::class);
 
 Route::prefix('shop')->group(function () {
     Route::get('{shop}', [ShopController::class, 'show']);
 });
 
-//metodo de pago 
+//metodo de pago
 Route::apiResource('payments', PaymentController::class);
 
 Route::prefix('payment')->group(function () {
@@ -59,7 +57,7 @@ Route::prefix('payment')->group(function () {
 });
 
 //roles
-Route::apiResource('roles', RolesController::class);
+Route::apiResource('roles', RoleController::class);
 
 Route::prefix('role')->group(function () {
     Route::get('{role}', [RoleController::class, 'show']);

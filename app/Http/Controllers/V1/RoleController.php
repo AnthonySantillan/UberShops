@@ -59,7 +59,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($role)
+    public function show(Role $role)
     {
         return new RoleResource($role);
     }

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\V1;
 
 use App\Models\Driver;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Driver\DestroyDriverRequest;
 use App\Http\Requests\V1\Drivers\StoreDriverRequest;
@@ -56,7 +54,7 @@ class DriverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($driver)
+    public function show(Driver $driver)
     {
 
         return new DriverResource($driver);

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\V1;
 
 use App\Models\Payment;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Payments\DestroyPaymentRequest;
 use App\Http\Requests\V1\Payments\StorePaymentRequest;
@@ -12,7 +10,7 @@ use App\Http\Requests\V1\Payments\UpdatePaymentRequest;
 use App\Http\Resources\V1\Payments\PaymentCollection;
 use App\Http\Resources\V1\Payments\PaymentResource;
 
-class PaymentsController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
