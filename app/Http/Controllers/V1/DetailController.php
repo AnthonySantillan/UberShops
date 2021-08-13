@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\Details\UpdateDetailRequest;
+use App\Http\Requests\V1\Users\DestroyDeatilRequest;
+use App\Http\Requests\V1\Users\StoreDetailRequest;
+use App\Http\Resources\V1\Details\DetailCollection;
+use App\Http\Resources\V1\Details\DetailResource;
 use App\Models\Detail;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class DetailController extends Controller
 {
@@ -13,21 +16,11 @@ class DetailController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @return DetailCollection
      */
     public function index()
     {
-        $details = Detail::get();
-        return response()->json(
-            [
-                'data' => $details,
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '201'
-                ]
-            ],
-            201
-        );
+        return new DetailCollection(Detail::paginate());
     }
 
     /**
@@ -36,7 +29,7 @@ class DetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDetailRequest $request)
     {
         $detail = new Detail();
         $detail->amount = $request->amount;
@@ -64,22 +57,12 @@ class DetailController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * 
      */
-    public function show($detail)
+    public function show(Detail $detail)
     {
-
-        $detail = DB::select('select * from app.details where id = ?', [$detail]);
-        return response()->json(
-            [
-                'data' => $detail,
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '200'
-                ]
-            ],
-            200
-        );
+        return new DetailResource($detail);
     }
 
     /**
@@ -89,9 +72,8 @@ class DetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $detail)
+    public function update(UpdateDetailRequest $request, Detail $detail)
     {
-        $detail = Detail::find($detail);
         $detail->amount = $request->amount;
         $detail->delivery_date = $request->delivery_date;
         $detail->delivery_time = $request->delivery_time;
@@ -117,13 +99,29 @@ class DetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($detail)
+    public function delete(Detail $detail)
     {
-        $detail = Detail::find($detail);
         $detail->delete();
+
         return response()->json(
             [
                 'data' => $detail,
+                'msg' => [
+                    'summary' => 'Usuario Eliminado',
+                    'detail' => '',
+                    'code' => '201'
+                ]
+            ],
+            201
+        );
+    }
+    public function destroy(DestroyDeatilRequest $request)
+    {
+        Detail::destroy($request->input('ids'));
+
+        return response()->json(
+            [
+                'data' => null,
                 'msg' => [
                     'summary' => 'Eliminado correctamente',
                     'detail' => 'EL conductor se eliminó correctamente',

@@ -6,7 +6,11 @@ use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\V1\Payments\DestroyPaymentRequest;
+use App\Http\Requests\V1\Payments\StorePaymentRequest;
+use App\Http\Requests\V1\Payments\UpdatePaymentRequest;
+use App\Http\Resources\V1\Payments\PaymentCollection;
+use App\Http\Resources\V1\Payments\PaymentResource;
 
 class PaymentsController extends Controller
 {
@@ -14,21 +18,12 @@ class PaymentsController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @return PaymentCollection
+     * 
      */
     public function index()
     {
-        $payments = Payment::get();
-        return response()->json(
-            [
-                'data' => $payments,
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '201'
-                ]
-            ],
-            201
-        );
+        return new PaymentCollection(Payment::paginate());
     }
 
     /**
@@ -37,7 +32,7 @@ class PaymentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePaymentRequest $request)
     {
         $payment = new Payment();
         $payment->name = $request->name;
@@ -63,21 +58,9 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($payment)
+    public function show(Payment $payment)
     {
-
-        $payment = DB::select('select * from app.payments where id = ?', [$payment]);
-        return response()->json(
-            [
-                'data' => $payment,
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '200'
-                ]
-            ],
-            200
-        );
+        return new PaymentResource($payment);
     }
 
     /**
@@ -87,9 +70,8 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $payment)
+    public function update(UpdatePaymentRequest $request, Payment $payment)
     {
-        $payment = Payment::find($payment);
         $payment->name = $request->name;
         $payment->value = $request->value;
         $payment->save();
@@ -113,13 +95,29 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($payment)
+    public function delete(Payment $payment)
     {
-        $payment = Payment::find($payment);
         $payment->delete();
+
         return response()->json(
             [
                 'data' => $payment,
+                'msg' => [
+                    'summary' => 'Usuario Eliminado',
+                    'detail' => '',
+                    'code' => '201'
+                ]
+            ],
+            201
+        );
+    }
+    public function destroy(DestroyPaymentRequest $request)
+    {
+        Payment::destroy($request->input('ids'));
+
+        return response()->json(
+            [
+                'data' => null,
                 'msg' => [
                     'summary' => 'Eliminado correctamente',
                     'detail' => 'EL conductor se eliminó correctamente',

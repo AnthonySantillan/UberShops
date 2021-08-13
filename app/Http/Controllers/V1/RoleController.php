@@ -7,7 +7,11 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\V1\Roles\DestroyRolesRequest;
+use App\Http\Requests\V1\Roles\StoreRoleRequest;
+use App\Http\Requests\V1\Roles\UpdateRoleRequest;
+use App\Http\Resources\V1\Roles\RoleCollection;
+use App\Http\Resources\V1\Roles\RoleResource;
 
 class RoleController extends Controller
 {
@@ -15,22 +19,12 @@ class RoleController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @return RoleCollection
+     * 
      */
     public function index()
     {
-        $roles = Role::get();
-
-        return response()->json(
-            [
-                'data' => $roles,
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '201'
-                ]
-            ],
-            201
-        );
+        return new RoleCollection(Role::paginate());
     }
 
     /**
@@ -39,7 +33,7 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
         $role = new Role();
         $role->user = $request->user;
@@ -48,7 +42,7 @@ class RoleController extends Controller
 
         return response()->json(
             [
-                'data' => null,
+                'data' => $role,
                 'msg' => [
                     'summary' => 'Creado correctamente',
                     'detail' => 'El empleado se creo correctamente',
@@ -67,18 +61,7 @@ class RoleController extends Controller
      */
     public function show($role)
     {
-        $role = DB::select('select * from app.roles where id = ?', [$role]);
-        return response()->json(
-            [
-                'data' => $role,
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '200'
-                ]
-            ],
-            200
-        );
+        return new RoleResource($role);
     }
 
     /**
@@ -88,9 +71,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $role)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
-        $role = Role::find($role);
         $role->user = $request->user;
         $role->driver = $request->driver;
         $role->save();
@@ -114,31 +96,32 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($role)
+    public function delete(Role $role)
     {
-        $role = Role::find($role);
         $role->delete();
+
         return response()->json(
             [
-                'data' => null,
+                'data' => $role,
                 'msg' => [
-                    'summary' => 'Eliminado correctamente',
-                    'detail' => 'EL empleado se eliminó correctamente',
+                    'summary' => 'Usuario Eliminado',
+                    'detail' => '',
                     'code' => '201'
                 ]
             ],
             201
         );
     }
-
-    public function updateState()
+    public function destroy(DestroyRolesRequest $request)
     {
+        Role::destroy($request->input('ids'));
+
         return response()->json(
             [
                 'data' => null,
                 'msg' => [
-                    'summary' => 'actualizado Correctamente',
-                    'detail' => 'EL empleado se actualizo correctamente',
+                    'summary' => 'Eliminado correctamente',
+                    'detail' => 'EL empleado se eliminó correctamente',
                     'code' => '201'
                 ]
             ],

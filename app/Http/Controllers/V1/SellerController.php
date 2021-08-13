@@ -3,7 +3,15 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\Sellers\DestroySellerRequest;
+use App\Http\Requests\V1\Sellers\StoreSellerRequest;
+use App\Http\Requests\V1\Sellers\UpdateSellerRequest;
+use App\Http\Requests\V1\Shops\DestroyShopRequest;
+use App\Http\Requests\V1\Shops\UpdateShopRequest;
+use App\Http\Resources\V1\Sellers\SellerCollection;
+use App\Http\Resources\V1\Sellers\SellerResource;
 use App\Models\Seller;
+use App\Models\Shop;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -13,22 +21,12 @@ class SellerController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @return SellerCollection
+     * 
      */
     public function index()
     {
-        $sellers = Seller::get();
-        return response()->json(
-            [
-                'data' => $sellers,
-                'msg' => [
-                    'summary' => 'consulta correcta',
-                    'detail' => 'la consulta de la computadora y la empresa es correcta',
-                    'code' => '200'
-                ]
-
-            ],
-            200
-        );
+        return new SellerCollection(Seller::paginate());
     }
 
     /**
@@ -37,7 +35,7 @@ class SellerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSellerRequest $request)
     {
         $sellers = new Seller();
         $sellers->ruc = $request->ruc;
@@ -64,21 +62,9 @@ class SellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($sellers)
+    public function show(Seller $sellers)
     {
-        $sellers = DB::select('select * from app.sellers where id = ?', [$sellers]);
-        return response()->json(
-            [
-                'data' => $sellers,
-                'msg' => [
-                    'summary' => 'consulta correcta',
-                    'detail' => 'la consulta de la computadora y la empresa es correcta',
-                    'code' => '200'
-                ]
-
-            ],
-            200
-        );
+        return new SellerResource($sellers);
     }
 
     /**
@@ -88,15 +74,14 @@ class SellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $sellers)
+    public function update(UpdateSellerRequest $request, Seller $sellers)
     {
-        $sellers = Seller::find($sellers);
         $sellers->ruc = $request->ruc;
         $sellers->save();
 
         return response()->json(
             [
-                'data' => null,
+                'data' => $sellers,
                 'msg' => [
                     'summary' => 'actualizacion correcta',
                     'detail' => 'los datos se han actualizado',
@@ -114,32 +99,32 @@ class SellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($seller)
+    public function delete(Seller $seller)
     {
-        $seller = Seller::find($seller);
         $seller->delete();
+
         return response()->json(
             [
                 'data' => $seller,
                 'msg' => [
-                    'summary' => 'eliminacion correcta',
-                    'detail' => 'dato eliminado',
+                    'summary' => 'Usuario Eliminado',
+                    'detail' => '',
                     'code' => '201'
                 ]
-
             ],
             201
         );
     }
-    public function updateState()
+    public function destroy(DestroySellerRequest $request)
     {
-        $seller = 'seller';
+        Seller::destroy($request->input('ids'));
+
         return response()->json(
             [
-                'data' => $seller,
+                'data' => null,
                 'msg' => [
-                    'summary' => 'actualizacion correcta',
-                    'detail' => 'el estado del proyecto se actualizo ',
+                    'summary' => 'eliminacion correcta',
+                    'detail' => 'dato eliminado',
                     'code' => '201'
                 ]
 

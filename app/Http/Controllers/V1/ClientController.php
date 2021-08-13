@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\V1;
 
 use App\Models\Client;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\Users\UserCollection;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\V1\Clients\DestroyClientRequest;
+use App\Http\Resources\V1\Clients\ClientCollection;
+use App\Http\Requests\V1\Clients\StoreClientRequest;
+use App\Http\Requests\V1\Clients\UpdateClientRequest;
+use App\Http\Resources\V1\Clients\ClientResource;
 
 
 class ClientController extends Controller
@@ -15,24 +17,12 @@ class ClientController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     * @return UserCollection
+     * @return ClientCollection
      * 
      */
     public function index()
     {
-        $clients = Client::get();
-        return response()->json(
-            [
-                'data' => $clients,
-                'msg' => [
-                    'summary' => 'consulta correcta',
-                    'detail' => 'la consulta de la computadora y la empresa es correcta',
-                    'code' => '200'
-                ]
-
-            ],
-            200
-        );
+        return new ClientCollection(Client::paginate());
     }
     ///
 
@@ -42,10 +32,10 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreClientRequest $request)
     {
         $clients = new Client();
-        $clients->card = $request->card;
+        $clients->card = $request->input('card');
         $clients->save();
 
 
@@ -65,25 +55,14 @@ class ClientController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Client $clients
+     * 
+     * @return ClientResource
+     * 
      */
-    public function show($clients)
+    public function show(Client $clients)
     {
-        $clients = DB::select('select * from app.clients where id = ?', [$clients]);
-        return response()->json(
-            [
-                'data' => $clients,
-                'msg' => [
-                    'summary' => 'consulta correcta',
-                    'detail' => 'la consulta de la computadora y la empresa es correcta',
-                    'code' => '200'
-                ]
-
-            ],
-            200
-        );
+        return new ClientResource($clients);
     }
     /**
      * Update the specified resource in storage.
@@ -92,10 +71,9 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $clients)
+    public function update(UpdateClientRequest $request, Client $clients)
     {
-        $clients = Client::find($clients);
-        $clients->card = $request->card;
+        $clients->card = $request->input('card');
         $clients->save();
 
         return response()->json(
@@ -118,35 +96,34 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($client)
+    public function delete(Client $client)
     {
-        $client = Client::find($client);
         $client->delete();
+
         return response()->json(
             [
                 'data' => $client,
                 'msg' => [
-                    'summary' => 'eliminacion correcta',
-                    'detail' => 'dato eliminado',
+                    'summary' => 'Usuario Eliminado',
+                    'detail' => '',
                     'code' => '201'
                 ]
-
             ],
             201
         );
     }
-    public function updateState()
+    public function destroy(DestroyClientRequest $request)
     {
-        $client = 'client';
+        Client::destroy($request->input('ids'));
+
         return response()->json(
             [
-                'data' => $client,
+                'data' => null,
                 'msg' => [
-                    'summary' => 'actualizacion correcta',
-                    'detail' => 'el estado del proyecto se actualizo ',
+                    'summary' => 'Usuario/s Eliminado/s',
+                    'detail' => '',
                     'code' => '201'
                 ]
-
             ],
             201
         );

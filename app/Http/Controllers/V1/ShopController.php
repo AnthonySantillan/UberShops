@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\Shops\DestroyShopRequest;
+use App\Http\Requests\V1\Shops\StoreShopRequest;
+use App\Http\Requests\V1\Shops\UpdateShopRequest;
+use App\Http\Resources\V1\Shops\ShopCollection;
+use App\Http\Resources\V1\Shops\ShopResource;
 use App\Models\Shop;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -13,21 +18,12 @@ class ShopController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @return ShopCollection
+     * 
      */
     public function index()
     {
-        $shops = Shop::get();
-        return response()->json(
-            [
-                'data' => $shops,
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '201'
-                ]
-            ],
-            201
-        );
+        return new ShopCollection(Shop::paginate());
     }
 
     /**
@@ -36,7 +32,7 @@ class ShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreShopRequest $request)
     {
         $shop = new Shop();
         $shop->name = $request->name;
@@ -65,19 +61,7 @@ class ShopController extends Controller
      */
     public function show($shop)
     {
-
-        $shop = DB::select('select * from app.shops where id = ?', [$shop]);
-        return response()->json(
-            [
-                'data' => $shop,
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '200'
-                ]
-            ],
-            200
-        );
+        return new ShopResource($shop);
     }
 
     /**
@@ -87,10 +71,11 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $shop)
+    public function update(UpdateShopRequest $request, Shop $shop)
     {
-        $shop = Shop::find($shop);
-        $shop->license = $request->license;
+        $shop->name = $request->name;
+        $shop->code = $request->code;
+        $shop->direction = $request->direction;
         $shop->save();
 
         return response()->json(
@@ -112,13 +97,29 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($shop)
+    public function delete(Shop $shop)
     {
-        $shop = Shop::find($shop);
         $shop->delete();
+
         return response()->json(
             [
                 'data' => $shop,
+                'msg' => [
+                    'summary' => 'Usuario Eliminado',
+                    'detail' => '',
+                    'code' => '201'
+                ]
+            ],
+            201
+        );
+    }
+    public function destroy(DestroyShopRequest $request)
+    {
+        Shop::destroy($request->input('ids'));
+
+        return response()->json(
+            [
+                'data' => null,
                 'msg' => [
                     'summary' => 'Eliminado correctamente',
                     'detail' => 'EL conductor se eliminó correctamente',

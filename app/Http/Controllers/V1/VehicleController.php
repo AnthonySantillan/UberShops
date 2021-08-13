@@ -6,6 +6,12 @@ use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\Vehicles\DestroyVehicleRequest;
+use App\Http\Requests\V1\Vehicles\StoreVehicleRequest;
+use App\Http\Requests\V1\Vehicles\UpdateVehicleRequest;
+use App\Http\Resources\V1\Travels\TravelResource;
+use App\Http\Resources\V1\Vehicles\VehicleCollection;
+use App\Http\Resources\V1\Vehicles\VehicleResource;
 
 class VehicleController extends Controller
 {
@@ -13,21 +19,12 @@ class VehicleController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @return VehicleCollection
+     * 
      */
     public function index()
     {
-        $driver = Vehicle::get();
-        return response()->json(
-            [
-                'data' => $driver,
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '201'
-                ]
-            ],
-            201
-        );
+        return new VehicleCollection(Vehicle::paginate());
     }
 
     /**
@@ -36,7 +33,7 @@ class VehicleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVehicleRequest $request)
     {
         $vehicle = new Vehicle();
         $vehicle->plate = $request->plate;
@@ -47,7 +44,7 @@ class VehicleController extends Controller
 
         return response()->json(
             [
-                'data' => null,
+                'data' => $vehicle,
                 'msg' => [
                     'summary' => 'Creado correctamente',
                     'detail' => 'El empleado se creo correctamente',
@@ -64,22 +61,9 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($vehicle)
+    public function show(Vehicle $vehicle)
     {
-
-        $vehicle = DB::select('select * from app.vehicles where id = ?', [$vehicle]);
-
-        return response()->json(
-            [
-                'data' => $vehicle[0],
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '200'
-                ]
-            ],
-            200
-        );
+        return new VehicleResource($vehicle);
     }
 
     /**
@@ -89,19 +73,17 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $vehicle)
+    public function update(UpdateVehicleRequest $request, Vehicle $vehicle)
     {
-        $vehicle = Vehicle::find($vehicle);
-        $vehicle->age = $request->age;
-        $vehicle->name = $request->name;
-        $vehicle->email = $request->email;
-        $vehicle->ponhe = $request->aproved;
-        $vehicle->identification = $request->identification;
+        $vehicle->plate = $request->plate;
+        $vehicle->color = $request->color;
+        $vehicle->enrollment = $request->enrollment;
+        $vehicle->year = $request->year;
         $vehicle->save();
 
         return response()->json(
             [
-                'data' => null,
+                'data' => $vehicle,
                 'msg' => [
                     'summary' => 'Actualizado correctamente',
                     'detail' => 'EL empleado se actualizó correctamente',
@@ -118,10 +100,26 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($vehicle)
+    public function delete(Vehicle $vehicle)
     {
-        $vehicle = Vehicle::find($vehicle);
         $vehicle->delete();
+
+        return response()->json(
+            [
+                'data' => $vehicle,
+                'msg' => [
+                    'summary' => 'Usuario Eliminado',
+                    'detail' => '',
+                    'code' => '201'
+                ]
+            ],
+            201
+        );
+    }
+    public function destroy(DestroyVehicleRequest $request)
+    {
+        Vehicle::destroy($request->input('ids'));
+
         return response()->json(
             [
                 'msg' => [

@@ -6,6 +6,11 @@ use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\Driver\DestroyDriverRequest;
+use App\Http\Requests\V1\Drivers\StoreDriverRequest;
+use App\Http\Requests\V1\Drivers\UpdateDriverRequest;
+use App\Http\Resources\V1\Drivers\DriverCollection;
+use App\Http\Resources\V1\Drivers\DriverResource;
 
 class DriverController extends Controller
 {
@@ -13,21 +18,11 @@ class DriverController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @return DriverCollection
      */
     public function index()
     {
-        $drivers = Driver::get();
-        return response()->json(
-            [
-                'data' => $drivers,
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '201'
-                ]
-            ],
-            201
-        );
+        return new DriverCollection(Driver::paginate());
     }
 
     /**
@@ -36,7 +31,7 @@ class DriverController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDriverRequest $request)
     {
         $driver = new Driver();
         $driver->license = $request->license;
@@ -64,18 +59,7 @@ class DriverController extends Controller
     public function show($driver)
     {
 
-        $driver = DB::select('select * from app.drivers where id = ?', [$driver]);
-        return response()->json(
-            [
-                'data' => $driver,
-                'msg' => [
-                    'sumary' => 'consulta correcta',
-                    'detail' => 'la consulta esta correcta',
-                    'code' => '200'
-                ]
-            ],
-            200
-        );
+        return new DriverResource($driver);
     }
 
     /**
@@ -85,9 +69,8 @@ class DriverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $driver)
+    public function update(UpdateDriverRequest $request, Driver $driver)
     {
-        $driver = Driver::find($driver);
         $driver->license = $request->license;
         $driver->save();
 
@@ -110,13 +93,29 @@ class DriverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($driver)
+    public function delete(Driver $driver)
     {
-        $driver = Driver::find($driver);
         $driver->delete();
+
         return response()->json(
             [
                 'data' => $driver,
+                'msg' => [
+                    'summary' => 'Usuario Eliminado',
+                    'detail' => '',
+                    'code' => '201'
+                ]
+            ],
+            201
+        );
+    }
+    public function destroy(DestroyDriverRequest $request)
+    {
+        Driver::destroy($request->input('ids'));
+
+        return response()->json(
+            [
+                'data' => null,
                 'msg' => [
                     'summary' => 'Eliminado correctamente',
                     'detail' => 'EL conductor se eliminó correctamente',

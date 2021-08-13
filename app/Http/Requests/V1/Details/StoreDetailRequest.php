@@ -4,7 +4,7 @@ namespace App\Http\Requests\V1\Users;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends FormRequest
+class StoreDetailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,22 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:pgsql-authentication.users,name', 'max:50'],
-            'phone' => ['required', 'min:2', 'max:10'],
-            'email' => ['required', 'max:50'],
-            'direction' => ['required', 'max:50'],
+            'amount' => ['required', 'max:20'],
+            'delivery_date' => ['required'],
+            'delivery_time' => ['required'],
+            'value' => ['required', 'max:50'],
+
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'nombre de usuario',
-            'phone' => 'telefono',
-            'email' => 'correo electrónico',
-            'direction' => 'direccion'
+            'amount' => 'cantidad',
+            'delivery_date' => 'fecha de entrega',
+            'delivery_time' => 'hora de entrega',
+            'value' => 'valor'
+
 
         ];
     }
