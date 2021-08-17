@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
@@ -7,19 +8,17 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   {
     path:'',
-    component:MainComponent
+    component:MainComponent,
+      children:[
+        {
+          path:'clientes',
+          loadChildren: () => import('./client/client.module').then(m=>m.ClientModule)
+        }
+      ]
   },
   {
-    path:'**',
-    redirectTo:'not-found'
-  },
-  {
-    path:'not-found',
-    component:NotFoundComponent
-  },
-  {
-    path:'clientes',
-    loadChildren: () => import('./client/client.module').then(m=>m.ClientModule)
+    path:'login',
+    component:LoginComponent
   },
   {
     path:'detail',
@@ -57,7 +56,14 @@ const routes: Routes = [
     path:'vehicle',
     loadChildren: () => import('./vehicle/vehicle.module').then(m=>m.VehicleModule)
   },
-  
+  {
+    path:'**',
+    redirectTo:'/not-found'
+  },
+  {
+    path:'not-found',
+    component:NotFoundComponent
+  },
 ];
 
 @NgModule({
