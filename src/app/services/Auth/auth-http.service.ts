@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PlayerModel } from '../../models/player.model';
 import {catchError, map} from 'rxjs/operators';
 import {ServerResponse} from '../../models/server-response';
 import {Handler} from '../../exceptions/handler';
 import {environment} from '../../../environments/environment';
-import {MessageService} from '../messages/message.service';
-import { LoginModel } from 'src/app/models';
+import { LoginModel } from 'src/app/models/login.model'; 
 
 @Injectable({
   providedIn: 'root'
