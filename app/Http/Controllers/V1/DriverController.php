@@ -4,7 +4,7 @@ namespace App\Http\Controllers\V1;
 
 use App\Models\Driver;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\V1\Driver\DestroyDriverRequest;
+use App\Http\Requests\V1\Drivers\DestroyDriverRequest;
 use App\Http\Requests\V1\Drivers\StoreDriverRequest;
 use App\Http\Requests\V1\Drivers\UpdateDriverRequest;
 use App\Http\Resources\V1\Drivers\DriverCollection;
@@ -20,7 +20,14 @@ class DriverController extends Controller
      */
     public function index()
     {
-        return new DriverCollection(Driver::paginate());
+        return (new DriverCollection(Driver::paginate()))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -32,20 +39,20 @@ class DriverController extends Controller
     public function store(StoreDriverRequest $request)
     {
         $driver = new Driver();
-        $driver->license = $request->license;
+        $driver->license = $request->input('license');
+        $driver->user_id = $request->input('user_id');
+        $driver->vehicle_id = $request->input('vehicle_id');
+        $driver->role_id = $request->input('role_id');
         $driver->save();
 
-        return response()->json(
-            [
-                'data' => $driver,
+        return (new DriverResource($driver))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Creado correctamente',
-                    'detail' => 'El conductor se creo correctamente',
-                    'code' => '201'
+                    'summary' => 'Creacion exitosa',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**
@@ -57,7 +64,14 @@ class DriverController extends Controller
     public function show(Driver $driver)
     {
 
-        return new DriverResource($driver);
+        return (new DriverResource($driver))
+            ->additional([
+                'msg' => [
+                    'summary' => 'success',
+                    'detail' => 'consulta exitosa',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -72,17 +86,14 @@ class DriverController extends Controller
         $driver->license = $request->license;
         $driver->save();
 
-        return response()->json(
-            [
-                'data' => $driver,
+        return (new DriverResource($driver))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Actualizado correctamente',
-                    'detail' => 'EL conductor se actualizó correctamente',
-                    'code' => '201'
+                    'summary' => 'Conductor actualizado',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**

@@ -24,7 +24,14 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        return new VehicleCollection(Vehicle::paginate());
+        return (new VehicleCollection(Vehicle::paginate()))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -36,23 +43,20 @@ class VehicleController extends Controller
     public function store(StoreVehicleRequest $request)
     {
         $vehicle = new Vehicle();
-        $vehicle->plate = $request->plate;
-        $vehicle->color = $request->color;
-        $vehicle->enrollment = $request->enrollment;
-        $vehicle->year = $request->year;
+        $vehicle->plate = $request->input('plate');
+        $vehicle->color = $request->input('color');
+        $vehicle->enrollment = $request->input('enrollment');
+        $vehicle->year = $request->input('year');
         $vehicle->save();
 
-        return response()->json(
-            [
-                'data' => $vehicle,
+        return (new VehicleResource($vehicle))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Creado correctamente',
-                    'detail' => 'El empleado se creo correctamente',
-                    'code' => '201'
+                    'summary' => 'vehiculo creado',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**
@@ -63,7 +67,14 @@ class VehicleController extends Controller
      */
     public function show(Vehicle $vehicle)
     {
-        return new VehicleResource($vehicle);
+        return (new VehicleResource($vehicle))
+            ->additional([
+                'msg' => [
+                    'summary' => 'success',
+                    'detail' => 'consulta exitosa',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -75,23 +86,20 @@ class VehicleController extends Controller
      */
     public function update(UpdateVehicleRequest $request, Vehicle $vehicle)
     {
-        $vehicle->plate = $request->plate;
-        $vehicle->color = $request->color;
-        $vehicle->enrollment = $request->enrollment;
-        $vehicle->year = $request->year;
+        $vehicle->plate = $request->input('plate');
+        $vehicle->color = $request->input('color');
+        $vehicle->enrollment = $request->input('enrollment');
+        $vehicle->year = $request->input('year');
         $vehicle->save();
 
-        return response()->json(
-            [
-                'data' => $vehicle,
+        return (new VehicleResource($vehicle))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Actualizado correctamente',
-                    'detail' => 'EL empleado se actualizó correctamente',
-                    'code' => '201'
+                    'summary' => 'vehiculo actualizado',
+                    'detail' => ' ',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**

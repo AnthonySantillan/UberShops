@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\V1\Users;
+namespace App\Http\Requests\V1\Details;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DestroyDeatilRequest extends FormRequest
+class DestroyDetailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

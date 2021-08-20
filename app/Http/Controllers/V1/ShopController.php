@@ -21,7 +21,14 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return new ShopCollection(Shop::paginate());
+        return (new ShopCollection(Shop::paginate()))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -33,21 +40,21 @@ class ShopController extends Controller
     public function store(StoreShopRequest $request)
     {
         $shop = new Shop();
-        $shop->name = $request->name;
-        $shop->code = $request->code;
+        $shop->seller_id = $request->input('seller_id');
+        $shop->product_id = $request->input('product_id');
+        $shop->name = $request->input('name');
+        $shop->code = $request->input('code');
+        $shop->direction = $request->input('direction');
         $shop->save();
 
-        return response()->json(
-            [
-                'data' => $shop,
+        return (new ShopResource($shop))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Creado correctamente',
-                    'detail' => 'El conductor se creo correctamente',
-                    'code' => '201'
+                    'summary' => 'Tienda creada',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**
@@ -58,7 +65,14 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        return new ShopResource($shop);
+        return (new ShopResource($shop))
+            ->additional([
+                'msg' => [
+                    'summary' => 'success',
+                    'detail' => 'consulta exitosa',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -72,19 +86,18 @@ class ShopController extends Controller
     {
         $shop->name = $request->name;
         $shop->code = $request->code;
+        $shop->direction = $request->direction;
+
         $shop->save();
 
-        return response()->json(
-            [
-                'data' => $shop,
+        return (new ShopResource($shop))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Actualizado correctamente',
-                    'detail' => 'EL conductor se actualizó correctamente',
-                    'code' => '201'
+                    'summary' => 'Tienda actualizada',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**
@@ -97,32 +110,26 @@ class ShopController extends Controller
     {
         $shop->delete();
 
-        return response()->json(
-            [
-                'data' => $shop,
+        return (new ShopResource($shop))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario Eliminado',
+                    'summary' => 'Tienda eliminada',
                     'detail' => '',
-                    'code' => '201'
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
     public function destroy(DestroyShopRequest $request)
     {
         Shop::destroy($request->input('ids'));
 
-        return response()->json(
-            [
-                'data' => null,
+        return (new ShopResource($request))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Eliminado correctamente',
-                    'detail' => 'EL conductor se eliminó correctamente',
-                    'code' => '201'
+                    'summary' => 'eliminado correctamente',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 }

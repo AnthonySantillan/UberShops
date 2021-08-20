@@ -6,14 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Sellers\DestroySellerRequest;
 use App\Http\Requests\V1\Sellers\StoreSellerRequest;
 use App\Http\Requests\V1\Sellers\UpdateSellerRequest;
-use App\Http\Requests\V1\Shops\DestroyShopRequest;
-use App\Http\Requests\V1\Shops\UpdateShopRequest;
 use App\Http\Resources\V1\Sellers\SellerCollection;
 use App\Http\Resources\V1\Sellers\SellerResource;
 use App\Models\Seller;
-use App\Models\Shop;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
 class SellerController extends Controller
 {
@@ -26,7 +21,14 @@ class SellerController extends Controller
      */
     public function index()
     {
-        return new SellerCollection(Seller::paginate());
+        return (new SellerCollection(Seller::paginate()))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -38,22 +40,20 @@ class SellerController extends Controller
     public function store(StoreSellerRequest $request)
     {
         $sellers = new Seller();
+        $sellers->user_id = $request->input('user_id');
+        $sellers->role_id = $request->input('role_id');
         $sellers->ruc = $request->ruc;
         $sellers->save();
 
 
-        return response()->json(
-            [
-                'data' => $sellers,
+        return (new SellerResource($sellers))
+            ->additional([
                 'msg' => [
-                    'summary' => 'consulta correcta',
-                    'detail' => 'la consulta de la computadora y la empresa es correcta',
+                    'summary' => 'creacion exitosa',
+                    'detail' => '',
                     'code' => '200'
                 ]
-
-            ],
-            200
-        );
+            ]);
     }
 
     /**
@@ -64,7 +64,14 @@ class SellerController extends Controller
      */
     public function show(Seller $seller)
     {
-        return new SellerResource($seller);
+        return (new SellerResource($seller))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -74,23 +81,19 @@ class SellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSellerRequest $request, Seller $sellers)
+    public function update(UpdateSellerRequest $request, Seller $seller)
     {
-        $sellers->ruc = $request->ruc;
-        $sellers->save();
+        $seller->ruc = $request->input('ruc');
+        $seller->save();
 
-        return response()->json(
-            [
-                'data' => $sellers,
+        return (new SellerResource($seller))
+            ->additional([
                 'msg' => [
-                    'summary' => 'actualizacion correcta',
-                    'detail' => 'los datos se han actualizado',
-                    'code' => '201'
+                    'summary' => 'actualizacion exitosa',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-
-            ],
-            201
-        );
+            ]);
     }
 
     /**

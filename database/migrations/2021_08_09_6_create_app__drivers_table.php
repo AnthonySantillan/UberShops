@@ -17,7 +17,7 @@ class CreateAppDriversTable extends Migration
             ->create('drivers', function (Blueprint $table) {
                 $table->id();
                 $table->string('license');
-                //foreing key de vehiculo y users
+                //foreing key de vehiculo, users y roles
                 $table->foreignId('user_id')->constrained('app.users');
                 $table->foreignId('vehicle_id')->constrained('app.vehicles');
                 $table->foreignId('role_id')->constrained('app.roles');

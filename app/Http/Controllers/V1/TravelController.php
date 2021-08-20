@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Travels\DestroyTravelRequest;
 use App\Http\Resources\V1\Travels\TravelCollection;
 use App\Http\Resources\V1\Travels\TravelResource;
@@ -18,7 +19,14 @@ class TravelController extends Controller
      */
     public function index()
     {
-        return new TravelCollection(Travel::paginate());
+        return (new TravelCollection(Travel::paginate()))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -36,7 +44,14 @@ class TravelController extends Controller
      */
     public function show(Travel $travel)
     {
-        return new TravelResource($travel);
+        return (new TravelResource($travel))
+            ->additional([
+                'msg' => [
+                    'summary' => 'success',
+                    'detail' => 'consulta exitosa',
+                    'code' => '200'
+                ]
+            ]);
     }
     /**
      * Remove the specified resource from storage.
@@ -52,7 +67,7 @@ class TravelController extends Controller
             [
                 'data' => $travel,
                 'msg' => [
-                    'summary' => 'Usuario Eliminado',
+                    'summary' => 'viaje Eliminado',
                     'detail' => '',
                     'code' => '201'
                 ]

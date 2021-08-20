@@ -21,7 +21,14 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return new PaymentCollection(Payment::paginate());
+        return (new PaymentCollection(Payment::paginate()))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -33,21 +40,18 @@ class PaymentController extends Controller
     public function store(StorePaymentRequest $request)
     {
         $payment = new Payment();
-        $payment->name = $request->name;
-        $payment->value = $request->value;
+        $payment->name = $request->input('name');
+        $payment->value = $request->input('value');
         $payment->save();
 
-        return response()->json(
-            [
-                'data' => $payment,
+        return (new PaymentResource($payment))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Creado correctamente',
-                    'detail' => 'El conductor se creo correctamente',
-                    'code' => '201'
+                    'summary' => 'creacion exitosa',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**
@@ -58,7 +62,14 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        return new PaymentResource($payment);
+        return (new PaymentResource($payment))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**

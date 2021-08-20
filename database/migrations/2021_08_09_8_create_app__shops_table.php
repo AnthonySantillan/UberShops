@@ -21,6 +21,7 @@ class CreateAppShopsTable extends Migration
                 $table->foreignId('product_id')->constrained('app.products');
                 $table->string('name');
                 $table->string('code');
+                $table->string('direction');
                 $table->softDeletes();
                 $table->timestamps();
             });

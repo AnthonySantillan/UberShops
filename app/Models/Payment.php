@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+//use OwenIt\Auditing\Contracts\Auditable;
+//use OwenIt\Auditing\Auditable as Auditing;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payment extends Model
 {
     use HasFactory;
+    //use Auditing;
+    use SoftDeletes;
+
     protected $table = 'app.payments';
     protected $fillable = [
         'name',
@@ -24,5 +30,10 @@ class Payment extends Model
     function details()
     {
         return $this->hasMany(Detail::class);
+    }
+    //mutators
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtoupper($value);
     }
 }

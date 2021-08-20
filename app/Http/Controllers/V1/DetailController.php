@@ -4,8 +4,8 @@ namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Details\UpdateDetailRequest;
-use App\Http\Requests\V1\Users\DestroyDeatilRequest;
-use App\Http\Requests\V1\Users\StoreDetailRequest;
+use App\Http\Requests\V1\Details\DestroyDetailRequest;
+use App\Http\Requests\V1\Details\StoreDetailRequest;
 use App\Http\Resources\V1\Details\DetailCollection;
 use App\Http\Resources\V1\Details\DetailResource;
 use App\Models\Detail;
@@ -20,7 +20,14 @@ class DetailController extends Controller
      */
     public function index()
     {
-        return new DetailCollection(Detail::paginate());
+        return (new DetailCollection(Detail::paginate()))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -31,25 +38,24 @@ class DetailController extends Controller
      */
     public function store(StoreDetailRequest $request)
     {
-        $detail = new Detail();
-        $detail->amount = $request->amount;
-        $detail->delivery_date = $request->delivery_date;
-        $detail->delivery_time = $request->delivery_time;
-        $detail->value = $request->value;
+        $details = new Detail();
+        $details->product_id = $request->input('product_id');
+        $details->payment_id = $request->input('payment_id');
+        $details->amount = $request->input('amount');
+        $details->delivery_date = $request->input('delivery_date');
+        $details->delivery_time = $request->input('delivery_time');
+        $details->value = $request->input('value');
 
-        $detail->save();
+        $details->save();
 
-        return response()->json(
-            [
-                'data' => $detail,
+        return (new DetailResource($details))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Creado correctamente',
-                    'detail' => 'El conductor se creo correctamente',
-                    'code' => '201'
+                    'summary' => 'creacion exitosa',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**
@@ -62,7 +68,14 @@ class DetailController extends Controller
      */
     public function show(Detail $detail)
     {
-        return new DetailResource($detail);
+        return (new DetailResource($detail))
+            ->additional([
+                'msg' => [
+                    'summary' => 'success',
+                    'detail' => 'consulta exitosa',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -115,7 +128,7 @@ class DetailController extends Controller
             201
         );
     }
-    public function destroy(DestroyDeatilRequest $request)
+    public function destroy(DestroyDetailRequest $request)
     {
         Detail::destroy($request->input('ids'));
 

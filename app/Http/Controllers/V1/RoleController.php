@@ -4,8 +4,6 @@ namespace App\Http\Controllers\V1;
 
 
 use App\Models\Role;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Roles\DestroyRolesRequest;
 use App\Http\Requests\V1\Roles\StoreRoleRequest;
@@ -24,7 +22,14 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return new RoleCollection(Role::paginate());
+        return (new RoleCollection(Role::paginate()))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -36,21 +41,17 @@ class RoleController extends Controller
     public function store(StoreRoleRequest $request)
     {
         $role = new Role();
-        $role->user = $request->user;
-        $role->driver = $request->driver;
+        $role->name = $request->name;
         $role->save();
 
-        return response()->json(
-            [
-                'data' => $role,
+        return (new RoleResource($role))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Creado correctamente',
-                    'detail' => 'El empleado se creo correctamente',
-                    'code' => '201'
+                    'summary' => 'creacion exitosa',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**
@@ -61,7 +62,14 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        return new RoleResource($role);
+        return (new RoleResource($role))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -73,21 +81,17 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        $role->user = $request->user;
-        $role->driver = $request->driver;
+        $role->name = $request->name;
         $role->save();
 
-        return response()->json(
-            [
-                'data' => null,
+        return (new RoleResource($role))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Actualizado correctamente',
-                    'detail' => 'EL empleado se actualizó correctamente',
-                    'code' => '201'
+                    'summary' => 'actualizacion exitosa',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**

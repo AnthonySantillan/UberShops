@@ -24,20 +24,21 @@ class UpdateDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:pgsql-authentication.users,name', 'max:50'],
-            'phone' => ['required', 'min:2', 'max:10'],
-            'email' => ['required', 'max:50'],
-            'direction' => ['required', 'max:50'],
+            'amount' => ['required', 'min:2', 'max:10'],
+            'delivery_date' => ['required', 'max:50'],
+            'delivery_time' => ['required', 'max:50'],
+            'value' => ['required', 'max:50'],
+
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'nombre de usuario',
-            'phone' => 'telefono',
-            'email' => 'correo electrónico',
-            'direction' => 'direccion'
+            'amount' => 'cantidad',
+            'delivery_date' => 'fecha de entrega',
+            'delivery_time' => 'hora de  entrega',
+            'value' => 'valor'
 
         ];
     }

@@ -23,7 +23,14 @@ class ClientController extends Controller
     public function index()
     {
         //return Client::paginate();
-        return new ClientCollection(Client::paginate());
+        return (new ClientCollection(Client::paginate()))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
     ///
 
@@ -36,22 +43,20 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         $clients = new Client();
+        $clients->user_id = $request->input('user_id');
+        $clients->role_id = $request->input('role_id');
         $clients->card = $request->input('card');
         $clients->save();
 
 
-        return response()->json(
-            [
-                'data' => $clients,
+        return (new ClientResource($clients))
+            ->additional([
                 'msg' => [
-                    'summary' => 'consulta correcta',
-                    'detail' => 'la consulta de la computadora y la empresa es correcta',
+                    'summary' => 'cliente creado',
+                    'detail' => '',
                     'code' => '200'
                 ]
-
-            ],
-            200
-        );
+            ]);
     }
 
     /**
@@ -63,7 +68,14 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return new ClientResource($client);
+        return (new ClientResource($client))
+            ->additional([
+                'msg' => [
+                    'summary' => 'success',
+                    'detail' => 'consulta exitosa',
+                    'code' => '200'
+                ]
+            ]);
     }
     /**
      * Update the specified resource in storage.
@@ -72,23 +84,19 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateClientRequest $request, Client $clients)
+    public function update(UpdateClientRequest $request, Client $client)
     {
-        $clients->card = $request->input('card');
-        $clients->save();
+        $client->card = $request->card;
+        $client->save();
 
-        return response()->json(
-            [
-                'data' => null,
+        return (new ClientResource($client))
+            ->additional([
                 'msg' => [
-                    'summary' => 'actualizacion correcta',
-                    'detail' => 'los datos se han actualizado',
-                    'code' => '201'
+                    'summary' => 'actualizacion exitosa',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-
-            ],
-            201
-        );
+            ]);
     }
 
     /**
@@ -101,32 +109,26 @@ class ClientController extends Controller
     {
         $client->delete();
 
-        return response()->json(
-            [
-                'data' => $client,
+        return (new ClientResource($client))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario Eliminado',
+                    'summary' => 'Cliente eliminado',
                     'detail' => '',
-                    'code' => '201'
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
     public function destroy(DestroyClientRequest $request)
     {
         Client::destroy($request->input('ids'));
 
-        return response()->json(
-            [
-                'data' => null,
+        return (new ClientResource($request))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario/s Eliminado/s',
+                    'summary' => 'eliminado exitosa',
                     'detail' => '',
-                    'code' => '201'
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 }

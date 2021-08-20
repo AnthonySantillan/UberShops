@@ -19,6 +19,7 @@ class ShopResource extends JsonResource
                 'id' => $this->id,
                 'name' => $this->name,
                 'code' => $this->code,
+                'direction' => $this->direction,
             ]
         ];
     }

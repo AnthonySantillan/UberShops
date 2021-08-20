@@ -24,7 +24,7 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:pgsql-authentication.users,name', 'max:50'],
+            'name' => ['required', 'max:50'],
             'phone' => ['required', 'min:2', 'max:10'],
             'email' => ['required', 'max:50'],
             'direction' => ['required', 'max:50'],

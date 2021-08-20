@@ -20,7 +20,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        return new UserCollection(User::paginate());
+        return (new UserCollection(User::paginate()))
+            ->additional([
+                'msg' => [
+                    'summary' => 'consulta exitosa',
+                    'detail' => '',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -40,17 +47,14 @@ class UserController extends Controller
         $user->genred = $request->input('genred');
         $user->save();
 
-        return response()->json(
-            [
-                'data' => $user,
+        return (new UserResource($user))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario creado',
+                    'summary' => 'creacion correcta',
                     'detail' => '',
-                    'code' => '201'
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**
@@ -62,7 +66,14 @@ class UserController extends Controller
     public function show(User $user)
     {
         //metodo find()
-        return new UserResource($user);
+        return (new UserResource($user))
+            ->additional([
+                'msg' => [
+                    'summary' => 'success',
+                    'detail' => 'consulta exitosa',
+                    'code' => '200'
+                ]
+            ]);
     }
 
     /**
@@ -81,17 +92,14 @@ class UserController extends Controller
         $user->direction = $request->input('direction');
         $user->genred = $request->input('genred');
         $user->save();
-        return response()->json(
-            [
-                'data' => $user,
+        return (new UserResource($user))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario Modificado',
+                    'summary' => 'actualizacion correcta',
                     'detail' => '',
-                    'code' => '201'
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
     /**

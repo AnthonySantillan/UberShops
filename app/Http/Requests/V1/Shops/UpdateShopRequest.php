@@ -25,7 +25,7 @@ class UpdateShopRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:50'],
-            'code' => ['required', 'min:2', 'max:10'],
+            'code' => ['required', 'min:2'],
             'direction' => ['required', 'max:50'],
         ];
     }
