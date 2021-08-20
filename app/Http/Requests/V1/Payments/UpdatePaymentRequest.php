@@ -25,7 +25,7 @@ class UpdatePaymentRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:50'],
-            'value' => ['required', 'min:1', 'max:10'],
+            // 'value' => ['required', 'min:1', 'max:10'],
         ];
     }
 
@@ -33,7 +33,7 @@ class UpdatePaymentRequest extends FormRequest
     {
         return [
             'name' => 'nombre del metodo de pago',
-            'value' => 'valor',
+            // 'value' => 'valor',
         ];
     }
 }

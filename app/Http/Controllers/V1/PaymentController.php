@@ -41,7 +41,7 @@ class PaymentController extends Controller
     {
         $payment = new Payment();
         $payment->name = $request->input('name');
-        $payment->value = $request->input('value');
+        // $payment->value = $request->input('value');
         $payment->save();
 
         return (new PaymentResource($payment))
@@ -82,7 +82,7 @@ class PaymentController extends Controller
     public function update(UpdatePaymentRequest $request, Payment $payment)
     {
         $payment->name = $request->name;
-        $payment->value = $request->value;
+        // $payment->value = $request->value;
         $payment->save();
 
         return response()->json(
@@ -104,36 +104,32 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Payment $payment)
+    public function destroy($payment)
     {
+
+        $payment = Payment::find($payment);
         $payment->delete();
 
-        return response()->json(
-            [
-                'data' => $payment,
+        return (new PaymentResource($payment))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario Eliminado',
+                    'summary' => 'metodo de pago eliminado',
                     'detail' => '',
-                    'code' => '201'
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
-    public function destroy(DestroyPaymentRequest $request)
+    public function destroys(DestroyPaymentRequest $request)
     {
         Payment::destroy($request->input('ids'));
 
-        return response()->json(
-            [
-                'data' => null,
+        return (new PaymentResource($request))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Eliminado correctamente',
-                    'detail' => 'EL conductor se eliminó correctamente',
-                    'code' => '201'
+                    'summary' => 'eliminacion exitosa',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 }

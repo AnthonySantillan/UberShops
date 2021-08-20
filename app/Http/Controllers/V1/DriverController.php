@@ -102,36 +102,31 @@ class DriverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Driver $driver)
+    public function destroy($driver)
     {
+        $driver = Driver::find($driver);
         $driver->delete();
 
-        return response()->json(
-            [
-                'data' => $driver,
+        return (new DriverResource($driver))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario Eliminado',
+                    'summary' => 'Conductor eliminado',
                     'detail' => '',
-                    'code' => '201'
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
-    public function destroy(DestroyDriverRequest $request)
+    public function destroys(DestroyDriverRequest $request)
     {
         Driver::destroy($request->input('ids'));
 
-        return response()->json(
-            [
-                'data' => null,
+        return (new DriverResource($request))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Eliminado correctamente',
-                    'detail' => 'EL conductor se eliminó correctamente',
-                    'code' => '201'
+                    'summary' => 'eliminacion exitosa',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 }

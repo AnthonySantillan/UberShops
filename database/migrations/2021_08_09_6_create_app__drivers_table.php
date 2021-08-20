@@ -16,11 +16,19 @@ class CreateAppDriversTable extends Migration
         Schema::connection(env('DB_CONNECTION_APP'))
             ->create('drivers', function (Blueprint $table) {
                 $table->id();
-                $table->string('license');
+                $table->string('license')
+                    ->comment('para obtener la informacion del usuario');
+
                 //foreing key de vehiculo, users y roles
-                $table->foreignId('user_id')->constrained('app.users');
-                $table->foreignId('vehicle_id')->constrained('app.vehicles');
-                $table->foreignId('role_id')->constrained('app.roles');
+                $table->foreignId('user_id')->constrained('app.users')
+                    ->comment('para obtener la informacion del usuario');
+
+                $table->foreignId('vehicle_id')->constrained('app.vehicles')
+                    ->comment('para obtener la informacion del vehiculo');
+
+                $table->foreignId('role_id')->constrained('app.roles')
+                    ->comment('para asiganar un rol');
+
                 $table->softDeletes();
                 $table->timestamps();
             });

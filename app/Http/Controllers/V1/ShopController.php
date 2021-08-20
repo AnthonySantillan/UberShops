@@ -106,8 +106,9 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Shop $shop)
+    public function destroy($shop)
     {
+        $shop = Shop::find($shop);
         $shop->delete();
 
         return (new ShopResource($shop))
@@ -119,7 +120,7 @@ class ShopController extends Controller
                 ]
             ]);
     }
-    public function destroy(DestroyShopRequest $request)
+    public function destroys(DestroyShopRequest $request)
     {
         Shop::destroy($request->input('ids'));
 

@@ -16,12 +16,24 @@ class CreateAppDetailsTable extends Migration
         Schema::connection(env('DB_CONNECTION_APP'))
             ->create('details', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('product_id')->constrained('app.products');
-                $table->foreignId('payment_id')->constrained('app.payments');
-                $table->integer('amount');
-                $table->date('delivery_date');
-                $table->time('delivery_time');
-                $table->decimal('value');
+                $table->foreignId('product_id')->constrained('app.products')
+                    ->comment('apra obtener la informacion del producto');
+
+                $table->foreignId('payment_id')->constrained('app.payments')
+                    ->comment('para obtener la informacion del metodo de pago');
+
+                $table->integer('amount')
+                    ->comment('123');
+
+                $table->date('delivery_date')
+                    ->comment('1902-12-12');
+
+                $table->time('delivery_time')
+                    ->comment('12:21:12');
+
+                $table->decimal('value')
+                    ->comment('12.123');
+
                 $table->softDeletes();
                 $table->timestamps();
             });

@@ -17,7 +17,7 @@ class PaymentResource extends JsonResource
         return [
             'data' => [
                 'name' => $this->name,
-                'value' => $this->value,
+                // 'value' => $this->value,
             ]
         ];
     }

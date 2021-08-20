@@ -23,7 +23,7 @@ class PaymentFactory extends Factory
     {
         return [
             'name' => $this->faker->randomElement(['cash', 'card']),
-            'value' => $this->faker->buildingNumber(),
+            // 'value' => $this->faker->buildingNumber(),
         ];
     }
 }

@@ -16,7 +16,10 @@ class CreateAppRolesTable extends Migration
         Schema::connection(env('DB_CONNECTION_APP'))
             ->create('roles', function (Blueprint $table) {
                 $table->id();
-                $table->text('name');
+
+                $table->text('name')
+                    ->comment('driver, client, administrator');
+
                 $table->softDeletes();
                 $table->timestamps();
             });

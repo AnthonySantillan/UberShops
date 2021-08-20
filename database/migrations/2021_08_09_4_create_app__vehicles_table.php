@@ -16,10 +16,18 @@ class CreateAppVehiclesTable extends Migration
         Schema::connection(env('DB_CONNECTION_APP'))
             ->create('vehicles', function (Blueprint $table) {
                 $table->id();
-                $table->string('plate');
-                $table->string('color');
-                $table->string('enrollment');
-                $table->integer('year');
+                $table->string('plate')
+                    ->comment('asc-12312');
+
+                $table->string('color')
+                    ->comment('red, blue, cyan');
+
+                $table->string('enrollment')
+                    ->comment('2020-12-02');
+
+                $table->integer('year')
+                    ->comment('2019,1980');
+
                 $table->softDeletes();
                 $table->timestamps();
             });

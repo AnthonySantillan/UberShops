@@ -108,35 +108,31 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Vehicle $vehicle)
+    public function destroy($vehicle)
     {
+        $vehicle = Vehicle::find($vehicle);
         $vehicle->delete();
 
-        return response()->json(
-            [
-                'data' => $vehicle,
+        return (new VehicleResource($vehicle))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario Eliminado',
-                    'detail' => '',
-                    'code' => '201'
+                    'summary' => 'vehiculo eliminado',
+                    'detail' => ' ',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
-    public function destroy(DestroyVehicleRequest $request)
+    public function destroys(DestroyVehicleRequest $request)
     {
         Vehicle::destroy($request->input('ids'));
 
-        return response()->json(
-            [
+        return (new VehicleResource($request))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Eliminado correctamente',
-                    'detail' => 'EL empleado se eliminó correctamente',
-                    'code' => '201'
+                    'summary' => 'eliminacion exitosa',
+                    'detail' => ' ',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 }

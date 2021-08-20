@@ -112,36 +112,31 @@ class DetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Detail $detail)
+    public function destroy($detail)
     {
+        $detail = Detail::find($detail);
         $detail->delete();
 
-        return response()->json(
-            [
-                'data' => $detail,
+        return (new DetailResource($detail))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario Eliminado',
-                    'detail' => '',
-                    'code' => '201'
+                    'summary' => 'detalle eliminado',
+                    'detail' => ' ',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
-    public function destroy(DestroyDetailRequest $request)
+    public function destroys(DestroyDetailRequest $request)
     {
         Detail::destroy($request->input('ids'));
 
-        return response()->json(
-            [
-                'data' => null,
+        return (new DetailResource($request))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Eliminado correctamente',
-                    'detail' => 'EL conductor se eliminó correctamente',
-                    'code' => '201'
+                    'summary' => 'detalle eliminado',
+                    'detail' => ' ',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 }

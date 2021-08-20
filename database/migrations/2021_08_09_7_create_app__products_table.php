@@ -16,10 +16,18 @@ class CreateAppProductsTable extends Migration
         Schema::connection(env('DB_CONNECTION_APP'))
             ->create('products', function (Blueprint $table) {
                 $table->id();
-                $table->string('name');
-                $table->string('code');
-                $table->integer('amount');
-                $table->decimal('price');
+                $table->string('name')
+                    ->comment('doritos,coca cola,papas');
+
+                $table->string('code')
+                    ->comment('1232asdasq');
+
+                $table->integer('amount')
+                    ->comment('12,123,32');
+
+                $table->decimal('price')
+                    ->comment('12.32');
+
                 $table->softDeletes();
                 $table->timestamps();
             });

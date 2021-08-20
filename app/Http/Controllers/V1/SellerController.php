@@ -89,7 +89,7 @@ class SellerController extends Controller
         return (new SellerResource($seller))
             ->additional([
                 'msg' => [
-                    'summary' => 'actualizacion exitosa',
+                    'summary' => 'consulta exitosa',
                     'detail' => '',
                     'code' => '200'
                 ]
@@ -102,37 +102,31 @@ class SellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Seller $seller)
+    public function destroy($seller)
     {
+        $seller = Seller::find($seller);
         $seller->delete();
 
-        return response()->json(
-            [
-                'data' => $seller,
+        return (new SellerResource($seller))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario Eliminado',
+                    'summary' => 'vendedor eliminado exitosamente',
                     'detail' => '',
-                    'code' => '201'
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
-    public function destroy(DestroySellerRequest $request)
+    public function destroys(DestroySellerRequest $request)
     {
         Seller::destroy($request->input('ids'));
 
-        return response()->json(
-            [
-                'data' => null,
+        return (new SellerResource($request))
+            ->additional([
                 'msg' => [
-                    'summary' => 'eliminacion correcta',
-                    'detail' => 'dato eliminado',
-                    'code' => '201'
+                    'summary' => 'vendedor eliminado exitosamente',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-
-            ],
-            201
-        );
+            ]);
     }
 }

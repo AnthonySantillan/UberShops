@@ -16,8 +16,12 @@ class CreateAppPaymentsTable extends Migration
         Schema::connection(env('DB_CONNECTION_APP'))
             ->create('payments', function (Blueprint $table) {
                 $table->id();
-                $table->string('name');
-                $table->integer('value');
+                $table->string('name')
+                    ->comment('card, cash');
+
+                // $table->integer('value')
+                //     ->comment('');
+
                 $table->softDeletes();
                 $table->timestamps();
             });

@@ -24,9 +24,9 @@ class Role extends Model
         return $this->belongsTo(Seller::class);
     }
 
-    function user()
+    function clients()
     {
-        return $this->belongsTo(Travel::class);
+        return $this->belongsTo(Client::class);
     }
 
     function driver()

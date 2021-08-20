@@ -29,20 +29,21 @@ use App\Http\Controllers\V1\VehicleController;
 Route::apiResource('clients', ClientController::class);
 
 Route::prefix('client')->group(function () {
-    Route::get('{client}', [ClientController::class, 'show']);
+    Route::patch('{client}', [ClientController::class, 'destroy']);
 });
 //conductores
 Route::apiResource('drivers', DriverController::class);
 
 Route::prefix('driver')->group(function () {
-    Route::get('{driver}', [DriverController::class, 'show']);
+    Route::patch('{driver}', [DriverController::class, 'destroy']);
 });
+
 //dueño de la tienda 
 
 Route::apiResource('sellers', SellerController::class);
 
 Route::prefix('seller')->group(function () {
-    Route::get('{seller}', [SellerController::class, 'show']);
+    Route::patch('{seller}', [SellerController::class, 'destroy']);
 });
 
 //tienda 
@@ -64,20 +65,20 @@ Route::prefix('shop/{shop}/seller')->group(function () {
 Route::apiResource('payments', PaymentController::class);
 
 Route::prefix('payment')->group(function () {
-    Route::get('{payment}', [PaymentController::class, 'show']);
+    Route::patch('{payment}', [PaymentController::class, 'destroy']);
 });
 
 //roles
 Route::apiResource('roles', RoleController::class);
 
 Route::prefix('role')->group(function () {
-    Route::get('{role}', [RoleController::class, 'show']);
+    Route::patch('{role}', [RoleController::class, 'destroy']);
 });
 //vehiculos
 Route::apiResource('vehicles', VehicleController::class);
 
 Route::prefix('vehicle')->group(function () {
-    Route::get('{vehicle}', [VehicleController::class, 'show']);
+    Route::patch('{vehicle}', [VehicleController::class, 'destroy']);
 });
 // conductores y vehiculos
 Route::apiResource('drivers.vehicles', DriverVehicleController::class);
@@ -89,11 +90,11 @@ Route::prefix('driver/{driver}/vehicle')->group(function () {
 Route::apiResource('details', DetailController::class);
 
 Route::prefix('detail')->group(function () {
-    Route::get('{detail}', [DetailController::class, 'show']);
+    Route::patch('{detail}', [DetailController::class, 'destroy']);
 });
 
 Route::apiResource('travels', TravelController::class);
 
 Route::prefix('travel')->group(function () {
-    Route::get('{travel}', [TravelController::class, 'show']);
+    Route::patch('{travel}', [TravelController::class, 'destroy']);
 });

@@ -17,11 +17,21 @@ class CreateAppShopsTable extends Migration
             ->create('shops', function (Blueprint $table) {
                 $table->id();
                 //foreing key de sellers y products 
-                $table->foreignId('seller_id')->constrained('app.sellers');
-                $table->foreignId('product_id')->constrained('app.products');
-                $table->string('name');
-                $table->string('code');
-                $table->string('direction');
+                $table->foreignId('seller_id')->constrained('app.sellers')
+                    ->comment('Para obtener la informacion del vendedor');
+
+                $table->foreignId('product_id')->constrained('app.products')
+                    ->comment('Para obtener la informacion de un producto');
+
+                $table->string('name')
+                    ->comment('La esquina, Verduras Maria ');
+
+                $table->string('code')
+                    ->comment('123sadw');
+
+                $table->string('direction')
+                    ->comment('san luis');
+
                 $table->softDeletes();
                 $table->timestamps();
             });

@@ -17,9 +17,15 @@ class CreateAppClientsTable extends Migration
             ->create('clients', function (Blueprint $table) {
                 $table->id();
                 //foreing key de users y rol
-                $table->foreignId('user_id')->constrained('app.users');
-                $table->foreignId('role_id')->constrained('app.roles');
-                $table->string('card');
+                $table->foreignId('user_id')->constrained('app.users')
+                    ->comment('para obtener la informacion del usuario');
+
+                $table->foreignId('role_id')->constrained('app.roles')
+                    ->comment('para asiganar un rol');
+
+                $table->string('card')
+                    ->comment('1234 1234 1234 1243');
+
                 $table->softDeletes();
                 $table->timestamps();
             });

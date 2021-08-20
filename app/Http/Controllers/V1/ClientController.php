@@ -9,7 +9,8 @@ use App\Http\Resources\V1\Clients\ClientCollection;
 use App\Http\Requests\V1\Clients\StoreClientRequest;
 use App\Http\Requests\V1\Clients\UpdateClientRequest;
 use App\Http\Resources\V1\Clients\ClientResource;
-
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -105,10 +106,10 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Client $client)
+    public function destroy($client)
     {
+        $client = Client::find($client);
         $client->delete();
-
         return (new ClientResource($client))
             ->additional([
                 'msg' => [
@@ -118,7 +119,7 @@ class ClientController extends Controller
                 ]
             ]);
     }
-    public function destroy(DestroyClientRequest $request)
+    public function destroys(DestroyClientRequest $request)
     {
         Client::destroy($request->input('ids'));
 

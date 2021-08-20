@@ -16,12 +16,25 @@ class CreateAppUsersTable extends Migration
         Schema::connection(env('DB_CONNECTION_APP'))
             ->create('users', function (Blueprint $table) {
                 $table->id();
-                $table->string('name');
-                $table->string('phone');
-                $table->string('email')->unique();
-                $table->string('password');
-                $table->string('direction');
-                $table->text('genred');
+
+                $table->string('name')
+                    ->comment('Luis, Pablo, Carol');
+
+                $table->string('phone')
+                    ->comment('0986655432');
+
+                $table->string('email')->unique()
+                    ->comment('nmj.kim@example.com');
+
+                $table->string('password')
+                    ->comment('1232easd3123');
+
+                $table->string('direction')
+                    ->comment('chillogallo');
+
+                $table->text('genred')
+                    ->comment('famele, male');
+
                 $table->softDeletes();
                 $table->timestamps();
             });

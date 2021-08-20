@@ -59,36 +59,31 @@ class TravelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Travel $travel)
+    public function destroy($travel)
     {
+        $travel = Travel::find($travel);
         $travel->delete();
 
-        return response()->json(
-            [
-                'data' => $travel,
+        return (new TravelResource($travel))
+            ->additional([
                 'msg' => [
-                    'summary' => 'viaje Eliminado',
-                    'detail' => '',
-                    'code' => '201'
+                    'summary' => 'viaje eliminado exitosamente ',
+                    'detail' => ' ',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
-    public function destroy(DestroyTravelRequest $request)
+    public function destroys(DestroyTravelRequest $request)
     {
         Travel::destroy($request->input('ids'));
 
-        return response()->json(
-            [
-                'data' => null,
+        return (new TravelResource($request))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Eliminado correctamente',
-                    'detail' => 'EL viaje se eliminó correctamente',
-                    'code' => '201'
+                    'summary' => 'viaje eliminado exitosamente ',
+                    'detail' => ' ',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 }

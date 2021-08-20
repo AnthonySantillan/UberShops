@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     function clients()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsToMany(Client::class);
     }
     function drivers()
     {

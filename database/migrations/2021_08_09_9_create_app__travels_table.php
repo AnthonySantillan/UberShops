@@ -17,10 +17,18 @@ class CreateAppTravelsTable extends Migration
             ->create('travels', function (Blueprint $table) {
                 $table->id();
                 //poner las foreing key una de drivers otra de shops y otra de payment
-                $table->foreignId('driver_id')->constrained('app.drivers');
-                $table->foreignId('client_id')->constrained('app.clients');
-                $table->foreignId('shop_id')->constrained('app.shops');
-                $table->foreignId('detail_id')->constrained('app.details');
+                $table->foreignId('driver_id')->constrained('app.drivers')
+                    ->comment('para obtener la informacion del conductor');
+
+                $table->foreignId('client_id')->constrained('app.clients')
+                    ->comment('para obtener la informacion del cliente');
+
+                $table->foreignId('shop_id')->constrained('app.shops')
+                    ->comment('para obtener la informacion de la tienda');
+
+                $table->foreignId('detail_id')->constrained('app.details')
+                    ->comment('para obtener la informacion del detalle de la compra');
+
                 $table->softDeletes();
                 $table->timestamps();
             });

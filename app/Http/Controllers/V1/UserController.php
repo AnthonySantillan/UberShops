@@ -108,37 +108,32 @@ class UserController extends Controller
      * @param \App\Models\User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(User $user)
+    public function destroy($user)
     {
+        $user = User::find($user);
         $user->delete();
 
-        return response()->json(
-            [
-                'data' => $user,
+        return (new UserResource($user))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario Eliminado',
+                    'summary' => 'usuario eliminado correcta',
                     'detail' => '',
-                    'code' => '201'
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 
-    public function destroy(DestroyUserRequest $request)
+    public function destroys(DestroyUserRequest $request)
     {
         User::destroy($request->input('ids'));
 
-        return response()->json(
-            [
-                'data' => null,
+        return (new UserResource($request))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario/s Eliminado/s',
+                    'summary' => ' eliminacion exitosa',
                     'detail' => '',
-                    'code' => '201'
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 }

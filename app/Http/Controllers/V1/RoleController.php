@@ -100,36 +100,31 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Role $role)
+    public function destroy($role)
     {
+        $role = Role::find($role);
         $role->delete();
 
-        return response()->json(
-            [
-                'data' => $role,
+        return (new RoleResource($role))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Usuario Eliminado',
+                    'summary' => 'role eliminado',
                     'detail' => '',
-                    'code' => '201'
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
-    public function destroy(DestroyRolesRequest $request)
+    public function destroys(DestroyRolesRequest $request)
     {
         Role::destroy($request->input('ids'));
 
-        return response()->json(
-            [
-                'data' => null,
+        return (new RoleResource($request))
+            ->additional([
                 'msg' => [
-                    'summary' => 'Eliminado correctamente',
-                    'detail' => 'EL empleado se eliminó correctamente',
-                    'code' => '201'
+                    'summary' => 'eliminado exitosamente',
+                    'detail' => '',
+                    'code' => '200'
                 ]
-            ],
-            201
-        );
+            ]);
     }
 }
