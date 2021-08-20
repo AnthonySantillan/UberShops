@@ -27,6 +27,8 @@ import {Fieldset, FieldsetModule} from 'primeng/fieldset';
 import { FrontComponent } from './components/front/front.component';
 import { LoginComponent } from './components/login/login.component';
 import {  HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import {  HttpClientModule } from '@angular/common/http';
     VehicleModule,
     MenubarModule,
     FieldsetModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

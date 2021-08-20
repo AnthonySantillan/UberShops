@@ -5,7 +5,7 @@ export interface ShopModel{
     id?:number;
     seller?:SellerModel;
     product?:ProductModel;
-    name?:number;
+    name?:string;
     code?:number;
     
 }

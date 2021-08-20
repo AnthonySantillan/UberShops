@@ -21,7 +21,7 @@ export class ShopHttpService {
       catchError(Handler.render)
     );
   }
-  getOne(id:number):Observable<ServerResponse> {
+  getOne(id:number|undefined):Observable<ServerResponse> {
     const url:string=`${this.API_URL}/shops/${id}`;
     return this.httpClient.get<ServerResponse>(url)
     .pipe(
@@ -29,7 +29,7 @@ export class ShopHttpService {
       catchError(Handler.render)
     );;
    }
-  Update(id:number,shop:ShopModel):Observable<ServerResponse> { 
+  Update(id:number|undefined,shop:ShopModel):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/shops/${id}`;
     return this.httpClient.put<ServerResponse>(url,shop)
     .pipe(
@@ -45,7 +45,7 @@ export class ShopHttpService {
       catchError(Handler.render)
     );
   }
-  destroy(id:number):Observable<ServerResponse> { 
+  destroy(id:number|undefined):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/shops/${id}`;
     return this.httpClient.delete<ServerResponse>(url)
     .pipe(
