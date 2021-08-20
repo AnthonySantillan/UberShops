@@ -2,6 +2,11 @@
 body{
     background-color: teal;
 }
+.formLogin{
+    left: 50px;
+    top: 50px;
+    background-color: beige;
+}
 @import "../node_modules/primeicons/primeicons.css";
 @import "../node_modules/primeflex/primeflex.css";
 @import "../node_modules/primeng/resources/primeng.min.css";

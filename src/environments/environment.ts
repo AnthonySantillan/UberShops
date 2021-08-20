@@ -2,10 +2,12 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 const API = 'http://backend-ubershops.test/api/v1';
+const API_LOGIN = 'http://backend-ignug.test/api/v1';
 export const environment = {
   production: false,
   API_URL_AUTHENTICATION: API + '/authentication',
   API_URL: API, 
+  API_LOGIN: API_LOGIN, 
 };
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthHttpService } from '../../services/Auth/auth-http.service';
 import { MessageService } from '../../services/messages/message.service';
 
@@ -9,19 +10,16 @@ import { MessageService } from '../../services/messages/message.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   FormLogin: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private authHttpService: AuthHttpService,
     private messageService: MessageService,
+    private router:Router,
   ) {
     this.FormLogin = this.newFormLogin();
   }
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
   newFormLogin(): FormGroup {
     return this.formBuilder.group({
       username: [null, [Validators.required]],
@@ -36,11 +34,10 @@ export class LoginComponent implements OnInit {
     return this.FormLogin.controls['password'];
   }
   onSubmit() {
+    // console.log('funciona');
     if (this.FormLogin.valid) {
-      console.log("valio");
       this.Login();
     } else {
-      console.log(" no valio");
       this.FormLogin.markAllAsTouched();
     }
   }
@@ -49,6 +46,7 @@ export class LoginComponent implements OnInit {
       Response => {
         localStorage.setItem('token',JSON.stringify(Response.token));
         this.messageService.success(Response);
+        this.router.navigate(['/shops']);
       }, error => {
         this.messageService.error(error);
       }

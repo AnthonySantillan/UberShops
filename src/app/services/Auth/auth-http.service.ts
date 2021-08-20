@@ -11,11 +11,11 @@ import { LoginModel } from 'src/app/models/login.model';
   providedIn: 'root'
 })
 export class AuthHttpService {
-  API_URL: string = environment.API_URL;
+  API_URL_LOGIN: string = environment.API_LOGIN;
   
   constructor(private httpClient:HttpClient) { }
   login(credentials:LoginModel): Observable<ServerResponse>{
-    const url=`${this.API_URL}/auth/login`;
+    const url=`${this.API_URL_LOGIN}/auth/login`;
     return this.httpClient.post<ServerResponse>(url,credentials)
     .pipe(
       map(response=>response),

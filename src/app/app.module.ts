@@ -28,7 +28,12 @@ import {Fieldset, FieldsetModule} from 'primeng/fieldset';
 import { FrontComponent } from './components/front/front.component';
 import { LoginComponent } from './components/login/login.component';
 import {  HttpClientModule } from '@angular/common/http';
-
+import {TableModule} from 'primeng/table';
+import {CardModule} from 'primeng/card';
+import {ButtonModule} from 'primeng/button';
+import {PasswordModule} from 'primeng/password';
+import {InputTextModule} from 'primeng/inputtext';
+import {RatingModule} from 'primeng/rating';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +67,12 @@ import {  HttpClientModule } from '@angular/common/http';
     MenubarModule,
     FieldsetModule,
     BrowserAnimationsModule,
+    TableModule,
+    CardModule,
+    ButtonModule,
+    PasswordModule,
+    InputTextModule,
+    RatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

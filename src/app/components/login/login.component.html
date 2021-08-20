@@ -1,1 +1,24 @@
-<h1>si funciono</h1>
+<div id="loginBody" class="formLogin">
+    <p-card header="Ingreso y registro" >
+        <Form [formGroup]="FormLogin" (ngSubmit)="onSubmit()">
+            <label for="username">Nombre de usuario: </label>
+            <input pInputText type="text" id="username" formControlName="username">
+            <div *ngIf="usernameField.invalid && (usernameField.touched || usernameField.dirty)">
+                <small *ngIf="usernameField.errors?.required" class="p-error">
+                    Este campo es obligatorio!!
+                </small>
+            </div>
+            <br>
+            <label for="password">contraseña: </label>
+            <p-password [toggleMask]="true" formControlName="password"></p-password>
+            <!-- <input pInputText type="text" id="password" formControlName="password"> -->
+            <div *ngIf="passwordField.invalid && (passwordField.touched || passwordField.dirty)">
+                <small *ngIf="passwordField.errors?.required" class="p-error">
+                    Este campo es obligatorio!!
+                </small>
+            </div>
+            <br>
+            <button pButton type="submit" id="btnLogin" label="Ingresar" icon="pi pi-sign-in"></button>
+        </Form>
+    </p-card>
+</div>

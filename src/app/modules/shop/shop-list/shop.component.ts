@@ -12,7 +12,7 @@ import { ShopModel } from 'src/app/models';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-
+  
   constructor(private formBuilder: FormBuilder, private shopHttpService: ShopHttpService,
     private messageService: MessageService) {
 
@@ -39,7 +39,7 @@ export class ShopComponent implements OnInit {
   shops: ShopModel[] = [];
 
   getShop(Shop?:ShopModel) {
-    this.shopHttpService.getOne(12345).subscribe(
+    this.shopHttpService.getOne(1).subscribe(
       response => {
         this.shop = response.data;
       }, error => {
