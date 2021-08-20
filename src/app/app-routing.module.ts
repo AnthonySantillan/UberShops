@@ -11,14 +11,18 @@ const routes: Routes = [
     component:MainComponent,
       children:[
         {
-          path:'clientes',
-          loadChildren: () => import('./modules/client/client.module').then(m=>m.ClientModule)
+          path:'shop',
+          loadChildren: () => import('./modules/shop/shop.module').then(m=>m.ShopModule)
         }
       ]
   },
   {
     path:'login',
     component:LoginComponent
+  },
+  {
+    path:'client',
+    loadChildren: () => import('./modules/client/client.module').then(m=>m.ClientModule)
   },
   {
     path:'detail',

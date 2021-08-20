@@ -29,9 +29,6 @@ import { FrontComponent } from './components/front/front.component';
 import { LoginComponent } from './components/login/login.component';
 import {  HttpClientModule } from '@angular/common/http';
 
-//gfdg
-
-
 @NgModule({
   declarations: [
     AppComponent,
