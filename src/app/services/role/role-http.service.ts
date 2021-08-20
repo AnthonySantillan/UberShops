@@ -22,7 +22,7 @@ export class RoleHttpService {
       catchError(Handler.render)
     );
   }
-  getOne(id:number):Observable<ServerResponse> {
+  getOne(id:number|undefined):Observable<ServerResponse> {
     const url:string=`${this.API_URL}/roles/${id}`;
     return this.httpClient.get<ServerResponse>(url)
     .pipe(
@@ -30,7 +30,7 @@ export class RoleHttpService {
       catchError(Handler.render)
     );
    }
-  Update(id:number,role:RoleModel):Observable<ServerResponse> { 
+  Update(id:number|undefined,role:RoleModel):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/roles/${id}`;
     return this.httpClient.put<ServerResponse>(url,role)
     .pipe(
@@ -46,7 +46,7 @@ export class RoleHttpService {
       catchError(Handler.render)
     );
   }
-  destroy(id:number):Observable<ServerResponse> { 
+  destroy(id:number|undefined):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/roles/${id}`;
     return this.httpClient.delete<ServerResponse>(url)
     .pipe(
@@ -54,9 +54,9 @@ export class RoleHttpService {
       catchError(Handler.render)
     );
   }
-  destroys(roles:RoleModel[]):Observable<ServerResponse> {
+  destroys(ids:(number|undefined)[]):Observable<ServerResponse> {
     const url:string=`${this.API_URL}/roles`;
-    return this.httpClient.patch<ServerResponse>(url,roles)
+    return this.httpClient.patch<ServerResponse>(url,{ids})
     .pipe(
       map(response=>response),
       catchError(Handler.render)

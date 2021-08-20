@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { MainComponent } from './modules/main/main.component';
+import { MainComponent } from './components/main/main.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path:'detail',
     loadChildren: () => import('./modules/detail/detail.module').then(m=>m.DetailModule)
+  },
+  {
+    path:'shop',
+    loadChildren: () => import('./modules/shop/shop.module').then(m=>m.ShopModule)
   },
   {
     path:'driver',

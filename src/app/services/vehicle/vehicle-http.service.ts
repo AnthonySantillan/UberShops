@@ -22,7 +22,7 @@ export class VehicleHttpService {
       catchError(Handler.render)
     );
   }
-  getOne(id:number):Observable<ServerResponse> {
+  getOne(id:number|undefined):Observable<ServerResponse> {
     const url:string=`${this.API_URL}/vehicles/${id}`;
     return this.httpClient.get<ServerResponse>(url)
     .pipe(
@@ -30,7 +30,7 @@ export class VehicleHttpService {
       catchError(Handler.render)
     );
    }
-  Update(id:number,vehicle:VehicleModel):Observable<ServerResponse> { 
+  Update(id:number|undefined,vehicle:VehicleModel):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/vehicles/${id}`;
     return this.httpClient.put<ServerResponse>(url,vehicle)
     .pipe(
@@ -46,7 +46,7 @@ export class VehicleHttpService {
       catchError(Handler.render)
     );
   }
-  destroy(id:number):Observable<ServerResponse> { 
+  destroy(id:number|undefined):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/vehicles/${id}`;
     return this.httpClient.delete<ServerResponse>(url)
     .pipe(
@@ -54,9 +54,9 @@ export class VehicleHttpService {
       catchError(Handler.render)
     );
   }
-  destroys(vehicles:VehicleModel[]):Observable<ServerResponse> {
+  destroys(ids:(number|undefined)[]):Observable<ServerResponse> {
     const url:string=`${this.API_URL}/vehicles`;
-    return this.httpClient.patch<ServerResponse>(url,vehicles)
+    return this.httpClient.patch<ServerResponse>(url,{ids})
     .pipe(
       map(response=>response),
       catchError(Handler.render)

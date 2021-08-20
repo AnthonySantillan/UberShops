@@ -22,7 +22,7 @@ export class DetailHttpService {
       catchError(Handler.render)
     );
   }
-  getOne(id:number):Observable<ServerResponse> {
+  getOne(id:number|undefined):Observable<ServerResponse> {
     const url:string=`${this.API_URL}/details/${id}`;
     return this.httpClient.get<ServerResponse>(url)
     .pipe(
@@ -30,7 +30,7 @@ export class DetailHttpService {
       catchError(Handler.render)
     );
    }
-  Update(id:number,detail:DetailModel):Observable<ServerResponse> { 
+  Update(id:number|undefined,detail:DetailModel):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/details/${id}`;
     return this.httpClient.put<ServerResponse>(url,detail)
     .pipe(
@@ -46,7 +46,7 @@ export class DetailHttpService {
       catchError(Handler.render)
     );
   }
-  destroy(id:number):Observable<ServerResponse> { 
+  destroy(id:number|undefined):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/details/${id}`;
     return this.httpClient.delete<ServerResponse>(url)
     .pipe(
@@ -54,9 +54,9 @@ export class DetailHttpService {
       catchError(Handler.render)
     );
   }
-  destroys(details:DetailModel[]):Observable<ServerResponse> {
+  destroys(ids:(number|undefined)[]):Observable<ServerResponse> {
     const url:string=`${this.API_URL}/details`;
-    return this.httpClient.patch<ServerResponse>(url,details)
+    return this.httpClient.patch<ServerResponse>(url,{ids})
     .pipe(
       map(response=>response),
       catchError(Handler.render)

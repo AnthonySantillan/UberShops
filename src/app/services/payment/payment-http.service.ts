@@ -22,7 +22,7 @@ export class PaymentHttpService {
       catchError(Handler.render)
     );
   }
-  getOne(id:number):Observable<ServerResponse> {
+  getOne(id:number|undefined):Observable<ServerResponse> {
     const url:string=`${this.API_URL}/payments/${id}`;
     return this.httpClient.get<ServerResponse>(url)
     .pipe(
@@ -30,7 +30,7 @@ export class PaymentHttpService {
       catchError(Handler.render)
     );
    }
-  Update(id:number,payment:PaymentModel):Observable<ServerResponse> { 
+  Update(id:number|undefined,payment:PaymentModel):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/payments/${id}`;
     return this.httpClient.put<ServerResponse>(url,payment)
     .pipe(
@@ -46,7 +46,7 @@ export class PaymentHttpService {
       catchError(Handler.render)
     );
   }
-  destroy(id:number):Observable<ServerResponse> { 
+  destroy(id:number|undefined):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/payments/${id}`;
     return this.httpClient.delete<ServerResponse>(url)
     .pipe(
@@ -54,9 +54,9 @@ export class PaymentHttpService {
       catchError(Handler.render)
     );
   }
-  destroys(payments:PaymentModel[]):Observable<ServerResponse> {
+  destroys(ids:(number|undefined)[]):Observable<ServerResponse> {
     const url:string=`${this.API_URL}/payments`;
-    return this.httpClient.patch<ServerResponse>(url,payments)
+    return this.httpClient.patch<ServerResponse>(url,{ids})
     .pipe(
       map(response=>response),
       catchError(Handler.render)

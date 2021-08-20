@@ -22,7 +22,7 @@ export class SellerHttpService {
       catchError(Handler.render)
     );
   }
-  getOne(id:number):Observable<ServerResponse> {
+  getOne(id:number|undefined):Observable<ServerResponse> {
     const url:string=`${this.API_URL}/sellers/${id}`;
     return this.httpClient.get<ServerResponse>(url)
     .pipe(
@@ -30,7 +30,7 @@ export class SellerHttpService {
       catchError(Handler.render)
     );
    }
-  Update(id:number,seller:SellerModel):Observable<ServerResponse> { 
+  Update(id:number|undefined,seller:SellerModel):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/sellers/${id}`;
     return this.httpClient.put<ServerResponse>(url,seller)
     .pipe(
@@ -46,7 +46,7 @@ export class SellerHttpService {
       catchError(Handler.render)
     );
   }
-  destroy(id:number):Observable<ServerResponse> { 
+  destroy(id:number|undefined):Observable<ServerResponse> { 
     const url:string=`${this.API_URL}/sellers/${id}`;
     return this.httpClient.delete<ServerResponse>(url)
     .pipe(
@@ -54,9 +54,9 @@ export class SellerHttpService {
       catchError(Handler.render)
     );
   }
-  destroys(sellers:SellerModel[]):Observable<ServerResponse> {
+  destroys(ids:(number|undefined)[]):Observable<ServerResponse> {
     const url:string=`${this.API_URL}/sellers`;
-    return this.httpClient.patch<ServerResponse>(url,sellers)
+    return this.httpClient.patch<ServerResponse>(url,{ids})
     .pipe(
       map(response=>response),
       catchError(Handler.render)
