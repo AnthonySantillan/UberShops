@@ -12,34 +12,28 @@ import { ShopModel } from 'src/app/models';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  
-  constructor(private formBuilder: FormBuilder, private shopHttpService: ShopHttpService,
+  shop: ShopModel = {};
+  shops: ShopModel[] = [];
+  constructor(private formBuilder: FormBuilder,
+     private shopHttpService: ShopHttpService,
     private messageService: MessageService) {
-
     this.ShopForm = this.newFormShop();
-
   }
   ShopForm: FormGroup;
-  newFormShop() {
+  newFormShop():FormGroup {
     return this.formBuilder.group({
       id: [null],
       name: [null, [Validators.required, Validators.maxLength(50)]],
-      code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
     });
   }
 
-
-  
   ngOnInit(): void {
     this.getShop();
     this.getShops();
   }
-
-  shop: ShopModel = {};
-  shops: ShopModel[] = [];
-
-  getShop(Shop?:ShopModel) {
-    this.shopHttpService.getOne(1).subscribe(
+  getShop(shop?:ShopModel|undefined) {
+    this.shopHttpService.getOne(2).subscribe(
       response => {
         this.shop = response.data;
       }, error => {
@@ -60,7 +54,7 @@ export class ShopComponent implements OnInit {
 
   // crea un nuevo registro en la base de datos
   storeShop(shop: ShopModel): void {
-    this.shopHttpService.Store(this.shop).subscribe(
+    this.shopHttpService.Store(shop).subscribe(
       response => {
        this.saveShop(response.data);
         this.messageService.success(response);
@@ -83,7 +77,7 @@ export class ShopComponent implements OnInit {
   );
 }
 
-  //elimina un jugador de la base de datos
+  //elimina un registro de la base de datos
   deleteShop(shop: ShopModel) {
     this.shopHttpService.destroy(shop.id).subscribe(
       response => {
@@ -95,6 +89,11 @@ export class ShopComponent implements OnInit {
         this.messageService.error(error)
       }
     );
+  }
+  //elimina varios registro de la base de datos
+  // TODO: ELIMINAR VARIOS REGISTROS
+  deleteShops() {
+    
   }
 // carga la informacion del registro en el formulario
   selectShop(shop: ShopModel) {
@@ -118,11 +117,11 @@ export class ShopComponent implements OnInit {
   onSubmit(shop: ShopModel) {
     if (this.ShopForm.valid) {
       if (shop.id) {
-        this.updateShop(shop);//actualiza un registro en la bbase de datos
+        this.updateShop(shop);
       } else {
-        this.storeShop(shop);//crea un nuevo registro en la base de datos
+        this.storeShop(shop);
       }
-      this.ShopForm.reset();//limpia todods los campos del formulario
+      this.ShopForm.reset();
     }else{
       this.ShopForm.markAllAsTouched();
     }

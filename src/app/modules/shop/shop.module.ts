@@ -10,6 +10,7 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { RatingModule } from 'primeng/rating';
 import { TableModule } from 'primeng/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,7 +26,9 @@ import { TableModule } from 'primeng/table';
     ButtonModule,
     PasswordModule,
     InputTextModule,
-    RatingModule
+    RatingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class ShopModule { }
