@@ -15,6 +15,14 @@ use App\Http\Resources\V1\Vehicles\VehicleResource;
 
 class VehicleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin|client');
+        $this->middleware('permission:view-vehicles')->only(['index', 'show']);
+        $this->middleware('permission:store-vehicles')->only(['store']);
+        $this->middleware('permission:update-vehicles')->only(['update']);
+        $this->middleware('permission:delete-vehicles')->only(['destroy', 'destroys']);
+    }
     /**
      * Display a listing of the resource.
      *

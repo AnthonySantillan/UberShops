@@ -23,7 +23,7 @@ class SellerFactory extends Factory
     {
         return [
             'user_id' => $this->faker->numberBetween(1, 10),
-            'role_id' => $this->faker->numberBetween(1, 10),
+            'role_id' => $this->faker->numberBetween(1, 3),
             'ruc' => $this->faker->numberBetween(),
         ];
     }

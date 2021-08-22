@@ -18,15 +18,16 @@ class Product extends Model
     protected $fillable = [
         'name',
         'code',
+        'amount',
         'price',
     ];
     function shops()
     {
         return $this->hasMany(Shop::class);
     }
-    function purchaseDetails()
+    function details()
     {
-        return $this->hasMany(Purchase_Detail::class);
+        return $this->hasMany(Detail::class);
     }
     //mutators
     public function setCodeAttribute($value)

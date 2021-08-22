@@ -12,6 +12,14 @@ use App\Models\Shop;
 
 class ShopController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin|client');
+        $this->middleware('permission:view-shops')->only(['index', 'show']);
+        $this->middleware('permission:store-shops')->only(['store']);
+        $this->middleware('permission:update-shops')->only(['update']);
+        $this->middleware('permission:delete-shops')->only(['destroy', 'destroys']);
+    }
     /**
      * Display a listing of the resource.
      *

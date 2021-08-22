@@ -23,7 +23,7 @@ class DriverFactory extends Factory
     {
         return [
             'user_id' => $this->faker->numberBetween(1, 10),
-            'role_id' => $this->faker->numberBetween(1, 10),
+            'role_id' => $this->faker->numberBetween(1, 3),
             'vehicle_id' => $this->faker->numberBetween(1, 10),
             'license' => $this->faker->randomElement(['A', 'C', 'D', 'E']),
         ];

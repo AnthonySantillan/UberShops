@@ -74,12 +74,10 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            'schema' => 'authentication',
             'schema' => env('DB_SCHEMA', 'public'),
-
             'sslmode' => 'prefer',
         ],
-        
+
         'pgsql-app' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
@@ -91,7 +89,6 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            'schema' => 'app',
             'schema' => env('DB_SCHEMA_APP', 'public'),
             'sslmode' => 'prefer',
         ],
@@ -141,7 +138,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [

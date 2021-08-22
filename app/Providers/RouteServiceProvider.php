@@ -37,11 +37,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiting();
 
-        $this->mapApiRoutes();
-
         $this->routes(function () {
             $this->mapApiRoutes();
-
 
             Route::middleware('web')
                 ->namespace($this->namespace)
@@ -60,6 +57,7 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
     }
+
     protected function mapApiRoutes()
     {
         $version = 'v1';
@@ -68,11 +66,11 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path("routes/api/${version}/public.php"));
 
         Route::prefix("api/${version}")
-            ->middleware('api')
+            ->middleware(['api', 'auth:sanctum','verify_user_blocked'])
             ->group(base_path("routes/api/${version}/private.php"));
 
         Route::prefix("api/${version}")
-            ->middleware('api')
+            ->middleware(['api', 'auth:sanctum'])
             ->group(base_path("routes/api/${version}/authentication.php"));
     }
 }

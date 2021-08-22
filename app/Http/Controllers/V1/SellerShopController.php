@@ -8,6 +8,14 @@ use App\Models\Shop;
 
 class SellerShopController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin|client');
+        $this->middleware('permission:view-sellers')->only(['index', 'show']);
+        $this->middleware('permission:store-sellers')->only(['store']);
+        $this->middleware('permission:update-sellers')->only(['update']);
+        $this->middleware('permission:delete-sellers')->only(['destroy', 'destroys']);
+    }
     /**
      * Display a listing of the resource.
      *

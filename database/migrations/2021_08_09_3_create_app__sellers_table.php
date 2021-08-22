@@ -20,10 +20,10 @@ class CreateAppSellersTable extends Migration
                     ->comment('176571829100011');
 
                 //foreing key de shops y users
-                $table->foreignId('user_id')->constrained('app.users')
+                $table->foreignId('user_id')->constrained('authentication.users')
                     ->comment('para obtener la informacion del usuario');
 
-                $table->foreignId('role_id')->constrained('app.roles')
+                $table->foreignId('role_id')->constrained('authentication.roles')
                     ->comment('para asiganar un rol');
 
                 $table->softDeletes();

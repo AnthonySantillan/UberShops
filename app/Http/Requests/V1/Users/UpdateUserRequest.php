@@ -24,21 +24,20 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:50'],
-            'phone' => ['required', 'min:2', 'max:10'],
-            'email' => ['required', 'max:50'],
-            'direction' => ['required', 'max:50'],
+            'username' => ['required', 'max:50'],
+            'name' => ['required', 'max:100'],
+            'lastname' => ['required', 'max:100'],
+            'email' => ['required', 'max:100'],
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'nombre de usuario',
-            'phone' => 'telefono',
-            'email' => 'correo electrónico',
-            'direction' => 'direccion'
-
+            'username' => 'nombre de usuario',
+            'name' => 'nombre',
+            'lastname' => 'apellido',
+            'email' => 'correo electrónico'
         ];
     }
 }

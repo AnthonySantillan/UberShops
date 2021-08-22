@@ -20,13 +20,13 @@ class CreateAppDriversTable extends Migration
                     ->comment('para obtener la informacion del usuario');
 
                 //foreing key de vehiculo, users y roles
-                $table->foreignId('user_id')->constrained('app.users')
+                $table->foreignId('user_id')->constrained('authentication.users')
                     ->comment('para obtener la informacion del usuario');
 
                 $table->foreignId('vehicle_id')->constrained('app.vehicles')
                     ->comment('para obtener la informacion del vehiculo');
 
-                $table->foreignId('role_id')->constrained('app.roles')
+                $table->foreignId('role_id')->constrained('authentication.roles')
                     ->comment('para asiganar un rol');
 
                 $table->softDeletes();

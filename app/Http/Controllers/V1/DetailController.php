@@ -12,6 +12,14 @@ use App\Models\Detail;
 
 class DetailController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin|client');
+        $this->middleware('permission:view-details')->only(['index', 'show']);
+        $this->middleware('permission:store-details')->only(['store']);
+        $this->middleware('permission:update-details')->only(['update']);
+        $this->middleware('permission:delete-details')->only(['destroy', 'destroys']);
+    }
     /**
      * Display a listing of the resource.
      *
