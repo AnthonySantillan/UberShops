@@ -54,7 +54,7 @@ export class ShopHttpService {
     );
   }
   destroys(ids:(number |undefined)[]):Observable<ServerResponse> {
-    const url:string=`${this.API_URL}/shop/destroy`;
+    const url:string=`${this.API_URL}/shop/destroys`;
     return this.httpClient.patch<ServerResponse>(url,{ids})
     .pipe(
       map(response=>response),

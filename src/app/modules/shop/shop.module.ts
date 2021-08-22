@@ -29,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RatingModule,
     FormsModule,
     ReactiveFormsModule,
+    
   ]
 })
 export class ShopModule { }

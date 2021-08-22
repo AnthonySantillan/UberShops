@@ -1,3 +1,4 @@
+<!-- formulario para crear o modificar un registro -->
 <p-card header="Modificacion y creacion de tiendas">
     <div class="p-fluid">
         <form [formGroup]="ShopForm" (ngSubmit)="onSubmit(ShopForm.value)">
@@ -5,11 +6,6 @@
                 <div class="field xl:col-2 lg:col-2 md:col-4 sm:col-12">
                     <label for="id">ID:</label>
                     <input pInputText type="text" id="id" formControlName="id">
-                    <div *ngIf="nameField.invalid && (nameField.touched || nameField.dirty)">
-                        <small *ngIf="nameField.errors?.required" class="p-error">
-                            Este campo es obligatorio!!
-                        </small>
-                    </div>
                 </div>
                 <div class="field xl:col-5 lg:col-5 md:col-4 sm:col-12">
                     <label for="name">Nombre:</label>
@@ -34,7 +30,7 @@
                             El minimo de caracteres para el codigo es de 2!!
                         </small>
                         <small *ngIf="codeField.errors?.maxlength" class="p-error">
-                            El maximo de caracteres para el cofigo es de 15!!
+                            El maximo de caracteres para el cofigo es de 10!!
                         </small>
                     </div>
                 </div>
@@ -48,12 +44,16 @@
 
 <!-- tablero con todos los datos -->
 <!-- con primeng -->
-<p-table id="shopsTable" [value]="shops" [rows]="10" [paginator]="true" >
+<p-table id="shopsTable" [value]="Shops" [rows]="10" [paginator]="true" [(selection)]="selectedShops">
+    <ng-template pTemplate="caption">
+        <button  pButton pRipple type="button" label="Eliminar seleccionados"
+            class="p-button-danger p-button-rounded ml-2" icon="pi pi-trash" (click)="deleteShops()"></button>
+    </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th style="width: 3rem">
                 <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-              </th>
+            </th>
             <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon>
             </th>
             <th pSortableColumn="name">Nombre <p-sortIcon field="name"></p-sortIcon>
@@ -63,17 +63,17 @@
             <th> Acciones </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" shop>
-        <tr >
+    <ng-template pTemplate="body" ngFor let-shop [ngForOf]="Shops" let-index="index">
+        <tr [pSelectableRow]="shop" [pSelectableRowIndex]="index">
             <td>
                 <p-tableCheckbox [value]="shop"></p-tableCheckbox>
-              </td>
+            </td>
+            <!-- <td> {{shop| json }} </td> -->
             <td>{{shop.id}}</td>
             <td>{{shop.name}}</td>
             <td>{{shop.code}}</td>
             <td>
-                <button pButton type="button" icon="pi pi-eye" label="Mostrar"
-                    (click)=selectShop(shop)></button>
+                <button pButton type="button" icon="pi pi-eye" label="Mostrar" (click)=selectShop(shop)></button>
                 <button pButton type="button" icon="pi pi-trash" class="p-button-danger" label="Eliminar"
                     (click)=deleteShop(shop)></button>
             </td>

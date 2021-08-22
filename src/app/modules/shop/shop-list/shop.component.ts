@@ -4,27 +4,33 @@ import { MessageService } from 'src/app/services/messages/message.service';
 import { ShopHttpService } from 'src/app/services/shop/shop-http.service';
 import { ShopModel } from 'src/app/models';
 
-
-
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
+  // vatiables que guardan los datos recuperados de la BD e instacian el formulario
   shop: ShopModel = {};
-  shops: ShopModel[] = [];
+  Shops: ShopModel[]= [];
+  ShopForm: FormGroup;
+  selectedShops: ShopModel[] = [];
+  // se cargan las dependencias y se inicializa el formulario
   constructor(private formBuilder: FormBuilder,
      private shopHttpService: ShopHttpService,
     private messageService: MessageService) {
+
     this.ShopForm = this.newFormShop();
   }
-  ShopForm: FormGroup;
+  // da forma al formulario que manejara los datos
   newFormShop():FormGroup {
     return this.formBuilder.group({
       id: [null],
+      seller_id: [1],
+      product_id: [1],
       name: [null, [Validators.required, Validators.maxLength(50)]],
-      code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+      code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      direction: ['soil'],
     });
   }
 
@@ -32,20 +38,23 @@ export class ShopComponent implements OnInit {
     this.getShop();
     this.getShops();
   }
+  // obtiene un registro de la base de datos
   getShop(shop?:ShopModel|undefined) {
     this.shopHttpService.getOne(2).subscribe(
       response => {
+        console.log(response.data);
         this.shop = response.data;
       }, error => {
         this.messageService.error(error);
       }
     );
   }
-
+//obtiene todos los registro de la base de datos
   getShops() {
     this.shopHttpService.getAll().subscribe(
       response => {
-        this.shops = response.data;
+        console.log(response.data);
+        this.Shops = response.data;
       }, error => {
         this.messageService.error(error);
       }
@@ -76,13 +85,12 @@ export class ShopComponent implements OnInit {
     }
   );
 }
-
   //elimina un registro de la base de datos
   deleteShop(shop: ShopModel) {
     this.shopHttpService.destroy(shop.id).subscribe(
       response => {
         console.log(response);
-        this.deleteShop(shop);
+        this.removeShop(shop);
         this.messageService.success(response);
       },
       error => {
@@ -92,8 +100,18 @@ export class ShopComponent implements OnInit {
   }
   //elimina varios registro de la base de datos
   // TODO: ELIMINAR VARIOS REGISTROS
-  deleteShops() {
-    
+  deleteShops( ) {
+    console.log(this.selectedShops);
+    const ids = this.selectedShops.map(element => element.id);
+          this.shopHttpService.destroys(ids).subscribe(
+            response => {
+              this.removeShops(ids);
+              this.messageService.success(response);
+            },
+            error => {
+              this.messageService.error(error);
+            }
+          );
   }
 // carga la informacion del registro en el formulario
   selectShop(shop: ShopModel) {
@@ -102,18 +120,24 @@ export class ShopComponent implements OnInit {
 
   //elimina visualmente un registro de la pantalla
   removeShop(shop: ShopModel) {
-    this.shops = this.shops.filter(element => element.id !== shop.id);
+    this.Shops = this.Shops.filter(element => element.id !== shop.id);
+  }
+  //elimina visualmente varios registros de la pantalla
+  removeShops(ids: (number | undefined)[]) {
+    for (const id of ids) {
+      this.Shops = this.Shops.filter(element => element.id !== id);
+    }
   }
   //se usa para actualizar o para agregar un registro a la pantalla
   saveShop(shop: ShopModel) {
-    const index = this.shops.findIndex(element => element.id === shop.id);
+    const index = this.Shops.findIndex(element => element.id === shop.id);
     if (index === -1) {
-      this.shops.push(shop);
+      this.Shops.push(shop);
     } else {
-      this.shops[index] = shop;
+      this.Shops[index] = shop;
     }
   }
-  //se llama al dar clic en en
+  //metodo para guardar o actualizar
   onSubmit(shop: ShopModel) {
     if (this.ShopForm.valid) {
       if (shop.id) {
@@ -126,6 +150,7 @@ export class ShopComponent implements OnInit {
       this.ShopForm.markAllAsTouched();
     }
   }
+  //getters
   get idField() {
     return this.ShopForm.controls['id'];
   }
@@ -134,6 +159,9 @@ export class ShopComponent implements OnInit {
   }
   get codeField() {
     return this.ShopForm.controls['code'];
+  }
+  get directionField() {
+    return this.ShopForm.controls['direction'];
   }
 
 
