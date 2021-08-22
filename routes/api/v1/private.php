@@ -50,7 +50,7 @@ Route::prefix('seller')->group(function () {
 Route::apiResource('shops', ShopController::class);
 
 Route::prefix('shop')->group(function () {
-    Route::patch('{shop}', [ShopController::class, 'destroy']);
+    Route::patch('destroys', [ShopController::class, 'destroys']);
 });
 
 //tiendas y dueños

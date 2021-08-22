@@ -44,7 +44,7 @@ class ShopController extends Controller
         $shop->product_id = $request->input('product_id');
         $shop->name = $request->input('name');
         $shop->code = $request->input('code');
-        $shop->direction = $request->input('direction');
+        // $shop->direction = $request->input('direction');
         $shop->save();
 
         return (new ShopResource($shop))
@@ -86,7 +86,7 @@ class ShopController extends Controller
     {
         $shop->name = $request->name;
         $shop->code = $request->code;
-        $shop->direction = $request->direction;
+        // $shop->direction = $request->direction;
 
         $shop->save();
 
