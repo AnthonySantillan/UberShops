@@ -26,7 +26,7 @@ class UpdateShopRequest extends FormRequest
         return [
             'name' => ['required', 'max:50'],
             'code' => ['required', 'min:2'],
-            'direction' => ['required', 'max:50'],
+            // 'direction' => ['required', 'max:50'],
         ];
     }
 
@@ -35,7 +35,7 @@ class UpdateShopRequest extends FormRequest
         return [
             'name' => 'nombre de la tienda',
             'code' => 'codigo',
-            'direction' => 'direccion'
+            // 'direction' => 'direccion'
 
         ];
     }
