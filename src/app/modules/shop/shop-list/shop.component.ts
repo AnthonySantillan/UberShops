@@ -10,7 +10,7 @@ import { ShopModel } from 'src/app/models';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  // vatiables que guardan los datos recuperados de la BD e instacian el formulario
+  // vatrables que guardan los datos recuperados de la BD e instacian el formulario
   shop: ShopModel = {};
   Shops: ShopModel[]= [];
   ShopForm: FormGroup;
@@ -35,12 +35,12 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getShop();
     this.getShops();
+    // this.getShop();
   }
   // obtiene un registro de la base de datos
-  getShop(shop?:ShopModel|undefined) {
-    this.shopHttpService.getOne(2).subscribe(
+  getShop(shop:ShopModel) {
+    this.shopHttpService.getOne(shop.id).subscribe(
       response => {
         console.log(response.data);
         this.shop = response.data;
@@ -54,6 +54,7 @@ export class ShopComponent implements OnInit {
     this.shopHttpService.getAll().subscribe(
       response => {
         console.log(response.data);
+        this.getShop(response.data[0]);
         this.Shops = response.data;
       }, error => {
         this.messageService.error(error);
@@ -117,7 +118,6 @@ export class ShopComponent implements OnInit {
   selectShop(shop: ShopModel) {
     this.ShopForm.patchValue(shop);
   }
-
   //elimina visualmente un registro de la pantalla
   removeShop(shop: ShopModel) {
     this.Shops = this.Shops.filter(element => element.id !== shop.id);

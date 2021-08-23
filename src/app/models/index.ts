@@ -11,3 +11,6 @@ export {ShopModel} from './shop.model'
 export {TraveModel} from './travel.model'
 export {UserModel} from './user.model'
 export {VehicleModel} from './vehicle.model'
+export {PermissionModel} from './permission.model'
+
+
