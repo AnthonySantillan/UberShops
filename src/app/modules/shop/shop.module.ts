@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RatingModule } from 'primeng/rating';
 import { TableModule } from 'primeng/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -29,7 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RatingModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    HttpClientModule,
   ]
 })
 export class ShopModule { }

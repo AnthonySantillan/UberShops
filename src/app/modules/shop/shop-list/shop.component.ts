@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'src/app/services/messages/message.service';
 import { ShopHttpService } from 'src/app/services/shop/shop-http.service';
 import { ShopModel } from 'src/app/models';
+import { AuthService } from 'src/app/services/Auth/auth.service';
 
 @Component({
   selector: 'app-shop',
@@ -13,28 +14,30 @@ export class ShopComponent implements OnInit {
   // vatrables que guardan los datos recuperados de la BD e instacian el formulario
   shop: ShopModel = {};
   Shops: ShopModel[]= [];
+  Updated: boolean=false;
   ShopForm: FormGroup;
   selectedShops: ShopModel[] = [];
   // se cargan las dependencias y se inicializa el formulario
   constructor(private formBuilder: FormBuilder,
      private shopHttpService: ShopHttpService,
-    private messageService: MessageService) {
-
+    private messageService: MessageService,
+    ) {
     this.ShopForm = this.newFormShop();
   }
   // da forma al formulario que manejara los datos
   newFormShop():FormGroup {
     return this.formBuilder.group({
       id: [null],
-      seller_id: [1],
-      product_id: [1],
+      seller_id: [1,[]],
+      product_id: [1,[]],
       name: [null, [Validators.required, Validators.maxLength(50)]],
       code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-      direction: ['soil'],
+      direction: [null,[Validators.required,Validators.maxLength(50)]],
     });
   }
 
   ngOnInit(): void {
+    
     this.getShops();
     // this.getShop();
   }
@@ -66,6 +69,8 @@ export class ShopComponent implements OnInit {
   storeShop(shop: ShopModel): void {
     this.shopHttpService.Store(shop).subscribe(
       response => {
+        this.Updated=false;
+        this.ShopForm = this.newFormShop();
        this.saveShop(response.data);
         this.messageService.success(response);
       },
@@ -78,6 +83,8 @@ export class ShopComponent implements OnInit {
  updateShop(shop: ShopModel): void {
   this.shopHttpService.Update(shop.id,shop).subscribe(
     response => {
+      this.Updated=false;
+      this.ShopForm = this.newFormShop();
       this.saveShop(response.data);
       this.messageService.success(response);
     },
@@ -116,6 +123,7 @@ export class ShopComponent implements OnInit {
   }
 // carga la informacion del registro en el formulario
   selectShop(shop: ShopModel) {
+    this.Updated=true;
     this.ShopForm.patchValue(shop);
   }
   //elimina visualmente un registro de la pantalla
@@ -149,6 +157,12 @@ export class ShopComponent implements OnInit {
     }else{
       this.ShopForm.markAllAsTouched();
     }
+  }
+  //metodo para guardar o actualizar
+  onCancel(shop: ShopModel) {
+    this.Updated=false;
+    this.ShopForm.reset();
+    this.ShopForm = this.newFormShop();
   }
   //getters
   get idField() {

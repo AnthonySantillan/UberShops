@@ -3,10 +3,10 @@
     <div class="p-fluid">
         <form [formGroup]="ShopForm" (ngSubmit)="onSubmit(ShopForm.value)">
             <div class="formgrid grid">
-                <div class="field xl:col-2 lg:col-2 md:col-4 sm:col-12">
+                <!-- <div class="field xl:col-2 lg:col-2 md:col-4 sm:col-12">
                     <label for="id">ID:</label>
-                    <input pInputText type="text" id="id" formControlName="id">
-                </div>
+                    <input pInputText type="text" id="id" [disabled]="true" formControlName="id">
+                </div> -->
                 <div class="field xl:col-5 lg:col-5 md:col-4 sm:col-12">
                     <label for="name">Nombre:</label>
                     <input pInputText type="text" id="name" formControlName="name">
@@ -19,6 +19,7 @@
                         </small>
                     </div>
                 </div>
+                
                 <div class="field xl:col-5 lg:col-5 md:col-4 sm:col-12">
                     <label for="code">Codigo:</label>
                     <input pInputText type="text" id="code" formControlName="code">
@@ -34,9 +35,30 @@
                         </small>
                     </div>
                 </div>
-            </div>
-            <div class="field">
-                <button pButton label="Guardar" icon="pi pi-save" type="submit"></button>
+                <div class="field xl:col-5 lg:col-5 md:col-4 sm:col-12">
+                    <label for="code">Direccion:</label>
+                    <input pInputText type="text" id="code" formControlName="direction">
+                    <div *ngIf="codeField.invalid && (codeField.touched || codeField.dirty)">
+                        <small *ngIf="nameField.errors?.required" class="p-error">
+                            Este campo es obligatorio!!
+                        </small>
+                        <small *ngIf="codeField.errors?.minLength" class="p-error">
+                            El minimo de caracteres para el codigo es de 2!!
+                        </small>
+                        <small *ngIf="codeField.errors?.maxlength" class="p-error">
+                            El maximo de caracteres para el cofigo es de 10!!
+                        </small>
+                    </div>
+                </div>
+                <div *ngIf="!Updated" class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+                    <button pButton label="Guardar" icon="pi pi-save" type="submit"></button>
+                </div>
+                <div *ngIf="Updated" class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+                    <button pButton label="Actualizar" icon="pi pi-save" type="submit"></button>
+                </div>
+                <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+                    <button pButton label="Cancelar" icon="pi pi-save" type="button" (click)="onCancel(ShopForm.value)"></button>
+                </div>
             </div>
         </form>
     </div>

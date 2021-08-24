@@ -9,12 +9,6 @@ const routes: Routes = [
   {
     path:'',
     component:MainComponent,
-      children:[
-        {
-          path:'shops',
-          loadChildren: () => import('./modules/shop/shop.module').then(m=>m.ShopModule)
-        }
-      ]
   },
   {
     path:'clients',

@@ -11,7 +11,9 @@ import { Handler } from 'src/app/exceptions/handler';
 })
 export class ShopHttpService {
   API_URL: string = environment.API_URL;
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { 
+
+  }
   //metodos para recuperar datos del  backend
   getAll():Observable<ServerResponse>{
     const url:string=`${this.API_URL}/shops`;

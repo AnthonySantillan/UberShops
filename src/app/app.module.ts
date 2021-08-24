@@ -34,6 +34,7 @@ import {ButtonModule} from 'primeng/button';
 import {PasswordModule} from 'primeng/password';
 import {InputTextModule} from 'primeng/inputtext';
 import {RatingModule} from 'primeng/rating';
+import { httpInterceptorProviders } from './interceptors';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import {RatingModule} from 'primeng/rating';
     InputTextModule,
     RatingModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
