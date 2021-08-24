@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/Auth/auth.service';
 import { AuthHttpService } from '../../services/Auth/auth-http.service';
 import { MessageService } from '../../services/messages/message.service';
 
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authHttpService: AuthHttpService,
     private messageService: MessageService,
+    private authService:AuthService,
     private router:Router,
   ) {
     this.FormLogin = this.newFormLogin();
@@ -44,7 +46,10 @@ export class LoginComponent implements OnInit {
   Login() {
     this.authHttpService.login(this.FormLogin.value).subscribe(
       Response => {
-        localStorage.setItem('token',JSON.stringify(Response.token));
+        this.authService.token = Response.token;
+        this.authService.user = Response.data.user;
+        this.authService.roles = Response.data.roles;
+        this.authService.permissions = Response.data.permissions;
         this.messageService.success(Response);
         this.router.navigate(['/shops']);
       }, error => {
