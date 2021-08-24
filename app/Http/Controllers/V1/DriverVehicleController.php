@@ -8,14 +8,14 @@ use App\Models\Vehicle;
 
 class DriverVehicleController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin|client');
-        $this->middleware('permission:view-drivers')->only(['index', 'show']);
-        $this->middleware('permission:store-drivers')->only(['store']);
-        $this->middleware('permission:update-drivers')->only(['update']);
-        $this->middleware('permission:delete-drivers')->only(['destroy', 'destroys']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('role:admin|client');
+    //     $this->middleware('permission:view-drivers')->only(['index', 'show']);
+    //     $this->middleware('permission:store-drivers')->only(['store']);
+    //     $this->middleware('permission:update-drivers')->only(['update']);
+    //     $this->middleware('permission:delete-drivers')->only(['destroy', 'destroys']);
+    // }
     public function index()
     {
         $drivers = Driver::get();

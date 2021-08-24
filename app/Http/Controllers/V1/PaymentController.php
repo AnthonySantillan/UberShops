@@ -12,14 +12,14 @@ use App\Http\Resources\V1\Payments\PaymentResource;
 
 class PaymentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin|client');
-        $this->middleware('permission:view-payments')->only(['index', 'show']);
-        $this->middleware('permission:store-payments')->only(['store']);
-        $this->middleware('permission:update-payments')->only(['update']);
-        $this->middleware('permission:delete-payments')->only(['destroy', 'destroys']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('role:admin|client');
+    //     $this->middleware('permission:view-payments')->only(['index', 'show']);
+    //     $this->middleware('permission:store-payments')->only(['store']);
+    //     $this->middleware('permission:update-payments')->only(['update']);
+    //     $this->middleware('permission:delete-payments')->only(['destroy', 'destroys']);
+    // }
     /**
      * Display a listing of the resource.
      *

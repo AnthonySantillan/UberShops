@@ -25,7 +25,7 @@ class ShopFactory extends Factory
             'seller_id' => $this->faker->numberBetween(1, 10),
             'product_id' => $this->faker->numberBetween(1, 10),
             'name' => $this->faker->name(),
-            'code' => $this->faker->bothify('?????-#####'),
+            'code' => $this->faker->numerify(),
             'direction' => $this->faker->streetAddress(),
 
 

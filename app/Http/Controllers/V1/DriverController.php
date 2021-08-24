@@ -12,14 +12,14 @@ use App\Http\Resources\V1\Drivers\DriverResource;
 
 class DriverController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin|driver');
-        $this->middleware('permission:view-drivers')->only(['index', 'show']);
-        $this->middleware('permission:store-drivers')->only(['store']);
-        $this->middleware('permission:update-drivers')->only(['update']);
-        $this->middleware('permission:delete-drivers')->only(['destroy', 'destroys']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('role:admin|driver');
+    //     $this->middleware('permission:view-drivers')->only(['index', 'show']);
+    //     $this->middleware('permission:store-drivers')->only(['store']);
+    //     $this->middleware('permission:update-drivers')->only(['update']);
+    //     $this->middleware('permission:delete-drivers')->only(['destroy', 'destroys']);
+    // }
     /**
      * Display a listing of the resource.
      *

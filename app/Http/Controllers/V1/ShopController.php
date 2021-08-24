@@ -12,13 +12,21 @@ use App\Models\Shop;
 
 class ShopController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('role:admin');
+    //     $this->middleware('permission:view-shops')->only(['index', 'show']);
+    //     $this->middleware('permission:store-shops')->only(['store']);
+    //     $this->middleware('permission:update-shops')->only(['update']);
+    //     $this->middleware('permission:delete-shops')->only(['destroy', 'destroys']);
+    // }
     public function __construct()
     {
-        $this->middleware('role:admin|client');
-        $this->middleware('permission:view-shops')->only(['index', 'show']);
-        $this->middleware('permission:store-shops')->only(['store']);
-        $this->middleware('permission:update-shops')->only(['update']);
-        $this->middleware('permission:delete-shops')->only(['destroy', 'destroys']);
+        $this->middleware('role:admin');
+        $this->middleware('permission:view-users')->only(['index', 'show']);
+        $this->middleware('permission:store-users')->only(['store']);
+        $this->middleware('permission:update-users')->only(['update']);
+        $this->middleware('permission:delete-users')->only(['destroy', 'destroys']);
     }
     /**
      * Display a listing of the resource.
@@ -52,7 +60,7 @@ class ShopController extends Controller
         $shop->product_id = $request->input('product_id');
         $shop->name = $request->input('name');
         $shop->code = $request->input('code');
-        // $shop->direction = $request->input('direction');
+        $shop->direction = $request->input('direction');
         $shop->save();
 
         return (new ShopResource($shop))
@@ -94,7 +102,7 @@ class ShopController extends Controller
     {
         $shop->name = $request->name;
         $shop->code = $request->code;
-        // $shop->direction = $request->direction;
+        //$shop->direction = $request->direction;
 
         $shop->save();
 

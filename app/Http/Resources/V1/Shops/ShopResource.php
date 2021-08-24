@@ -14,13 +14,11 @@ class ShopResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            
+        return [   
                 'id' => $this->id,
                 'name' => $this->name,
                 'code' => $this->code,
                 'direction' => $this->direction,
-            
         ];
     }
 }

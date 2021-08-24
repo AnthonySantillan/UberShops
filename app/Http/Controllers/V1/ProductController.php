@@ -13,14 +13,14 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin|client');
-        $this->middleware('permission:view-products')->only(['index', 'show']);
-        $this->middleware('permission:store-products')->only(['store']);
-        $this->middleware('permission:update-products')->only(['update']);
-        $this->middleware('permission:delete-products')->only(['destroy', 'destroys']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('role:admin|client');
+    //     $this->middleware('permission:view-products')->only(['index', 'show']);
+    //     $this->middleware('permission:store-products')->only(['store']);
+    //     $this->middleware('permission:update-products')->only(['update']);
+    //     $this->middleware('permission:delete-products')->only(['destroy', 'destroys']);
+    // }
     /**
      * Display a listing of the resource.
      *

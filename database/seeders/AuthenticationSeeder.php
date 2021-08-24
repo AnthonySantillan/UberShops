@@ -112,81 +112,81 @@ class AuthenticationSeeder extends Seeder
         Permission::create(['name' => 'update-users']);
         Permission::create(['name' => 'delete-users']);
 
-        Permission::create(['name' => 'download-files']);
-        Permission::create(['name' => 'upload-files']);
-        Permission::create(['name' => 'read-files']);
-        Permission::create(['name' => 'write-files']);
-        Permission::create(['name' => 'delete-files']);
+        // Permission::create(['name' => 'download-files']);
+        // Permission::create(['name' => 'upload-files']);
+        // Permission::create(['name' => 'read-files']);
+        // Permission::create(['name' => 'write-files']);
+        // Permission::create(['name' => 'delete-files']);
 
-        //client
-        Permission::create(['name' => 'view-clients']);
-        Permission::create(['name' => 'store-clients']);
-        Permission::create(['name' => 'update-clients']);
-        Permission::create(['name' => 'delete-clientss']);
-        //details
-        Permission::create(['name' => 'view-details']);
-        Permission::create(['name' => 'store-details']);
-        Permission::create(['name' => 'update-details']);
-        Permission::create(['name' => 'delete-details']);
-        //drivers
-        Permission::create(['name' => 'view-drivers']);
-        Permission::create(['name' => 'store-drivers']);
-        Permission::create(['name' => 'update-drivers']);
-        Permission::create(['name' => 'delete-drivers']);
-        //payments
-        Permission::create(['name' => 'view-payments']);
-        Permission::create(['name' => 'store-payments']);
-        Permission::create(['name' => 'update-payments']);
-        Permission::create(['name' => 'delete-payments']);
-        //products
-        Permission::create(['name' => 'view-products']);
-        Permission::create(['name' => 'store-products']);
-        Permission::create(['name' => 'update-products']);
-        Permission::create(['name' => 'delete-products']);
-        //sellers
-        Permission::create(['name' => 'view-sellers']);
-        Permission::create(['name' => 'store-sellers']);
-        Permission::create(['name' => 'update-sellers']);
-        Permission::create(['name' => 'delete-sellers']);
-        //shops
-        Permission::create(['name' => 'view-shops']);
-        Permission::create(['name' => 'store-shops']);
-        Permission::create(['name' => 'update-shops']);
-        Permission::create(['name' => 'delete-shops']);
-        //travels
-        Permission::create(['name' => 'view-travels']);
-        Permission::create(['name' => 'store-travels']);
-        Permission::create(['name' => 'update-travels']);
-        Permission::create(['name' => 'delete-travels']);
-        //vehicles
-        Permission::create(['name' => 'view-vehicles']);
-        Permission::create(['name' => 'store-vehicles']);
-        Permission::create(['name' => 'update-vehicles']);
-        Permission::create(['name' => 'delete-vehicles']);
+        // //client
+        // Permission::create(['name' => 'view-clients']);
+        // Permission::create(['name' => 'store-clients']);
+        // Permission::create(['name' => 'update-clients']);
+        // Permission::create(['name' => 'delete-clientss']);
+        // //details
+        // Permission::create(['name' => 'view-details']);
+        // Permission::create(['name' => 'store-details']);
+        // Permission::create(['name' => 'update-details']);
+        // Permission::create(['name' => 'delete-details']);
+        // //drivers
+        // Permission::create(['name' => 'view-drivers']);
+        // Permission::create(['name' => 'store-drivers']);
+        // Permission::create(['name' => 'update-drivers']);
+        // Permission::create(['name' => 'delete-drivers']);
+        // //payments
+        // Permission::create(['name' => 'view-payments']);
+        // Permission::create(['name' => 'store-payments']);
+        // Permission::create(['name' => 'update-payments']);
+        // Permission::create(['name' => 'delete-payments']);
+        // //products
+        // Permission::create(['name' => 'view-products']);
+        // Permission::create(['name' => 'store-products']);
+        // Permission::create(['name' => 'update-products']);
+        // Permission::create(['name' => 'delete-products']);
+        // //sellers
+        // Permission::create(['name' => 'view-sellers']);
+        // Permission::create(['name' => 'store-sellers']);
+        // Permission::create(['name' => 'update-sellers']);
+        // Permission::create(['name' => 'delete-sellers']);
+        // //shops
+        // Permission::create(['name' => 'view-shops']);
+        // Permission::create(['name' => 'store-shops']);
+        // Permission::create(['name' => 'update-shops']);
+        // Permission::create(['name' => 'delete-shops']);
+        // //travels
+        // Permission::create(['name' => 'view-travels']);
+        // Permission::create(['name' => 'store-travels']);
+        // Permission::create(['name' => 'update-travels']);
+        // Permission::create(['name' => 'delete-travels']);
+        // //vehicles
+        // Permission::create(['name' => 'view-vehicles']);
+        // Permission::create(['name' => 'store-vehicles']);
+        // Permission::create(['name' => 'update-vehicles']);
+        // Permission::create(['name' => 'delete-vehicles']);
     }
 
     private function assignRolePermissions()
     {
         $role = Role::firstWhere('name', 'admin');
         $role->syncPermissions(Permission::get());
-        $role = Role::firstWhere('name', 'client');
-        $role->syncPermissions(Permission::get());
-        $role = Role::firstWhere('name', 'driver');
-        $role->syncPermissions(Permission::get());
-        $role = Role::firstWhere('name', 'seller');
-        $role->syncPermissions(Permission::get());
+        // $role = Role::firstWhere('name', 'client');
+        // $role->syncPermissions(Permission::get());
+        // $role = Role::firstWhere('name', 'driver');
+        // $role->syncPermissions(Permission::get());
+        // $role = Role::firstWhere('name', 'seller');
+        // $role->syncPermissions(Permission::get());
     }
 
     private function assignUserRoles()
     {
         $user = User::find(1);
         $user->assignRole('admin');
-        $user = User::find(2);
-        $user->assignRole('client');
-        $user = User::find(3);
-        $user->assignRole('driver');
-        $user = User::find(4);
-        $user->assignRole('seller');
+        // $user = User::find(2);
+        // $user->assignRole('client');
+        // $user = User::find(3);
+        // $user->assignRole('driver');
+        // $user = User::find(4);
+        // $user->assignRole('seller');
     }
 
     private function createLocationCatalogues()

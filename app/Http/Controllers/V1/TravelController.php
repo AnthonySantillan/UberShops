@@ -10,14 +10,14 @@ use App\Models\Travel;
 
 class TravelController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin|driver');
-        $this->middleware('permission:view-travels')->only(['index', 'show']);
-        $this->middleware('permission:store-travels')->only(['store']);
-        $this->middleware('permission:update-travels')->only(['update']);
-        $this->middleware('permission:delete-travels')->only(['destroy', 'destroys']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('role:admin|driver');
+    //     $this->middleware('permission:view-travels')->only(['index', 'show']);
+    //     $this->middleware('permission:store-travels')->only(['store']);
+    //     $this->middleware('permission:update-travels')->only(['update']);
+    //     $this->middleware('permission:delete-travels')->only(['destroy', 'destroys']);
+    // }
     /**
      * Display a listing of the resource.
      *

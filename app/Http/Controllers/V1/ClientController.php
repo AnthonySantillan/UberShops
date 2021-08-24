@@ -13,14 +13,14 @@ use App\Http\Resources\V1\Clients\ClientResource;
 
 class ClientController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin|client');
-        $this->middleware('permission:view-clients')->only(['index', 'show']);
-        $this->middleware('permission:store-clients')->only(['store']);
-        $this->middleware('permission:update-clients')->only(['update']);
-        $this->middleware('permission:delete-clients')->only(['destroy', 'destroys']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('role:admin|client');
+    //     $this->middleware('permission:view-clients')->only(['index', 'show']);
+    //     $this->middleware('permission:store-clients')->only(['store']);
+    //     $this->middleware('permission:update-clients')->only(['update']);
+    //     $this->middleware('permission:delete-clients')->only(['destroy', 'destroys']);
+    // }
     /**
      * Display a listing of the resource.
      *

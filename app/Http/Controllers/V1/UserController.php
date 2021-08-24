@@ -30,25 +30,6 @@ class UserController extends Controller
         $this->middleware('permission:store-users')->only(['store']);
         $this->middleware('permission:update-users')->only(['update']);
         $this->middleware('permission:delete-users')->only(['destroy', 'destroys']);
-
-        // $this->middleware('role:client');
-        // $this->middleware('permission:view-shops')->only(['index', 'show']);
-        // $this->middleware('permission:store-users')->only(['store']);
-        // $this->middleware('permission:update-users')->only(['update']);
-        // $this->middleware('permission:delete-travels')->only(['destroy', 'destroys']);
-
-        // $this->middleware('role:driver');
-        // $this->middleware('permission:view-travels')->only(['index', 'show']);
-        // $this->middleware('permission:store-users')->only(['store']);
-        // $this->middleware('permission:update-users')->only(['update']);
-        // $this->middleware('permission:delete-users')->only(['destroy', 'destroys']);
-
-        // $this->middleware('role:seller');
-        // $this->middleware('permission:view-shops')->only(['index', 'show']);
-        // $this->middleware('permission:store-products')->only(['store']);
-        // $this->middleware('permission:update-products')->only(['update']);
-        // $this->middleware('permission:update-users')->only(['update']);
-        // $this->middleware('permission:delete-products')->only(['destroy', 'destroys']);
     }
 
     /**
