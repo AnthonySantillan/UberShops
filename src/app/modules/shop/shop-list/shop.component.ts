@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/Auth/auth.service';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  // vatrables que guardan los datos recuperados de la BD e instacian el formulario
+  // variables que guardan los datos recuperados de la BD e instacian el formulario
   shop: ShopModel = {};
   Shops: ShopModel[]= [];
   Updated: boolean=false;
@@ -37,7 +37,6 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
     this.getShops();
     // this.getShop();
   }
@@ -109,7 +108,7 @@ export class ShopComponent implements OnInit {
   //elimina varios registro de la base de datos
   // TODO: ELIMINAR VARIOS REGISTROS
   deleteShops( ) {
-    console.log(this.selectedShops);
+    
     const ids = this.selectedShops.map(element => element.id);
           this.shopHttpService.destroys(ids).subscribe(
             response => {
@@ -158,8 +157,8 @@ export class ShopComponent implements OnInit {
       this.ShopForm.markAllAsTouched();
     }
   }
-  //metodo para guardar o actualizar
-  onCancel(shop: ShopModel) {
+  //metodo para cancelar
+  onCancel() {
     this.Updated=false;
     this.ShopForm.reset();
     this.ShopForm = this.newFormShop();

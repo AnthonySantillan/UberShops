@@ -3,10 +3,7 @@
     <div class="p-fluid">
         <form [formGroup]="ShopForm" (ngSubmit)="onSubmit(ShopForm.value)">
             <div class="formgrid grid">
-                <!-- <div class="field xl:col-2 lg:col-2 md:col-4 sm:col-12">
-                    <label for="id">ID:</label>
-                    <input pInputText type="text" id="id" [disabled]="true" formControlName="id">
-                </div> -->
+                
                 <div class="field xl:col-5 lg:col-5 md:col-4 sm:col-12">
                     <label for="name">Nombre:</label>
                     <input pInputText type="text" id="name" formControlName="name">
@@ -57,7 +54,7 @@
                     <button pButton label="Actualizar" icon="pi pi-save" type="submit"></button>
                 </div>
                 <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
-                    <button pButton label="Cancelar" icon="pi pi-save" type="button" (click)="onCancel(ShopForm.value)"></button>
+                    <button pButton label="Cancelar" icon="pi pi-save" type="button" (click)="onCancel()"></button>
                 </div>
             </div>
         </form>
@@ -65,7 +62,7 @@
 </p-card>
 
 <!-- tablero con todos los datos -->
-<!-- con primeng -->
+
 <p-table id="shopsTable" [value]="Shops" [rows]="10" [paginator]="true" [(selection)]="selectedShops">
     <ng-template pTemplate="caption">
         <button  pButton pRipple type="button" label="Eliminar seleccionados"
@@ -82,6 +79,8 @@
             </th>
             <th pSortableColumn="nickname">Codigo <p-sortIcon field="code"></p-sortIcon>
             </th>
+            <th pSortableColumn="nickname">Direccion <p-sortIcon field="direcction"></p-sortIcon>
+            </th>
             <th> Acciones </th>
         </tr>
     </ng-template>
@@ -94,6 +93,7 @@
             <td>{{shop.id}}</td>
             <td>{{shop.name}}</td>
             <td>{{shop.code}}</td>
+            <td>{{shop.direction}}</td>
             <td>
                 <button pButton type="button" icon="pi pi-eye" label="Mostrar" (click)=selectShop(shop)></button>
                 <button pButton type="button" icon="pi pi-trash" class="p-button-danger" label="Eliminar"
