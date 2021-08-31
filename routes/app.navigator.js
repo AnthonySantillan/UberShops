@@ -1,7 +1,7 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   HomeScreen,
   DetailsScreen,
@@ -10,10 +10,10 @@ import {
   FavouritesScreen,
 } from '../screens';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {RestaurantContextProvider} from '../context/restaurant/restaurant.context';
-import {LocationContextProvider} from '../context/locations/location.context';
-import {FavouritesContextProvider} from '../context/favourites/favourites.context';
-import {AuthContextProvider} from '../context/Auth/auth.context';
+import { RestaurantContextProvider } from '../context/restaurant/restaurant.context';
+import { LocationContextProvider } from '../context/locations/location.context';
+import { FavouritesContextProvider } from '../context/favourites/favourites.context';
+import { AuthContextProvider } from '../context/Auth/auth.context';
 
 const HomeStack = createStackNavigator();
 
@@ -44,7 +44,7 @@ const AppTabsScreen = () => {
         name="HomeStack"
         component={HomeStackScreen}
         options={{
-          tabBarIcon: ({size, color}) => (
+          tabBarIcon: ({ size, color }) => (
             <Icon name="home" size={size} color={color} />
           ),
         }}
@@ -55,7 +55,7 @@ const AppTabsScreen = () => {
         name="Maps"
         component={MapsScreen}
         options={{
-          tabBarIcon: ({size, color}) => (
+          tabBarIcon: ({ size, color }) => (
             <Icon name="map-outline" size={size} color={color} />
           ),
         }}
@@ -66,7 +66,7 @@ const AppTabsScreen = () => {
         name="Favourites"
         component={FavouritesScreen}
         options={{
-          tabBarIcon: ({size, color}) => (
+          tabBarIcon: ({ size, color }) => (
             <Icon name="heart-outline" size={size} color={color} />
           ),
         }}
@@ -76,7 +76,7 @@ const AppTabsScreen = () => {
         name="Settings"
         component={SettingsScreen}
         options={{
-          tabBarIcon: ({size, color}) => (
+          tabBarIcon: ({ size, color }) => (
             <Icon name="settings-outline" size={size} color={color} />
           ),
         }}

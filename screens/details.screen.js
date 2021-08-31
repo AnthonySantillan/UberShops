@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+
 import {
   View,
   Text,
@@ -10,13 +11,43 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {List} from 'react-native-paper';
-import {colors, DefaultText, SubText} from '../constants';
+import { List } from 'react-native-paper';
+import { colors, DefaultText, SubText } from '../constants';
 // import {Favourite} from '../components/Restaurants/component/favourite.component';
-import {Favourite} from '../components/Favourites/component/favourite.component';
+import { Favourite } from '../components/Favourites/component/favourite.component';
+import axios from 'axios';
 
-export const DetailsScreen = ({route, navigation}) => {
-  const {restaurant} = route.params;
+
+export const DetailsScreen = ({ route, navigation }) => {
+  let product;
+  useEffect(() => {
+    getProducts();
+  }, []);
+  const api = axios.create({
+    baseURL: 'http://192.168.1.14:8000/api/v1/',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    }
+  })
+  const token = '1|WeNYUadG6gLGU0leUZ6lZiDTOlGgSyj2v5T2x1Dh'
+  const getProducts = async () => {
+    const res = await api.get('products', {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    })
+    if (res) {
+      console.log(res.data.data)
+      product = res.data.data
+      console.log(product.name)
+    }
+    else {
+      console.log(res + 'no funciona tu huevada')
+    }
+
+  }
+  const { restaurant } = route.params;
   const [isBreakfastOpen, setIsBreakfastOpen] = useState(false);
   const [isLunchOpen, setIsLunchOpen] = useState(false);
   const [isDinnerOpen, setIsDinnerOpen] = useState(false);
