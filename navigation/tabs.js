@@ -119,7 +119,7 @@ const Tabs = () => {
                 />
             )}
         >
-            <Tab.Screen
+            {/* <Tab.Screen
                 name="Home"
                 component={Home}
                 options={{
@@ -140,7 +140,7 @@ const Tabs = () => {
                         />
                     )
                 }}
-            />
+            /> */}
 
             <Tab.Screen
                 name="Search"
@@ -165,7 +165,7 @@ const Tabs = () => {
                 }}
             />
 
-            <Tab.Screen
+            {/* <Tab.Screen
                 name="Like"
                 component={Home}
                 options={{
@@ -186,7 +186,7 @@ const Tabs = () => {
                         />
                     )
                 }}
-            />
+            /> */}
 
             <Tab.Screen
                 name="User"

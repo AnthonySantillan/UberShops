@@ -124,7 +124,7 @@ const Restaurant = ({ route, navigation }) => {
                     </View>
                 </View>
 
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     style={{
                         width: 50,
                         paddingRight: SIZES.padding * 2,
@@ -139,7 +139,7 @@ const Restaurant = ({ route, navigation }) => {
                             height: 30
                         }}
                     />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         )
     }
@@ -341,7 +341,7 @@ const Restaurant = ({ route, navigation }) => {
                             borderBottomWidth: 1
                         }}
                     >
-                        <Text style={{ ...FONTS.h3 }}>{getBasketItemCount()} items in Cart</Text>
+                        <Text style={{ ...FONTS.h3 }}>{getBasketItemCount()} Items en bolsa</Text>
                         <Text style={{ ...FONTS.h3 }}>${sumOrder()}</Text>
                     </View>
 
@@ -353,7 +353,7 @@ const Restaurant = ({ route, navigation }) => {
                             paddingHorizontal: SIZES.padding * 3
                         }}
                     >
-                        <View style={{ flexDirection: 'row' }}>
+                        {/* <View style={{ flexDirection: 'row' }}>
                             <Image
                                 source={icons.pin}
                                 resizeMode="contain"
@@ -364,9 +364,9 @@ const Restaurant = ({ route, navigation }) => {
                                 }}
                             />
                             <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>Location</Text>
-                        </View>
+                        </View> */}
 
-                        <View style={{ flexDirection: 'row' }}>
+                        {/* <View style={{ flexDirection: 'row' }}>
                             <Image
                                 source={icons.master_card}
                                 resizeMode="contain"
@@ -377,7 +377,7 @@ const Restaurant = ({ route, navigation }) => {
                                 }}
                             />
                             <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>8888</Text>
-                        </View>
+                        </View> */}
                     </View>
 
                     {/* Order Button */}

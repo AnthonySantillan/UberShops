@@ -20,9 +20,9 @@ const OrderDelivery = ({ route, navigation }) => {
     const [toLocation, setToLocation] = React.useState(null)
     const [region, setRegion] = React.useState(null)
 
-    const [duration, setDuration] = React.useState(0)
-    const [isReady, setIsReady] = React.useState(false)
-    const [angle, setAngle] = React.useState(0)
+    const [duration, setDuration] = React.useState(0);
+    const [isReady, setIsReady] = React.useState(false);
+    const [angle, setAngle] = React.useState(0);
 
     React.useEffect(() => {
         let { restaurant, currentLocation } = route.params;
