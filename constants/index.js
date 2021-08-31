@@ -1,6 +1,16 @@
-import icons from "./icons";
-import images from "./images";
-import { COLORS, SIZES, FONTS } from "./theme";
-import GOOGLE_API_KEY from "./maps"
+import {colors} from './colors.';
+import {landingBg} from './images';
+import {DefaultText, SubText, Title} from './typography';
 
-export { icons, images, COLORS, SIZES, FONTS, GOOGLE_API_KEY };
+import {SpacerRight, SpacerLeft, SpacerBottom} from './spacer';
+
+export {
+  colors,
+  DefaultText,
+  SubText,
+  SpacerRight,
+  SpacerLeft,
+  SpacerBottom,
+  landingBg,
+  Title,
+};
