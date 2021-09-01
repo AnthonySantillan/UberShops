@@ -16,7 +16,7 @@ export const Search = () => {
         padding: 20,
       }}>
       <Searchbar
-        placeholder="Search Location"
+        placeholder="Buscar Tiendas"
         value={searchKeyWord}
         onChangeText={text => setSearchKeyWord(text)}
         onSubmitEditing={() => searchLocation(searchKeyWord)}

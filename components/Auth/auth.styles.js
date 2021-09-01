@@ -1,8 +1,7 @@
-import React from 'react';
 import styled from 'styled-components/native';
 import {landingBg} from '../../constants';
 import {Button, TextInput} from 'react-native-paper';
-import {View} from 'react-native';
+
 
 export const AuthBackground = styled.ImageBackground.attrs({
   source: landingBg,

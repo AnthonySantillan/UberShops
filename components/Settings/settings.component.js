@@ -18,7 +18,7 @@ export const Settings = () => {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <Avatar.Image size={150} source={require('../../assets/me.jpeg')} />
+        <Avatar.Image size={150} source={require('../../assets/hola.jpg')} />
         <SpacerBottom />
         <AuthButton onPress={() => onLogout()}>Logout</AuthButton>
       </View>

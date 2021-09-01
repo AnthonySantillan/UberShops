@@ -1,6 +1,6 @@
 import {locations} from './mock/location.mock';
 
-export const locationRequest = (searchTerm = 'san francisco') => {
+export const locationRequest = (searchTerm = 'General') => {
   return new Promise((resolve, reject) => {
     const location = locations[searchTerm];
     if (!location) {

@@ -15,7 +15,7 @@ export const MapsScreen = ({navigation}) => {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [region, setRegion] = useState(null);
   useEffect(() => {
-    //  calculate region
+    
 
     const mapRegion = {
       latitude: location.lat,

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import {
   AuthBackground,
   AuthButton,
@@ -7,7 +7,6 @@ import {
   AuthInput,
 } from '../components/Auth/auth.styles';
 import {AuthContext} from '../context/Auth/auth.context';
-import {TextInput} from 'react-native-paper';
 import {Title, DefaultText, SpacerBottom} from '../constants';
 
 export const LoginScreen = ({navigation}) => {
@@ -24,9 +23,9 @@ export const LoginScreen = ({navigation}) => {
         <AuthButton onPress={() => onLogin()}> Login</AuthButton>
         <SpacerBottom />
         <DefaultText>
-          Don't have an account ?{' '}
+          No tiene cuenta ?{' '}
           <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-            <Text> Register </Text>
+            <Text> Registrarse </Text>
           </TouchableOpacity>{' '}
         </DefaultText>
       </AuthCover>

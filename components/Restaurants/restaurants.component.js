@@ -12,7 +12,6 @@ import {RestaurantContext} from '../../context/restaurant/restaurant.context';
 import {Search} from './component/Search.component';
 import {ActivityIndicator} from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {DefaultText, SpacerRight} from '../../constants';
 import {Favourite} from '../Favourites/component/favourite.component';
 
@@ -41,7 +40,7 @@ export const Restaurants = ({navigation}) => {
               flexDirection: 'row',
               alignItems: 'center',
             }}>
-            <DefaultText>Open</DefaultText>
+            <DefaultText>Costo de envío 1.00$</DefaultText>
           </View>
         );
       } else {
@@ -51,7 +50,7 @@ export const Restaurants = ({navigation}) => {
               flexDirection: 'row',
               alignItems: 'center',
             }}>
-            <DefaultText>Closed</DefaultText>
+            <DefaultText>Costo de envío (Con descuento 50%): 50 ctvs</DefaultText>
           </View>
         );
       }

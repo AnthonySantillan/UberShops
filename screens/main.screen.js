@@ -22,7 +22,7 @@ export const MainScreen = ({navigation}) => {
       </View>
 
       <View>
-        <Text style={styles.title}> Uber Eats </Text>
+        <Text style={styles.title}> Uber Shops </Text>
 
         <AuthButton
           icon="lock-open-outline"

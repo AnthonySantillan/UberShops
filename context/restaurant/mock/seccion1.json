@@ -1,27 +1,27 @@
 {
     "html_attributions": [],
-    "next_page_token": "some token",
+    "next_page_token": "AIzaSyDZOlIjW07drbbvI5qQz-5OYh1jLDlSrec",
     "results": [
       {
         "business_status": "OPERATIONAL",
         "geometry": {
           "location": {
-            "lat": 37.77361,
-            "lng": -122.421622
+            "lat": -0.215215, 
+            "lng": -78.507675
           },
           "viewport": {
             "northeast": {
-              "lat": 37.7750214302915,
-              "lng": -122.4202089697085
+              "lat": -0.215215,
+              "lng": -78.507675
             },
             "southwest": {
-              "lat": 37.7723234697085,
-              "lng": -122.4229069302915
+              "lat": -0.215215,
+              "lng": -78.507675
             }
           }
         },
         "ix": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "Zuni Café",
+        "name": "Supermaxi",
         "opening_hours": {
           "open_now": true
         },
@@ -38,10 +38,10 @@
         "place_id": "some place id 41",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 3,
-        "rating": 4.4,
+        "rating": 4,
         "reference": "",
         "scope": "",
         "types": [
@@ -53,14 +53,14 @@
           "establishment"
         ],
         "user_ratings_total": 1675,
-        "vicinity": "1658 Market Street, San Francisco"
+        "vicinity": "Pedro Capiro S/N, Quito 170601"
       },
       {
         "business_status": "OPERATIONAL",
         "geometry": {
           "location": {
-            "lat": 37.7829132,
-            "lng": -122.4188995
+            "lat": -0.24984894787968873, 
+            "lng": -78.5370858551705
           },
           "viewport": {
             "northeast": {
@@ -74,7 +74,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "Brenda's French Soul Food",
+        "name": "Supermercados Santa Maria",
         "opening_hours": {
           "open_now": true
         },
@@ -91,7 +91,7 @@
         "place_id": "some place id 42",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 2,
         "rating": 4.5,
@@ -104,7 +104,7 @@
           "establishment"
         ],
         "user_ratings_total": 4404,
-        "vicinity": "652 Polk Street, San Francisco"
+        "vicinity": "Av. Río Amazonas, Quito 170102"
       },
       {
         "business_status": "OPERATIONAL",
@@ -125,7 +125,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/bar-71.png",
-        "name": "DNA Lounge",
+        "name": "Mayflower",
         "opening_hours": {
           "open_now": false
         },
@@ -142,7 +142,7 @@
         "place_id": "some place id 43",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 2,
         "rating": 4.3,
@@ -158,7 +158,7 @@
           "establishment"
         ],
         "user_ratings_total": 1284,
-        "vicinity": "375 11th Street, San Francisco"
+        "vicinity": "607 entre Rocafuerte y, Flores, Quito 130802"
       },
       {
         "business_status": "OPERATIONAL",
@@ -179,7 +179,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "Absinthe Brasserie & Bar",
+        "name": "Pollo Campero",
         "opening_hours": {
           "open_now": false
         },
@@ -196,7 +196,7 @@
         "place_id": "some place id 44",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 3,
         "rating": 4.3,
@@ -210,7 +210,7 @@
           "establishment"
         ],
         "user_ratings_total": 1405,
-        "vicinity": "398 Hayes Street, San Francisco"
+        "vicinity": "Av. General Enríquez, y, Quito 171103"
       },
       {
         "business_status": "OPERATIONAL",
@@ -231,7 +231,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "YH - BEIJING",
+        "name": "Pizza Hut",
         "opening_hours": {
           "open_now": true
         },
@@ -248,7 +248,7 @@
         "place_id": "some place id 45",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 1,
         "rating": 4.4,
@@ -261,7 +261,7 @@
           "establishment"
         ],
         "user_ratings_total": 191,
-        "vicinity": "500 Haight Street, San Francisco"
+        "vicinity": "Calle, Gonzalo Zaldumbide N50-80, Quito 170138"
       },
       {
         "business_status": "OPERATIONAL",
@@ -282,7 +282,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "Zeitgeist",
+        "name": "Tako Express",
         "opening_hours": {
           "open_now": false
         },
@@ -299,7 +299,7 @@
         "place_id": "some place id 46",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 1,
         "rating": 4.3,
@@ -313,7 +313,7 @@
           "establishment"
         ],
         "user_ratings_total": 2488,
-        "vicinity": "199 Valencia Street, San Francisco"
+        "vicinity": "Avenida Amazonas y Naciones Unidas, Avenida Naciones Unidas, Quito"
       },
       {
         "business_status": "OPERATIONAL",
@@ -334,7 +334,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "Pancho Villa Taqueria",
+        "name": "Buffalos",
         "opening_hours": {
           "open_now": true
         },
@@ -351,7 +351,7 @@
         "place_id": "some place id 47",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 1,
         "rating": 4.4,
@@ -364,7 +364,7 @@
           "establishment"
         ],
         "user_ratings_total": 2921,
-        "vicinity": "3071 16th Street, San Francisco"
+        "vicinity": "Av. Río Amazonas, y, Quito 170506"
       },
       {
         "business_status": "OPERATIONAL",
@@ -385,7 +385,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "The Monk's Kettle",
+        "name": "El Báron de las Mollejas",
         "opening_hours": {
           "open_now": false
         },
@@ -402,7 +402,7 @@
         "place_id": "some place id 48",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 2,
         "rating": 4.5,
@@ -416,7 +416,7 @@
           "establishment"
         ],
         "user_ratings_total": 1392,
-        "vicinity": "3141 16th Street, San Francisco"
+        "vicinity": "Mercado Iñaquito, Juan José de Villalengua N38, Quito"
       },
       {
         "business_status": "CLOSED_TEMPORARILY",
@@ -437,7 +437,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/bar-71.png",
-        "name": "Bar Agricole",
+        "name": "Cajun",
         "permanently_closed": true,
         "photos": [
           {
@@ -452,7 +452,7 @@
         "place_id": "some place id 49",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 3,
         "rating": 4.2,
@@ -466,7 +466,7 @@
           "establishment"
         ],
         "user_ratings_total": 490,
-        "vicinity": "355 11th Street, San Francisco"
+        "vicinity": "Av. 6 de Diciembre, Quito 170135"
       },
       {
         "business_status": "OPERATIONAL",
@@ -487,7 +487,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "SoMa StrEat Food Park",
+        "name": "American Deli",
         "opening_hours": {
           "open_now": true
         },
@@ -504,7 +504,7 @@
         "place_id": "some place id 50",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 2,
         "rating": 4.3,
@@ -519,7 +519,7 @@
           "establishment"
         ],
         "user_ratings_total": 1644,
-        "vicinity": "428 11th Street, San Francisco"
+        "vicinity": "Av. de la República, Quito 170521"
       },
       {
         "business_status": "OPERATIONAL",
@@ -540,7 +540,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "Suppenküche",
+        "name": "Cremant Creperia",
         "opening_hours": {
           "open_now": false
         },
@@ -557,7 +557,7 @@
         "place_id": "some place id 51",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 2,
         "rating": 4.5,
@@ -570,7 +570,7 @@
           "establishment"
         ],
         "user_ratings_total": 1344,
-        "vicinity": "525 Laguna Street, San Francisco"
+        "vicinity": "Sector la Y, Av. 10 de Agosto, y, Quito 170507"
       },
       {
         "business_status": "OPERATIONAL",
@@ -591,7 +591,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/shopping-71.png",
-        "name": "City Beer Store",
+        "name": "Pizzerias Gustó",
         "opening_hours": {
           "open_now": false
         },
@@ -608,7 +608,7 @@
         "place_id": "some place id 52",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 2,
         "rating": 4.6,
@@ -624,7 +624,7 @@
           "establishment"
         ],
         "user_ratings_total": 977,
-        "vicinity": "1148 Mission Street, San Francisco"
+        "vicinity": "Nuñez de Vela, Quito 170507"
       },
       {
         "business_status": "OPERATIONAL",
@@ -645,7 +645,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "Tommy's Joynt",
+        "name": "Mongos",
         "opening_hours": {
           "open_now": false
         },
@@ -662,7 +662,7 @@
         "place_id": "some place id 53",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 1,
         "rating": 4.4,
@@ -676,7 +676,7 @@
           "establishment"
         ],
         "user_ratings_total": 3184,
-        "vicinity": "1101 Geary Boulevard, San Francisco"
+        "vicinity": "Iñaquito 38, Quito 170135"
       },
       {
         "business_status": "OPERATIONAL",
@@ -697,7 +697,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "Limón Rotisserie",
+        "name": "Naturissimo",
         "opening_hours": {
           "open_now": false
         },
@@ -714,7 +714,7 @@
         "place_id": "some place id 54",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 2,
         "rating": 4.4,
@@ -727,7 +727,7 @@
           "establishment"
         ],
         "user_ratings_total": 1399,
-        "vicinity": "524 Valencia Street, San Francisco"
+        "vicinity": "Av. 6 de Diciembre N31-50 y, Quito 170518"
       },
       {
         "business_status": "CLOSED_TEMPORARILY",
@@ -748,7 +748,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "Hayes Street Grill",
+        "name": "Pollo Stav",
         "permanently_closed": true,
         "photos": [
           {
@@ -763,7 +763,7 @@
         "place_id": "some place id 55",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 3,
         "rating": 4.2,
@@ -777,7 +777,7 @@
           "establishment"
         ],
         "user_ratings_total": 214,
-        "vicinity": "320 Hayes Street, San Francisco"
+        "vicinity": "Capitán Giovanni Calles, Quito 170202"
       },
       {
         "business_status": "OPERATIONAL",
@@ -798,7 +798,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/bar-71.png",
-        "name": "Pause Wine Bar in Hayes Valley",
+        "name": "Poli Broaster",
         "opening_hours": {
           "open_now": false
         },
@@ -815,7 +815,7 @@
         "place_id": "some place id 56",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 2,
         "rating": 4.5,
@@ -829,7 +829,7 @@
           "establishment"
         ],
         "user_ratings_total": 82,
-        "vicinity": "1666 Market Street, San Francisco"
+        "vicinity": "Av. Interoceánica, y S/N, Quito 170157"
       },
       {
         "business_status": "CLOSED_TEMPORARILY",
@@ -850,7 +850,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "AsiaSF",
+        "name": "inka Burguer",
         "permanently_closed": true,
         "photos": [
           {
@@ -865,7 +865,7 @@
         "place_id": "some place id 57",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 3,
         "rating": 4.4,
@@ -880,7 +880,7 @@
           "establishment"
         ],
         "user_ratings_total": 457,
-        "vicinity": "201 9th Street, San Francisco"
+        "vicinity": "RG22+G7C, Quito 170129"
       },
       {
         "business_status": "OPERATIONAL",
@@ -901,7 +901,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "Jasper's Corner Tap and Kitchen",
+        "name": "Ensaladas del Valle",
         "opening_hours": {
           "open_now": true
         },
@@ -918,7 +918,7 @@
         "place_id": "some place id 58",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 2,
         "rating": 3.8,
@@ -932,7 +932,7 @@
           "establishment"
         ],
         "user_ratings_total": 549,
-        "vicinity": "401 Taylor Street, San Francisco"
+        "vicinity": "Ave 12 de Octubre, Quito 170109"
       },
       {
         "business_status": "CLOSED_TEMPORARILY",
@@ -953,7 +953,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/bar-71.png",
-        "name": "Mikkeller Bar",
+        "name": "Cinnabon",
         "permanently_closed": true,
         "photos": [
           {
@@ -968,7 +968,7 @@
         "place_id": "some place id 59",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 2,
         "rating": 4.5,
@@ -982,7 +982,7 @@
           "establishment"
         ],
         "user_ratings_total": 2630,
-        "vicinity": "34 Mason Street, San Francisco"
+        "vicinity": "Av. Pedro Vicente Maldonado, 1er piso., Quito 170601"
       },
       {
         "business_status": "OPERATIONAL",
@@ -1003,7 +1003,7 @@
           }
         },
         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-        "name": "Patxi's Pizza",
+        "name": "Texas Chicken",
         "opening_hours": {
           "open_now": true
         },
@@ -1020,7 +1020,7 @@
         "place_id": "some place id 60",
         "plus_code": {
           "compound_code": "",
-          "global_code": "",
+          "global_code": ""
         },
         "price_level": 2,
         "rating": 4.2,
@@ -1033,7 +1033,7 @@
           "establishment"
         ],
         "user_ratings_total": 861,
-        "vicinity": "511 Hayes Street, San Francisco"
+        "vicinity": "Vía Interoceánica Cumbayá entre Chimborazo y, Salinas, 170901"
       }
     ],
     "status": "OK"

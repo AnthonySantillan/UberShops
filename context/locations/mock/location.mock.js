@@ -1,5 +1,5 @@
 export const locations = {
-  antwerp: {
+  comida: {
     results: [
       {
         geometry: {
@@ -21,7 +21,7 @@ export const locations = {
       },
     ],
   },
-  'san francisco': {
+  'General': {
     results: [
       {
         geometry: {
@@ -35,7 +35,7 @@ export const locations = {
     ],
     status: 'OK',
   },
-  chicago: {
+  'farmacias': {
     results: [
       {
         geometry: {
@@ -57,7 +57,7 @@ export const locations = {
       },
     ],
   },
-  toronto: {
+  ofertas: {
     results: [
       {
         geometry: {
