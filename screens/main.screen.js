@@ -1,10 +1,13 @@
-import React from 'react';
-import {AuthBackground, AuthButton} from '../components/Auth/auth.styles';
-import {SpacerBottom} from '../constants';
-import {Text, StyleSheet, View} from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { AuthBackground, AuthButton } from '../components/Auth/auth.styles';
+import { SpacerBottom } from '../constants';
+import { Text, StyleSheet, View } from 'react-native';
 import LottieView from 'lottie-react-native';
+import axios from 'axios';
 
-export const MainScreen = ({navigation}) => {
+
+export const MainScreen = ({ navigation }) => {
+
   return (
     <AuthBackground>
       <View

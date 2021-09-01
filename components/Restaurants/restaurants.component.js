@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   View,
   Text,
@@ -8,15 +8,25 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {RestaurantContext} from '../../context/restaurant/restaurant.context';
-import {Search} from './component/Search.component';
-import {ActivityIndicator} from 'react-native-paper';
+import { RestaurantContext } from '../../context/restaurant/restaurant.context';
+import { Search } from './component/Search.component';
+import { ActivityIndicator } from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+<<<<<<< HEAD
 import {DefaultText, SpacerRight} from '../../constants';
 import {Favourite} from '../Favourites/component/favourite.component';
+=======
+import Icon from 'react-native-vector-icons/Ionicons';
+import { DefaultText, SpacerRight } from '../../constants';
+import { Favourite } from '../Favourites/component/favourite.component';
+import axios from 'axios';
 
-export const Restaurants = ({navigation}) => {
-  const {restaurants, isLoading} = useContext(RestaurantContext);
+
+export const Restaurants = ({ navigation }) => {
+  const { restaurants, isLoading } = useContext(RestaurantContext);
+
+>>>>>>> 3ae148fa6dff9b6b091932581aa9fa8b46114b73
+
 
   const renderRestaurants = () => {
     const renderRating = rating => {
@@ -63,15 +73,15 @@ export const Restaurants = ({navigation}) => {
         }}
         data={restaurants}
         keyExtractor={(item, index) => index}
-        renderItem={({item}) => {
+        renderItem={({ item }) => {
           return (
             <TouchableOpacity
-              onPress={() => navigation.navigate('Details', {restaurant: item})}
+              onPress={() => navigation.navigate('Details', { restaurant: item })}
               style={{
                 marginBottom: 20,
               }}>
               <Favourite restaurant={item} />
-              <Image source={{uri: item.photos[0]}} style={styles.img} />
+              <Image source={{ uri: item.photos[0] }} style={styles.img} />
               <Text style={styles.textBold}> {item.name} </Text>
 
               <View
