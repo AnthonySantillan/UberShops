@@ -12,10 +12,6 @@ import { RestaurantContext } from '../../context/restaurant/restaurant.context';
 import { Search } from './component/Search.component';
 import { ActivityIndicator } from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-<<<<<<< HEAD
-import {DefaultText, SpacerRight} from '../../constants';
-import {Favourite} from '../Favourites/component/favourite.component';
-=======
 import Icon from 'react-native-vector-icons/Ionicons';
 import { DefaultText, SpacerRight } from '../../constants';
 import { Favourite } from '../Favourites/component/favourite.component';
@@ -24,9 +20,6 @@ import axios from 'axios';
 
 export const Restaurants = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantContext);
-
->>>>>>> 3ae148fa6dff9b6b091932581aa9fa8b46114b73
-
 
   const renderRestaurants = () => {
     const renderRating = rating => {

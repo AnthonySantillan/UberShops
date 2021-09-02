@@ -11,11 +11,6 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-<<<<<<< HEAD
-import {List} from 'react-native-paper';
-import {colors, DefaultText, SubText} from '../constants';
-import {Favourite} from '../components/Favourites/component/favourite.component';
-=======
 import { List } from 'react-native-paper';
 import { colors, DefaultText, SubText } from '../constants';
 // import {Favourite} from '../components/Restaurants/component/favourite.component';
@@ -24,7 +19,6 @@ import axios from 'axios';
 
 
 export const DetailsScreen = ({ route, navigation }) => {
-  let product;
   useEffect(() => {
     getProducts();
   }, []);
@@ -44,19 +38,20 @@ export const DetailsScreen = ({ route, navigation }) => {
     })
     if (res) {
       console.log(res.data.data)
-      product = res.data.data
-      console.log(product.name)
     }
     else {
-      console.log(res + 'no funciona tu huevada')
+      console.log(res + 'no funciona')
     }
->>>>>>> 3ae148fa6dff9b6b091932581aa9fa8b46114b73
+
 
   }
   const { restaurant } = route.params;
-  const [isBreakfastOpen, setIsBreakfastOpen] = useState(false);
+  const [isDrinkstOpen, setIsDrinksOpen] = useState(false);
   const [isLunchOpen, setIsLunchOpen] = useState(false);
   const [isDinnerOpen, setIsDinnerOpen] = useState(false);
+  const [isCarnesOpen, setIsCarnesOpen] = useState(false);
+  const [isLacteosOpen, setIsLacteosOpen] = useState(false);
+
 
   const renderRating = rating => {
     const arrRating = Array.from(new Array(Math.ceil(rating)));
@@ -111,30 +106,46 @@ export const DetailsScreen = ({ route, navigation }) => {
 
         <ScrollView>
           <List.Accordion
-            title="Breakfast"
+            title="Bebidas"
             left={props => <List.Icon {...props} icon="bread-slice" />}
-            expanded={isBreakfastOpen}
-            onPress={() => setIsBreakfastOpen(!isBreakfastOpen)}>
-            <List.Item title="First item" />
-            <List.Item title="Second item" />
+            expanded={isDrinkstOpen}
+            onPress={() => setIsDrinksOpen(!isDrinkstOpen)}>
+            <List.Item title="Coca Cola" />
+            <List.Item title="Pepsi" />
           </List.Accordion>
 
           <List.Accordion
-            title="Lunch"
+            title="Surtidos"
             left={props => <List.Icon {...props} icon="hamburger" />}
             expanded={isLunchOpen}
             onPress={() => setIsLunchOpen(!isLunchOpen)}>
-            <List.Item title="First item" />
-            <List.Item title="Second item" />
+            <List.Item title="SuPan" />
+            <List.Item title="Aceite" />
           </List.Accordion>
 
           <List.Accordion
-            title="Dinner"
-            left={props => <List.Icon {...props} icon="food-variant" />}
+            title="Carnes"
+            left={props => <List.Icon {...props} icon="food" />}
             expanded={isDinnerOpen}
             onPress={() => setIsDinnerOpen(!isDinnerOpen)}>
-            <List.Item title="First item" />
-            <List.Item title="Second item" />
+            <List.Item title="Carne de puerco" />
+            <List.Item title="Carne de vaca" />
+          </List.Accordion>
+          <List.Accordion
+            title="Lacteos"
+            left={props => <List.Icon {...props} icon="food-variant" />}
+            expanded={isCarnesOpen}
+            onPress={() => setIsCarnesOpen(!isCarnesOpen)}>
+            <List.Item title="Leche" />
+            <List.Item title="Yogurt" />
+          </List.Accordion>
+          <List.Accordion
+            title="Verduras"
+            left={props => <List.Icon {...props} icon="food" />}
+            expanded={isLacteosOpen}
+            onPress={() => setIsLacteosOpen(!isLacteosOpen)}>
+            <List.Item title="Tomate" />
+            <List.Item title="Pimientos" />
           </List.Accordion>
         </ScrollView>
       </View>

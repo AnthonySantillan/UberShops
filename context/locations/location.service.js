@@ -1,6 +1,6 @@
-import {locations} from './mock/location.mock';
+import { locations } from './mock/location.mock';
 
-export const locationRequest = (searchTerm = 'General') => {
+export const locationRequest = (searchTerm = 'general') => {
   return new Promise((resolve, reject) => {
     const location = locations[searchTerm];
     if (!location) {
@@ -12,9 +12,9 @@ export const locationRequest = (searchTerm = 'General') => {
 };
 
 export const locationTransform = result => {
-  const {results} = result;
-  const {location, viewport} = results[0].geometry;
+  const { results } = result;
+  const { location, viewport } = results[0].geometry;
 
-  const {lat, lng} = location;
-  return {lat, lng, viewport};
+  const { lat, lng } = location;
+  return { lat, lng, viewport };
 };

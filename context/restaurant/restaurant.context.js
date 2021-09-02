@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import React, {createContext, useState, useEffect, useContext} from 'react';
-import {restaurantRequest, restaurantTransform} from './restaurant.service';
-import {LocationContext} from '../locations/location.context';
-=======
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { restaurantRequest, restaurantTransform } from './restaurant.service';
 import { LocationContext } from '../locations/location.context';
 import { locationRequest } from '../locations/location.service';
->>>>>>> 3ae148fa6dff9b6b091932581aa9fa8b46114b73
+
 export const RestaurantContext = createContext();
 
 export const RestaurantContextProvider = ({ children }) => {
