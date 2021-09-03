@@ -1,0 +1,26 @@
+<h1>este es un componente para clirnyrd </h1>
+<p-panel>
+    <ng-template pTemplate="header">
+        Tiendas con las que trabajamos
+    </ng-template>
+    <!--  lugar donde se listaran las tiendas -->
+    <div *ngFor="let item of Shops; index as i;"  class="p-d-flex">
+        <p-card header="{{item.name}}" subheader="categoria: {{categories[numbers[i]]}}"
+        (click)="goTo(item,categories[numbers[i]])"  class="p-mb-2">
+            <!-- {{item|json}} -->
+            <img src="{{imageDirections[numbers[i]]}}" width="200px" height="200px" alt="imagen tienda">
+            <!--  card footter -->
+            <ng-template pTemplate="footer"> Nos encontramos en: {{item.direction}} </ng-template>
+        </p-card>
+    </div>
+    <!-- inicio pie de pagina -->
+    <ng-template pTemplate="footer">
+        Encuentranos en estas plataformas: <br>
+        <i class="pi pi-facebook" style="font-size: 2rem"></i> <a style="color: cornflowerblue;"
+            href="www.facebook.com"> FACEBOOK</a> <br>
+        <i class="pi pi-discord" style="font-size: 2rem"></i> <a style="color: cornflowerblue;" href="www.discord.com">
+            DISCORD</a> <br>
+        <i class="pi pi-youtube" style="font-size: 2rem"></i> <a style="color: cornflowerblue;" href="www.youtube.com">
+            YOUTUBE</a> <br>
+    </ng-template>
+</p-panel>

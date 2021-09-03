@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ClientRoutingModule } from './client-routing.module';
-import { ListaComponent } from './lista/lista.component';
+import { ClientComponent } from './client.component';
+
 
 
 
 @NgModule({
   declarations: [
-    ListaComponent,
+ClientComponent
     
   ],
   imports: [

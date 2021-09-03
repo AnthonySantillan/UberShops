@@ -1,0 +1,103 @@
+<div class="user_register" id="registration">
+    <form class="RegisterForm" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+        <p-fieldset legend="Datos Extra" [toggleable]="true">
+            <div class="formgrid grid">
+                <div class="field xl:col-2 lg:col-2 md:col-4 sm:col-12">
+                    <label for="username">Nombre de usuario:</label>
+                    <input pInputText type="text" id="username" formControlName="username">
+                    <div *ngIf="userNameField.invalid && (userNameField.touched || userNameField.dirty)">
+                        <small *ngIf="userNameField.errors?.required" class="p-error">
+                            Este campo es obligatorio!!
+                        </small>
+                        <small *ngIf="userNameField.errors?.maxlength" class="p-error">
+                            El numero maximo de caracteres es 20!!
+                        </small>
+                    </div>
+                </div>
+                <div class="field xl:col-5 lg:col-5 md:col-4 sm:col-12">
+                    <label for="name">Nombre:</label>
+                    <input pInputText type="text" id="name" formControlName="name">
+                    <div *ngIf="nameField.invalid && (nameField.touched || nameField.dirty)">
+                        <small *ngIf="nameField.errors?.required" class="p-error">
+                            Este campo es obligatorio!!
+                        </small>
+                        <small *ngIf="userNameField.errors?.maxlength" class="p-error">
+                            El numero maximo de caracteres es 100!!
+                        </small>
+                    </div>
+                </div>
+                <div class="field xl:col-5 lg:col-5 md:col-4 sm:col-12">
+                    <label for="lastname">Apellido:</label>
+                    <input pInputText type="text" id="lastname" formControlName="lastname">
+                    <div *ngIf="lastNameField.invalid && (lastNameField.touched || lastNameField.dirty)">
+                        <small *ngIf="lastNameField.errors?.required" class="p-error">
+                            Este campo es obligatorio!!
+                        </small>
+                        <small *ngIf="userNameField.errors?.maxlength" class="p-error">
+                            El numero maximo de caracteres es 100!!
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </p-fieldset>
+        <p-fieldset legend="Datos para el registro" [toggleable]="true">
+            <div class="formgrid grid">
+                <div class="field xl:col-6 lg:col-5 md:col-4 sm:col-12">
+                    <label for="email">Correo electronico:</label>
+                    <input pInputText type="text" id="email" formControlName="email">
+                    <div *ngIf="emailField.invalid && (emailField.touched || emailField.dirty)">
+                        <small *ngIf="emailField.errors?.required" class="p-error">
+                            Este campo es obligatorio!!
+                        </small>
+                        <small *ngIf="emailField.errors?.email" class="p-error">
+                            Este campo debe tener este formato tu_correo@tu_dominio.com!!
+                        </small>
+                    </div>
+                </div>
+                <div class="field xl:col-6 lg:col-5 md:col-4 sm:col-12">
+                    <label for="password">contraseña:</label>
+                    <!-- <input pPassword type="password"  id="password" formControlName="password"/> -->
+                    <p-password id="password" formControlName="password" [toggleMask]="true"
+                    weakLabel="debil" mediumLabel="media" strongLabel="fuerte" promptLabel="contraseña porfavor"
+                    
+                    ></p-password>
+                    <div *ngIf="passwordField.invalid && (passwordField.touched || passwordField.dirty)">
+                        <small *ngIf="passwordField.errors?.required" class="p-error">
+                            Este campo es obligatorio!!
+                        </small>
+                        <small *ngIf="passwordField.errors?.minlength" class="p-error">
+                            El campo debe tener Al menos 8 caracteres!!
+                        </small>
+                        <small *ngIf="passwordField.errors?.maxlength" class="p-error">
+                            El campo no deber tener mas de 16 caracteres!!
+                        </small>
+                        <!-- <small *ngIf="passwordField.errors?.pattern" class="p-error">
+                            debe tener el dfjhdsk!!
+                        </small> -->
+                    </div>
+                </div>
+            </div>
+        </p-fieldset>
+        <button pButton label="Registrar" icon="pi pi-user-plus" type="submit"></button>
+        <button pButton label="Cancelar" icon="pi pi-times" type="button" (click)="onCancel()"></button>
+
+    </form>
+</div>
+
+<!-- contrseña  no funciono fbien -->
+<!-- <p-password id="password" formControlName="password">
+    <ng-template pTemplate="header">
+        <h6>Introduca una contraseña</h6>
+    </ng-template>
+    <ng-template pTemplate="footer" strongRegExp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 16}$">
+        <p class="p-mt-2">Sugerencias</p>
+        <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+            <li>Al menos una letra minuscula</li>
+            <li>Al menos una letra mayuscula</li>
+            <li>Al menos un caracter especial</li>
+            <li>Al menos un numero</li>
+            <li>Minimo 8 caracteres</li>
+            <li>Maximo 16 caracteres</li>
+        </ul>
+    </ng-template>
+</p-password> -->

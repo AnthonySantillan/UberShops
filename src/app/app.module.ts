@@ -35,6 +35,11 @@ import {PasswordModule} from 'primeng/password';
 import {InputTextModule} from 'primeng/inputtext';
 import {RatingModule} from 'primeng/rating';
 import { httpInterceptorProviders } from './interceptors';
+import {PanelModule} from 'primeng/panel';
+import {GMapModule} from 'primeng/gmap';
+import {DataViewModule} from 'primeng/dataview';
+
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +78,11 @@ import { httpInterceptorProviders } from './interceptors';
     ButtonModule,
     PasswordModule,
     InputTextModule,
-    RatingModule
+    RatingModule,
+    PanelModule,
+    GMapModule,
+    DataViewModule,
+    
   ],
   providers: [httpInterceptorProviders],
   

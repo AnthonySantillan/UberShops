@@ -15,7 +15,7 @@ export class ProductHttpService {
   constructor(private httpClient: HttpClient) { }
   //metodos para recuperar datos del  backend
   getAll():Observable<ServerResponse>{
-    const url:string=`${this.API_URL}/product`;
+    const url:string=`${this.API_URL}/products`;
     return this.httpClient.get<ServerResponse>(url)
     .pipe(
       map(response=>response),
@@ -23,7 +23,7 @@ export class ProductHttpService {
     );
   }
   getOne(id:number|undefined):Observable<ServerResponse> {
-    const url:string=`${this.API_URL}/product/${id}`;
+    const url:string=`${this.API_URL}/products/${id}`;
     return this.httpClient.get<ServerResponse>(url)
     .pipe(
       map(response=>response),
@@ -31,7 +31,7 @@ export class ProductHttpService {
     );
    }
   Update(id:number|undefined,product:ProductModel):Observable<ServerResponse> { 
-    const url:string=`${this.API_URL}/product/${id}`;
+    const url:string=`${this.API_URL}/products/${id}`;
     return this.httpClient.put<ServerResponse>(url,product)
     .pipe(
       map(response=>response),
@@ -39,7 +39,7 @@ export class ProductHttpService {
     );
   }
   Store(product:ProductModel):Observable<ServerResponse> { 
-    const url:string=`${this.API_URL}/product`;
+    const url:string=`${this.API_URL}/products`;
     return this.httpClient.post<ServerResponse>(url,product)
     .pipe(
       map(response=>response),
@@ -47,7 +47,7 @@ export class ProductHttpService {
     );
   }
   destroy(id:number|undefined):Observable<ServerResponse> { 
-    const url:string=`${this.API_URL}/product/${id}`;
+    const url:string=`${this.API_URL}/products/${id}`;
     return this.httpClient.delete<ServerResponse>(url)
     .pipe(
       map(response=>response),

@@ -1,0 +1,10 @@
+/* 
+.grid-content{
+    display: flex;
+flex-flow: row nowrap;
+}*/
+.p-card{
+    display: inline;
+    background-color: blue;
+    
+} 

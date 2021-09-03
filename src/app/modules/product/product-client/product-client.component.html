@@ -1,0 +1,28 @@
+<p-panel>
+    <ng-template pTemplate="header">
+        <h2>Tienda {{shop.name}}</h2><br>
+        <h3>tienda de {{cat}}</h3>
+    </ng-template>
+    <!--  lugar donde se listaran las tiendas -->
+    <div *ngFor="let item of Products; index as i;"  class="p-d-flex">
+        <p-card header="{{item.name}}" subheader="Precio: {{item.price}}"
+        (click)="goTo(item)"  class="p-mb-2">
+            <!-- {{item|json}} -->
+            <img src="{{imageDirections[numbers[i]]}}" width="200px" height="200px" alt="imagen tienda">
+             <!-- card footter -->
+            <ng-template pTemplate="footer"> 
+                <em>Codigo: {{item.code}} </em> 
+             </ng-template>
+        </p-card>
+    </div>
+    <!-- inicio pie de pagina -->
+    <ng-template pTemplate="footer">
+        Encuentranos en estas plataformas: <br>
+        <i class="pi pi-facebook" style="font-size: 2rem"></i> <a style="color: cornflowerblue;"
+            href="www.facebook.com"> FACEBOOK</a> <br>
+        <i class="pi pi-discord" style="font-size: 2rem"></i> <a style="color: cornflowerblue;" href="www.discord.com">
+            DISCORD</a> <br>
+        <i class="pi pi-youtube" style="font-size: 2rem"></i> <a style="color: cornflowerblue;" href="www.youtube.com">
+            YOUTUBE</a> <br>
+    </ng-template>
+</p-panel>

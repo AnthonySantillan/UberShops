@@ -12,12 +12,15 @@ import { RatingModule } from 'primeng/rating';
 import { TableModule } from 'primeng/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ShopClientComponent } from './shop-client/shop-client.component';
+import { PanelModule } from 'primeng/panel';
 
 
 
 @NgModule({
   declarations: [
-    ShopComponent
+    ShopComponent,
+    ShopClientComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    PanelModule
   ]
 })
 export class ShopModule { }

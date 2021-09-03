@@ -1,5 +1,5 @@
 <div id="loginBody" class="formLogin">
-    <p-card header="Ingreso y registro" >
+    <p-card header="¿Listo para comprar?" >
         <Form [formGroup]="FormLogin" (ngSubmit)="onSubmit()">
             <label for="username">Nombre de usuario: </label>
             <input pInputText type="text" id="username" formControlName="username">
@@ -19,6 +19,7 @@
             </div>
             <br>
             <button pButton type="submit" id="btnLogin" label="Ingresar" icon="pi pi-sign-in"></button>
+            <button pButton type="button" (click)="RegisterRedirect()" id="btnRegister" label="registrarse" icon="pi pi-user-plus"></button>
         </Form>
     </p-card>
 </div>

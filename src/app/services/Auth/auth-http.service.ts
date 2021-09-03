@@ -11,7 +11,7 @@ import { LoginModel } from 'src/app/models/login.model';
   providedIn: 'root'
 })
 export class AuthHttpService {
-  API_URL_LOGIN: string = environment.API_LOGIN;
+  API_URL_LOGIN: string = environment.API_URL;
   
   constructor(private httpClient:HttpClient) { }
   login(credentials:LoginModel): Observable<ServerResponse>{

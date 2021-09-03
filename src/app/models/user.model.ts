@@ -1,9 +1,8 @@
 export interface UserModel{
     id?:number;
+    userName?:string;
     name?:string;
-    Phone?:string;
+    lastName?:string;
     email?:string;
     password?:string;
-    direction?:string;
-    genred?:string;
 }

@@ -28,8 +28,8 @@ export class ShopComponent implements OnInit {
   newFormShop():FormGroup {
     return this.formBuilder.group({
       id: [null],
-      seller_id: [1,[]],
-      product_id: [1,[]],
+      seller_id: [1],
+      product_id: [1],
       name: [null, [Validators.required, Validators.maxLength(50)]],
       code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
       direction: [null,[Validators.required,Validators.maxLength(50)]],
@@ -55,7 +55,7 @@ export class ShopComponent implements OnInit {
   getShops() {
     this.shopHttpService.getAll().subscribe(
       response => {
-        console.log(response.data);
+
         this.getShop(response.data[0]);
         this.Shops = response.data;
       }, error => {
@@ -74,7 +74,7 @@ export class ShopComponent implements OnInit {
         this.messageService.success(response);
       },
       error => {
-        this.messageService.error(error)
+        this.messageService.error(error);
       }
     );
   }
